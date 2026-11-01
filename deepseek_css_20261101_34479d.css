@@ -1,0 +1,808 @@
+/* ============================================================
+   VARIABLES Y RESET
+   ============================================================ */
+:root {
+  --verde-oscuro: #0f5c35;
+  --verde-claro: #2ecc71;
+  --blanco-calido: #f8fef9;
+  --gris-texto: #2d2d2d;
+  --gris-suave: #e8f0eb;
+  --sombra: 0 4px 20px rgba(0,0,0,0.08);
+  --radio: 12px;
+  --transicion: 0.3s ease;
+
+  --fuente-titulos: 'Fraunces', serif;
+  --fuente-texto: 'Inter', sans-serif;
+}
+
+/* Modo oscuro */
+body.modo-oscuro {
+  --blanco-calido: #121a16;
+  --gris-texto: #e0e8e3;
+  --gris-suave: #1e2b24;
+  --sombra: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--fuente-texto);
+  color: var(--gris-texto);
+  background-color: var(--blanco-calido);
+  line-height: 1.7;
+  transition: background-color var(--transicion), color var(--transicion);
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--verde-oscuro);
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
+/* ============================================================
+   BARRA DE PROGRESO
+   ============================================================ */
+#barra-progreso {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 4px;
+  background: var(--verde-claro);
+  z-index: 1001;
+  transition: width 0.1s linear;
+}
+
+/* ============================================================
+   BANNER DE LLUVIA
+   ============================================================ */
+.banner-lluvia {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1002;
+  background: #f39c12;
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.95rem;
+}
+
+.banner-lluvia.oculto {
+  display: none;
+}
+
+.banner-lluvia button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* ============================================================
+   ENCABEZADO
+   ============================================================ */
+.encabezado {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: background-color var(--transicion), box-shadow var(--transicion), padding var(--transicion);
+  padding: 0.8rem 0;
+}
+
+.encabezado.transparente {
+  background: transparent;
+  box-shadow: none;
+}
+
+.encabezado.solido {
+  background: var(--blanco-calido);
+  box-shadow: var(--sombra);
+  padding: 0.4rem 0;
+}
+
+.contenedor-encabezado {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.logo-enlace {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: var(--verde-oscuro);
+}
+
+.logo-texto {
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+/* Menú */
+.menu-principal ul {
+  display: flex;
+  list-style: none;
+  gap: 1.2rem;
+}
+
+.enlace-menu {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--gris-texto);
+  padding: 0.3rem 0;
+  border-bottom: 2px solid transparent;
+  transition: color var(--transicion), border-color var(--transicion);
+}
+
+.enlace-menu:hover,
+.enlace-menu.activo {
+  color: var(--verde-oscuro);
+  border-bottom-color: var(--verde-claro);
+  text-decoration: none;
+}
+
+/* Botón menú hamburguesa */
+.boton-menu {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.boton-menu span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background: var(--gris-texto);
+  border-radius: 3px;
+  transition: var(--transicion);
+}
+
+/* Botón tema */
+.boton-tema {
+  background: none;
+  border: 1px solid var(--gris-suave);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transicion);
+}
+
+.boton-tema:hover {
+  background: var(--gris-suave);
+}
+
+/* ============================================================
+   SECCIONES GENERALES
+   ============================================================ */
+section {
+  padding: 5rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.titulo-seccion {
+  font-family: var(--fuente-titulos);
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 700;
+  color: var(--verde-oscuro);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.texto-seccion p {
+  margin-bottom: 1.2rem;
+  font-size: 1.05rem;
+}
+
+/* Sección de dos columnas */
+.seccion-dos-columnas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.seccion-dos-columnas.invertida {
+  direction: rtl;
+}
+
+.seccion-dos-columnas.invertida .texto-seccion {
+  direction: ltr;
+}
+
+.imagen-seccion img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  /* Efecto parallax base */
+  will-change: transform, opacity;
+}
+
+/* Destacado de alarma */
+.destacado-alarma {
+  background: #fff3cd;
+  border-left: 5px solid #e67e22;
+  padding: 1rem 1.2rem;
+  border-radius: 0 var(--radio) var(--radio) 0;
+  margin-top: 1.5rem;
+}
+
+body.modo-oscuro .destacado-alarma {
+  background: #3d2e1a;
+  border-left-color: #f39c12;
+}
+
+/* ============================================================
+   1. INICIO – PANTALLA COMPLETA CON PARALLAX
+   ============================================================ */
+.seccion-inicio {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 1.5rem;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.fondo-parallax {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  background-image: url('../img/inicio-balde-lluvia.jpg');
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+}
+
+.contenido-inicio {
+  position: relative;
+  z-index: 2;
+  max-width: 750px;
+  background: rgba(255, 255, 255, 0.88);
+  padding: 2.5rem 2rem;
+  border-radius: var(--radio);
+  backdrop-filter: blur(4px);
+}
+
+body.modo-oscuro .contenido-inicio {
+  background: rgba(18, 26, 22, 0.9);
+}
+
+.titulo-principal {
+  font-family: var(--fuente-titulos);
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 700;
+  color: var(--verde-oscuro);
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.subtitulo {
+  font-size: 1.15rem;
+  margin-bottom: 2rem;
+  color: var(--gris-texto);
+}
+
+.botones-inicio {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.boton {
+  display: inline-block;
+  padding: 0.9rem 1.8rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+}
+
+.boton:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sombra);
+  text-decoration: none;
+}
+
+.boton-primario {
+  background: var(--verde-oscuro);
+  color: #fff;
+}
+
+.boton-secundario {
+  background: var(--verde-claro);
+  color: #fff;
+}
+
+.boton-whatsapp {
+  background: #25d366;
+  color: #fff;
+}
+
+/* ============================================================
+   5. REPORTA UNA ZONA
+   ============================================================ */
+.seccion-reporta {
+  padding-top: 4rem;
+}
+
+.texto-intro {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  max-width: 700px;
+}
+
+.contenedor-reporta {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.mapa {
+  width: 100%;
+  height: 500px;
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  z-index: 1;
+}
+
+.panel-reporta {
+  background: var(--gris-suave);
+  padding: 1.5rem;
+  border-radius: var(--radio);
+}
+
+.contador-reportes {
+  font-family: var(--fuente-titulos);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--verde-oscuro);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.contador-reportes span:first-child {
+  display: block;
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.formulario-reporte {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.formulario-reporte label {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.formulario-reporte input,
+.formulario-reporte select,
+.formulario-reporte textarea {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: var(--fuente-texto);
+  font-size: 0.95rem;
+  background: var(--blanco-calido);
+  color: var(--gris-texto);
+}
+
+.boton-ubicacion {
+  background: var(--gris-texto);
+  color: #fff;
+  font-size: 0.9rem;
+  padding: 0.6rem 1rem;
+}
+
+.estado-ubicacion {
+  font-size: 0.85rem;
+  color: var(--verde-oscuro);
+  min-height: 1.2em;
+}
+
+.nota-prototipo {
+  font-size: 0.8rem;
+  color: #777;
+  margin-top: 1rem;
+  font-style: italic;
+}
+
+/* ============================================================
+   7. CAZADOR DE CRIADEROS
+   ============================================================ */
+.seccion-juego {
+  padding-top: 4rem;
+}
+
+.juego-pantalla {
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  background: var(--gris-suave);
+  padding: 2rem;
+  border-radius: var(--radio);
+}
+
+.juego-pantalla h3 {
+  font-family: var(--fuente-titulos);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--verde-oscuro);
+}
+
+.juego-pantalla label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+}
+
+.juego-pantalla input,
+.juego-pantalla select {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: var(--fuente-texto);
+  background: var(--blanco-calido);
+  color: var(--gris-texto);
+}
+
+.cabecera-juego {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.barra-progreso-juego {
+  width: 100%;
+  height: 8px;
+  background: #ddd;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+#progreso-juego {
+  height: 100%;
+  width: 0%;
+  background: var(--verde-claro);
+  transition: width 0.3s;
+}
+
+.texto-pregunta {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+}
+
+.opciones-pregunta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.opcion {
+  padding: 0.8rem 1rem;
+  background: var(--blanco-calido);
+  border: 2px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  font-size: 1rem;
+  font-family: var(--fuente-texto);
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.opcion:hover {
+  border-color: var(--verde-claro);
+}
+
+.opcion.correcta {
+  border-color: var(--verde-claro);
+  background: #d4f5e0;
+}
+
+.opcion.incorrecta {
+  border-color: #e74c3c;
+  background: #fde8e8;
+}
+
+.retroalimentacion {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.retroalimentacion.exito {
+  background: #d4f5e0;
+  color: #0f5c35;
+}
+
+.retroalimentacion.error {
+  background: #fde8e8;
+  color: #c0392b;
+}
+
+.oculto {
+  display: none !important;
+}
+
+.puntaje-final {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--verde-oscuro);
+  text-align: center;
+}
+
+.mensaje-final {
+  text-align: center;
+  margin: 1rem 0 1.5rem;
+}
+
+#juego-resultados .boton {
+  display: block;
+  width: 100%;
+  margin-bottom: 0.8rem;
+  text-align: center;
+}
+
+/* Ranking */
+.ranking {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.pestanas-ranking {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.pestana {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  background: var(--gris-suave);
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: var(--fuente-texto);
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.pestana.activa {
+  background: var(--verde-oscuro);
+  color: #fff;
+}
+
+.contenido-ranking table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.contenido-ranking th,
+.contenido-ranking td {
+  padding: 0.6rem 0.8rem;
+  text-align: left;
+  border-bottom: 1px solid var(--gris-suave);
+  font-size: 0.9rem;
+}
+
+.contenido-ranking th {
+  font-weight: 600;
+  color: var(--verde-oscuro);
+}
+
+/* ============================================================
+   8. EQUIPO
+   ============================================================ */
+.seccion-equipo {
+  text-align: center;
+}
+
+.lista-equipo {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem 3rem;
+  font-size: 1.1rem;
+}
+
+/* ============================================================
+   9. FUENTES
+   ============================================================ */
+.seccion-fuentes ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.seccion-fuentes a {
+  font-weight: 500;
+  color: var(--verde-oscuro);
+  text-decoration: underline;
+}
+
+/* ============================================================
+   10. PIE DE PÁGINA
+   ============================================================ */
+.pie-pagina {
+  background: var(--verde-oscuro);
+  color: #fff;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pie-pagina img {
+  filter: brightness(0) invert(1);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .seccion-dos-columnas,
+  .seccion-dos-columnas.invertida {
+    grid-template-columns: 1fr;
+    direction: ltr;
+  }
+
+  .imagen-seccion img {
+    height: 280px;
+  }
+
+  .contenedor-reporta {
+    grid-template-columns: 1fr;
+  }
+
+  .mapa {
+    height: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-principal {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 320px;
+    height: 100vh;
+    background: var(--blanco-calido);
+    box-shadow: var(--sombra);
+    padding: 5rem 2rem 2rem;
+    transition: right 0.3s ease;
+    z-index: 999;
+  }
+
+  .menu-principal.abierto {
+    right: 0;
+  }
+
+  .menu-principal ul {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .enlace-menu {
+    font-size: 1.1rem;
+  }
+
+  .boton-menu {
+    display: flex;
+    z-index: 1001;
+  }
+
+  .boton-menu.abierto span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .boton-menu.abierto span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .boton-menu.abierto span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  section {
+    padding: 3.5rem 1.2rem;
+  }
+
+  .contenido-inicio {
+    padding: 1.8rem 1.2rem;
+  }
+
+  .titulo-principal {
+    font-size: 1.8rem;
+  }
+
+  .juego-pantalla {
+    padding: 1.5rem;
+  }
+
+  .lista-equipo {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+}
+
+/* ============================================================
+   ACCESIBILIDAD – prefers-reduced-motion
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

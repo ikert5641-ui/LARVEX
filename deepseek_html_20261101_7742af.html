@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Larvex: plataforma escolar gratuita para prevenir el dengue durante el Fenómeno El Niño. Reporta zonas de riesgo, aprende a eliminar criaderos y juega.">
+  <title>Larvex · Prevención del dengue en Trujillo</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+
+  <!-- Estilos propios -->
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <!-- Barra de progreso de lectura -->
+  <div id="barra-progreso" aria-hidden="true"></div>
+
+  <!-- Banner de alerta de lluvia (se muestra solo si probabilidad > 40%) -->
+  <div id="banner-lluvia" class="banner-lluvia oculto" role="alert">
+    <p id="texto-banner"></p>
+    <button id="cerrar-banner" aria-label="Cerrar alerta">&times;</button>
+  </div>
+
+  <!-- Encabezado fijo -->
+  <header id="encabezado" class="encabezado transparente">
+    <div class="contenedor-encabezado">
+      <a href="#inicio" class="logo-enlace" aria-label="Larvex, ir al inicio">
+        <img src="img/logo-larvex.svg" alt="Isologo de Larvex" class="logo-img" width="48" height="48">
+        <span class="logo-texto">Larvex</span>
+      </a>
+
+      <button id="boton-menu" class="boton-menu" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-principal">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav id="menu-principal" class="menu-principal" aria-label="Navegación principal">
+        <ul>
+          <li><a href="#inicio" class="enlace-menu activo">Inicio</a></li>
+          <li><a href="#problema" class="enlace-menu">El problema</a></li>
+          <li><a href="#dengue" class="enlace-menu">El dengue</a></li>
+          <li><a href="#prevencion" class="enlace-menu">Prevención</a></li>
+          <li><a href="#reporta" class="enlace-menu">Reporta</a></li>
+          <li><a href="#juego" class="enlace-menu">Cazador</a></li>
+          <li><a href="#equipo" class="enlace-menu">Equipo</a></li>
+          <li><a href="#fuentes" class="enlace-menu">Fuentes</a></li>
+        </ul>
+      </nav>
+
+      <button id="boton-tema" class="boton-tema" aria-label="Cambiar modo oscuro/claro">🌙</button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- 1. INICIO -->
+    <section id="inicio" class="seccion-inicio">
+      <div class="fondo-parallax" id="fondo-inicio"></div>
+      <div class="contenido-inicio">
+        <h1 class="titulo-principal">El agua que queda en tu patio puede criar dengue.</h1>
+        <p class="subtitulo">Larvex es una plataforma gratuita para prevenir el dengue cuando llegan las lluvias del Fenómeno El Niño.</p>
+        <div class="botones-inicio">
+          <a href="#reporta" class="boton boton-primario">Reportar una zona</a>
+          <a href="#juego" class="boton boton-secundario">Jugar Cazador de Criaderos</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. EL PROBLEMA -->
+    <section id="problema" class="seccion-dos-columnas">
+      <div class="texto-seccion">
+        <h2 class="titulo-seccion">El problema</h2>
+        <p>El Fenómeno El Niño es un evento climático que altera las lluvias en la costa peruana. Cuando llega a Trujillo, las precipitaciones intensas y prolongadas dejan agua estancada en calles, patios, llantas viejas, baldes, canaletas y floreros. Esa agua limpia y quieta es el lugar perfecto para que el zancudo <em>Aedes aegypti</em>, transmisor del dengue, ponga sus huevos.</p>
+        <p>La hembra del zancudo deposita sus huevos en las paredes de los recipientes, justo por encima del nivel del agua. Cuando llueve o el recipiente se llena, los huevos eclosionan y las larvas se desarrollan en el agua. En condiciones favorables, una larva puede convertirse en zancudo adulto en unos 7 a 10 días.</p>
+        <p>Por eso, revisar y eliminar el agua acumulada cada semana es la medida más eficaz para cortar el ciclo de reproducción del zancudo. No se necesita una gran inundación: un pequeño recipiente con agua puede ser suficiente para criar cientos de zancudos.</p>
+      </div>
+      <div class="imagen-seccion">
+        <!-- Foto: Balde o recipiente con agua estancada bajo la lluvia. Unsplash/Pexels -->
+        <img src="img/problema-agua-estancada.jpg" alt="Recipiente con agua estancada en un patio durante la lluvia" loading="lazy">
+      </div>
+    </section>
+
+    <!-- 3. EL DENGUE -->
+    <section id="dengue" class="seccion-dos-columnas invertida">
+      <div class="texto-seccion">
+        <h2 class="titulo-seccion">El dengue</h2>
+        <p>El dengue se transmite por la picadura de la hembra infectada del zancudo <em>Aedes aegypti</em>. No se transmite de persona a persona. Los síntomas más frecuentes son fiebre alta de inicio repentino, dolor de cabeza intenso, dolor detrás de los ojos, dolor muscular y articular, sarpullido, náuseas o vómitos[reference:0].</p>
+        <p class="destacado-alarma"><strong>Signos de alarma que exigen atención médica inmediata:</strong> dolor abdominal intenso y continuo, vómitos persistentes, sangrado de nariz o encías, y somnolencia o irritabilidad[reference:1]. Ante fiebre alta, acude al centro de salud más cercano y <strong>no te automediques con aspirina ni ibuprofeno</strong>.</p>
+      </div>
+      <div class="imagen-seccion">
+        <!-- Foto: Zancudo Aedes aegypti en primer plano. Unsplash/Pexels -->
+        <img src="img/dengue-mosquito.jpg" alt="Zancudo Aedes aegypti en primer plano sobre la piel" loading="lazy">
+      </div>
+    </section>
+
+    <!-- 4. PREVENCIÓN EN CASA -->
+    <section id="prevencion" class="seccion-dos-columnas">
+      <div class="texto-seccion">
+        <h2 class="titulo-seccion">Prevención en casa</h2>
+        <p>La descacharrización consiste en eliminar o voltear todos los recipientes que puedan acumular agua. Revisa tu patio, techo y jardín: baldes, llantas, botellas, latas, macetas y floreros deben vaciarse o guardarse bajo techo. Los depósitos de agua deben estar bien tapados.</p>
+        <p>Lava con escobilla los bordes de baldes y tanques, ya que los huevos del zancudo quedan adheridos a las paredes. Limpia canaletas y desagües para que el agua no se empoce. Usa repelente y ropa de manga larga, especialmente al amanecer y al atardecer, y coloca mallas en ventanas y puertas[reference:2].</p>
+      </div>
+      <div class="imagen-seccion">
+        <!-- Foto: Patio limpio, sin recipientes con agua. Unsplash/Pexels -->
+        <img src="img/prevencion-patio-limpio.jpg" alt="Patio de casa limpio y ordenado, sin criaderos de zancudos" loading="lazy">
+      </div>
+    </section>
+
+    <!-- 5. REPORTA UNA ZONA -->
+    <section id="reporta" class="seccion-reporta">
+      <h2 class="titulo-seccion">Reporta una zona</h2>
+      <p class="texto-intro">Ayuda a identificar focos de agua estancada en Trujillo. Toca el mapa para marcar la ubicación o usa tu ubicación actual.</p>
+
+      <div class="contenedor-reporta">
+        <div id="mapa" class="mapa" aria-label="Mapa interactivo de Trujillo para reportar zonas"></div>
+
+        <div class="panel-reporta">
+          <div class="contador-reportes">
+            <span id="total-reportes">0</span>
+            <span>zonas reportadas</span>
+          </div>
+
+          <form id="formulario-reporte" class="formulario-reporte">
+            <label for="referencia">Referencia o calle</label>
+            <input type="text" id="referencia" name="referencia" required placeholder="Ej. Av. España 123">
+
+            <label for="tipo-foco">Tipo de foco</label>
+            <select id="tipo-foco" name="tipo-foco" required>
+              <option value="">Selecciona una opción</option>
+              <option value="calle-inundada">Calle inundada</option>
+              <option value="patio">Patio</option>
+              <option value="recipiente">Recipiente</option>
+              <option value="canaleta">Canaleta</option>
+              <option value="terreno-baldio">Terreno baldío</option>
+            </select>
+
+            <label for="descripcion">Descripción (opcional)</label>
+            <textarea id="descripcion" name="descripcion" rows="2" placeholder="Detalles adicionales"></textarea>
+
+            <button type="button" id="boton-ubicacion" class="boton boton-ubicacion">Usar mi ubicación actual</button>
+            <p id="estado-ubicacion" class="estado-ubicacion"></p>
+
+            <button type="submit" class="boton boton-primario">Enviar reporte</button>
+          </form>
+
+          <p class="nota-prototipo">Este es un prototipo escolar. Los reportes se guardan en tu navegador y todavía no se envían a una base de datos.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. ALERTA DE LLUVIA (el banner se inserta dinámicamente) -->
+    <!-- 7. CAZADOR DE CRIADEROS -->
+    <section id="juego" class="seccion-juego">
+      <h2 class="titulo-seccion">Cazador de Criaderos</h2>
+      <p class="texto-intro">Demuestra cuánto sabes sobre la prevención del dengue. Responde 8 preguntas y compite en el ranking.</p>
+
+      <!-- Pantalla de inicio del juego -->
+      <div id="juego-inicio" class="juego-pantalla">
+        <h3>Antes de empezar</h3>
+        <label for="nombre-jugador">Tu nombre</label>
+        <input type="text" id="nombre-jugador" required placeholder="Escribe tu nombre">
+
+        <label for="region-jugador">Tu región</label>
+        <select id="region-jugador" required>
+          <option value="">Selecciona tu región</option>
+          <!-- Se llena con JS -->
+        </select>
+
+        <button id="boton-comenzar-juego" class="boton boton-primario">Comenzar</button>
+      </div>
+
+      <!-- Pantalla de preguntas -->
+      <div id="juego-preguntas" class="juego-pantalla oculto">
+        <div class="cabecera-juego">
+          <span id="numero-pregunta">Pregunta 1 de 8</span>
+          <span id="puntaje-actual">0 puntos</span>
+        </div>
+        <div class="barra-progreso-juego"><div id="progreso-juego"></div></div>
+        <p id="texto-pregunta" class="texto-pregunta"></p>
+        <div id="opciones-pregunta" class="opciones-pregunta"></div>
+        <div id="retroalimentacion" class="retroalimentacion oculto"></div>
+        <button id="boton-siguiente" class="boton boton-primario oculto">Siguiente</button>
+      </div>
+
+      <!-- Pantalla de resultados -->
+      <div id="juego-resultados" class="juego-pantalla oculto">
+        <h3>Resultado final</h3>
+        <p id="puntaje-final" class="puntaje-final"></p>
+        <p id="mensaje-final" class="mensaje-final"></p>
+        <button id="boton-compartir-whatsapp" class="boton boton-whatsapp">Compartir por WhatsApp</button>
+        <button id="boton-jugar-de-nuevo" class="boton boton-secundario">Jugar de nuevo</button>
+      </div>
+
+      <!-- Ranking -->
+      <div class="ranking">
+        <div class="pestanas-ranking">
+          <button class="pestana activa" data-pestana="mejores">Mejores jugadores</button>
+          <button class="pestana" data-pestana="regiones">Por región</button>
+        </div>
+        <div id="contenido-ranking" class="contenido-ranking"></div>
+      </div>
+    </section>
+
+    <!-- 8. EQUIPO G.E.N -->
+    <section id="equipo" class="seccion-equipo">
+      <h2 class="titulo-seccion">Equipo G.E.N</h2>
+      <ul class="lista-equipo">
+        <li>Jhon Marcelo Reyes Obando</li>
+        <li>Iker Jaden Torres Terrones</li>
+        <li>Andrea Ivana Monzon Rodriguez</li>
+        <li>Jazmin Tufinio [segundo apellido]</li>
+        <li>Yamil Aaron Sanchez Bobadilla</li>
+      </ul>
+    </section>
+
+    <!-- 9. FUENTES -->
+    <section id="fuentes" class="seccion-fuentes">
+      <h2 class="titulo-seccion">Fuentes</h2>
+      <ul>
+        <li><a href="https://www.gob.pe/minsa" target="_blank" rel="noopener">Ministerio de Salud del Perú (MINSA)</a></li>
+        <li><a href="https://www.who.int/es/news-room/fact-sheets/detail/dengue-and-severe-dengue" target="_blank" rel="noopener">Organización Mundial de la Salud (OMS) – Dengue</a></li>
+        <li><a href="https://www.paho.org/es/temas/dengue" target="_blank" rel="noopener">Organización Panamericana de la Salud (OPS) – Dengue</a></li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- 10. PIE DE PÁGINA -->
+  <footer class="pie-pagina">
+    <img src="img/logo-larvex.svg" alt="Isologo de Larvex" width="40" height="40">
+    <p>Larvex · Equipo G.E.N · I.E. Fe y Alegría N.° 36 · Trujillo</p>
+  </footer>
+
+  <!-- Librerías CDN -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+  <!-- Scripts propios -->
+  <script src="js/app.js"></script>
+  <script src="js/parallax.js"></script>
+</body>
+</html>
