@@ -17,7 +17,27 @@ let mapaListo = false;
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {
   inicializarMenu();
+  // ============================================================
+// ENCABEZADO SÓLIDO AL HACER SCROLL
+// ============================================================
+function inicializarEncabezadoScroll() {
+  const header = document.getElementById('encabezado');
+  if (!header) return;
+
+  window.addEventListener('scroll', () => {
+    // Si bajamos más de 50 píxeles, el menú se vuelve sólido
+    if (window.scrollY > 50) {
+      header.classList.remove('transparente');
+      header.classList.add('solido');
+    } else {
+      // Si volvemos arriba, vuelve a ser transparente
+      header.classList.add('transparente');
+      header.classList.remove('solido');
+    }
+  });
+}
   inicializarTema();
+  inicializarEncabezadoScroll();
   inicializarScrollSuave();
   inicializarBarraProgreso();
   inicializarEnlacesActivos();
