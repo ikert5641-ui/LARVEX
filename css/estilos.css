@@ -254,13 +254,16 @@ section {
   direction: ltr;
 }
 
+.imagen-seccion {
+  overflow: hidden; /* Esto evita que la imagen se salga de la caja */
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+}
+
 .imagen-seccion img {
   width: 100%;
   height: 350px;
   object-fit: cover;
-  border-radius: var(--radio);
-  box-shadow: var(--sombra);
-  /* Efecto parallax base */
   will-change: transform, opacity;
 }
 
