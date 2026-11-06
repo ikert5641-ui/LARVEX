@@ -434,65 +434,65 @@ const PREGUNTAS = [
   {
     pregunta: '¿Cómo se transmite el dengue?',
     opciones: [
-      'De persona a persona por la tos',
-      'Por la picadura de la hembra infectada del Aedes aegypti',
-      'Por beber agua contaminada',
-      'Por contacto con la piel de un enfermo'
+      'Por la picadura del mosquito Anopheles al atardecer',
+      'Por la picadura de la hembra del Aedes aegypti',
+      'Por el contacto con la saliva de una persona enferma',
+      'Por ingerir agua que no ha sido hervida'
     ],
     correcta: 1,
-    explicacion: 'El dengue se transmite por la picadura de la hembra infectada del zancudo Aedes aegypti. No se transmite de persona a persona.'
+    explicacion: 'El dengue se transmite por la picadura de la hembra infectada del Aedes aegypti. No se transmite de persona a persona.'
   },
   {
     pregunta: '¿Cuánto tiempo tarda una larva de Aedes aegypti en convertirse en zancudo adulto?',
     opciones: [
-      '1 a 2 días',
-      '3 a 5 días',
-      '7 a 10 días',
-      '15 a 20 días'
+      'Entre 1 y 2 días en climas cálidos',
+      'Alrededor de 7 a 10 días en condiciones favorables',
+      'Hasta 20 días si el agua está sucia',
+      'Solo 24 horas después de la picadura'
     ],
-    correcta: 2,
+    correcta: 1,
     explicacion: 'En condiciones favorables, la larva pasa a adulto en unos 7 a 10 días. Por eso se recomienda revisar los recipientes cada semana.'
   },
   {
     pregunta: '¿Cuál de estos NO es un síntoma frecuente del dengue?',
     opciones: [
-      'Fiebre alta de inicio repentino',
-      'Dolor detrás de los ojos',
-      'Sarpullido en la piel',
-      'Dolor de oído intenso'
+      'Fiebre alta de inicio repentino y sarpullido',
+      'Dolor muscular, articular y detrás de los ojos',
+      'Dolor de oído intenso y pérdida de audición',
+      'Náuseas, vómitos y dolor de cabeza intenso'
     ],
-    correcta: 3,
-    explicacion: 'El dolor de oído no es un síntoma típico del dengue. Los síntomas más comunes son fiebre alta, dolor de cabeza, dolor detrás de los ojos, dolor muscular y articular, sarpullido, náuseas o vómitos.'
+    correcta: 2,
+    explicacion: 'El dolor de oído no es un síntoma típico. Los síntomas comunes son fiebre alta, dolor de cabeza, dolor detrás de los ojos, dolor muscular, sarpullido, náuseas o vómitos.'
   },
   {
     pregunta: '¿Cuál es un signo de alarma que exige atención médica inmediata?',
     opciones: [
-      'Estornudos frecuentes',
-      'Dolor abdominal intenso y continuo',
-      'Picazón en los brazos',
-      'Sed leve'
+      'Estornudos frecuentes y congestión nasal',
+      'Picazón leve en los brazos y piernas',
+      'Dolor abdominal intenso y vómitos persistentes',
+      'Sed excesiva y ganas de comer dulces'
     ],
-    correcta: 1,
-    explicacion: 'El dolor abdominal intenso y continuo es un signo de alarma. También lo son los vómitos persistentes, el sangrado de nariz o encías y la somnolencia o irritabilidad.'
+    correcta: 2,
+    explicacion: 'El dolor abdominal intenso y los vómitos persistentes son signos de alarma. También lo son el sangrado de nariz o encías y la somnolencia o irritabilidad.'
   },
   {
     pregunta: '¿Qué se recomienda hacer ante fiebre alta por posible dengue?',
     opciones: [
-      'Tomar aspirina o ibuprofeno',
-      'Acudir al centro de salud más cercano y no automedicarse',
-      'Esperar tres días en casa',
-      'Beber solo líquidos fríos'
+      'Tomar aspirina para bajar la fiebre rápidamente',
+      'Esperar tres días en casa antes de ir al médico',
+      'Beber solo líquidos fríos y reposar boca abajo',
+      'Acudir al centro de salud y no automedicarse'
     ],
-    correcta: 1,
-    explicacion: 'Ante fiebre alta, se debe acudir al centro de salud más cercano y no automedicarse con aspirina ni ibuprofeno.'
+    correcta: 3,
+    explicacion: 'Ante fiebre alta, se debe acudir al centro de salud más cercano y no automedicarse con aspirina ni ibuprofeno, ya que pueden agravar la enfermedad.'
   },
   {
-    pregunta: '¿Qué es la descacharrización?',
+    pregunta: '¿En qué consiste la descacharrización?',
     opciones: [
-      'Fumigar toda la casa',
+      'Fumigar toda la casa con insecticidas en aerosol',
       'Eliminar o voltear recipientes que acumulan agua',
-      'Pintar las paredes de blanco',
-      'Usar repelente todos los días'
+      'Pintar las paredes de blanco para ahuyentar zancudos',
+      'Usar repelente en el cuerpo todos los días'
     ],
     correcta: 1,
     explicacion: 'La descacharrización consiste en eliminar o voltear baldes, llantas, botellas y cualquier recipiente que pueda acumular agua y convertirse en criadero.'
@@ -500,24 +500,24 @@ const PREGUNTAS = [
   {
     pregunta: '¿Dónde suele poner sus huevos el zancudo Aedes aegypti?',
     opciones: [
-      'En agua sucia y con mal olor',
+      'En agua sucia, estancada y con mal olor',
+      'En la tierra seca de las macetas y jardines',
       'En agua limpia y quieta dentro de recipientes',
-      'En la tierra seca',
-      'En las hojas de los árboles'
+      'En las hojas de los árboles y arbustos'
     ],
-    correcta: 1,
+    correcta: 2,
     explicacion: 'La hembra del Aedes aegypti prefiere agua limpia y quieta. Por eso los baldes, floreros, canaletas y llantas con agua de lluvia son criaderos ideales.'
   },
   {
     pregunta: '¿Cuál de estas medidas ayuda a prevenir el dengue en casa?',
     opciones: [
-      'Dejar las llantas en el patio',
+      'Dejar las llantas en el patio para que se sequen',
+      'Acumular agua en botellas abiertas por si acaso',
       'Lavar con escobilla los bordes de baldes y tanques',
-      'Acumular agua en botellas abiertas',
-      'Cerrar todas las ventanas'
+      'Cerrar todas las ventanas durante el día'
     ],
-    correcta: 1,
-    explicacion: 'Lavar con escobilla los bordes de baldes y tanques elimina los huevos del zancudo adheridos a las paredes. También se recomienda tapar depósitos, limpiar canaletas y usar repelente.'
+    correcta: 2,
+    explicacion: 'Lavar con escobilla los bordes de baldes y tanques elimina los huevos del zancudo adheridos a las paredes. También se recomienda tapar depósitos y limpiar canaletas.'
   }
 ];
 
