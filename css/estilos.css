@@ -810,3 +810,14 @@ body.modo-oscuro .contenido-inicio {
     scroll-behavior: auto !important;
   }
 }
+.contenedor-mapa-mundo {
+  margin: 2rem 0;
+}
+
+.fuente-mapa {
+  font-size: 0.8rem;
+  color: #777;
+  text-align: right;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
