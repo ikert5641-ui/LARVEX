@@ -821,3 +821,10 @@ body.modo-oscuro .contenido-inicio {
   margin-top: 0.5rem;
   font-style: italic;
 }
+
+/* Hacer más discreta la marca de agua del mapa de Trujillo */
+.leaflet-control-attribution {
+  font-size: 9px !important;
+  background: rgba(255, 255, 255, 0.6) !important;
+  color: #777 !important;
+}
