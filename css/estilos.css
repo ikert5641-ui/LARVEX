@@ -260,20 +260,20 @@ section {
   box-shadow: var(--sombra);
 }
 
-.imagen-seccion img {
-  width: 100%;
-  height: 350px;
-  object-fit: cover;
-  will-change: transform, opacity;
+.imagen-seccion {
+  overflow: hidden;
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  background-color: #e0e0e0; /* Un fondo gris por si la imagen no llena todo */
 }
 
-/* Destacado de alarma */
-.destacado-alarma {
-  background: #fff3cd;
-  border-left: 5px solid #e67e22;
-  padding: 1rem 1.2rem;
-  border-radius: 0 var(--radio) var(--radio) 0;
-  margin-top: 1.5rem;
+.imagen-seccion img {
+  width: 100%;
+  height: auto; /* Permite que la imagen mantenga su proporción natural */
+  aspect-ratio: 16 / 9; /* Le da una forma rectangular estándar (como las fotos de paisajes) */
+  object-fit: cover; /* Sigue recortando un poco, pero al tener aspect-ratio no se deforma */
+  object-position: center; /* Centra el recorte */
+  will-change: transform, opacity;
 }
 
 body.modo-oscuro .destacado-alarma {
