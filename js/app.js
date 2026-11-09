@@ -854,3 +854,90 @@ function dibujarCalor() {
     gradient: {0.4: 'blue', 0.6: 'lime', 0.8: 'yellow', 1.0: 'red'}
   }).addTo(mapa);
 }
+
+// ============================================================
+// ASISTENTE VIRTUAL DEXTER (Lógica de conversación)
+// ============================================================
+const respuestasDexter = {
+  "hola": "¡Hola! Soy Dexter. ¿En qué te puedo ayudar hoy sobre la prevención del dengue?",
+  "buenos dias": "¡Buenos días! Espero que estés listo para aprender cómo mantener tu comunidad libre de dengue.",
+  "buenas tardes": "¡Buenas tardes! ¿Tienes alguna duda sobre los criaderos o los síntomas?",
+  "sintoma": "Los síntomas más comunes son: fiebre alta repentina, dolor de cabeza, dolor detrás de los ojos, dolores musculares y sarpullido. Aparecen de 4 a 10 días después de la picadura.",
+  "alarma": "¡Atención! Si tienes dolor abdominal intenso, vómitos persistentes, sangrado de encías/nariz o mucha somnolencia, acude INMEDIATAMENTE al centro de salud. No tomes aspirina.",
+  "contagio": "El dengue NO se transmite de persona a persona. Solo se contagia por la picadura de la hembra del zancudo Aedes aegypti infectada.",
+  "prevencion": "La clave es la descacharrización: voltea baldes, tapa tanques, lava con escobilla los bebederos y elimina llantas viejas. Recuerda: ¡Sin criaderos, no hay mosquitos!",
+  "criadero": "Un criadero es cualquier recipiente con agua limpia y estancada. Los zancudos ponen sus huevos en baldes, floreros, canaletas y hasta en una tapita de botella.",
+  "mosquito": "El Aedes aegypti es un zancudo que tiene rayas blancas y negras en las patas. Pica principalmente al amanecer y al atardecer.",
+  "zancudo": "El Aedes aegypti es el zancudo transmisor. ¡Recuerda eliminando criaderos evitamos que nazcan!",
+  "vacuna": "Existe una vacuna llamada Qdenga, recomendada para niños y adolescentes en zonas de riesgo. Sin embargo, la medida más efectiva siempre será eliminar los criaderos en casa.",
+  "reportar": "Puedes reportar una zona de riesgo usando nuestro mapa interactivo aquí mismo en la página. Solo tienes que hacer clic en el mapa y llenar el formulario.",
+  "juego": "El Cazador de Criaderos es un juego donde pones a prueba lo que sabes. ¡Espera pronto la versión RPG del Fumigador!",
+  "gracias": "¡De nada! Juntos podemos prevenir el dengue en Trujillo y el Perú. ¿Tienes otra duda?",
+  "adios": "¡Hasta luego! Recuerda revisar tu patio y tapar tus depósitos de agua."
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  const btnChat = document.getElementById('boton-chat');
+  const ventanaChat = document.getElementById('ventana-chat');
+  const cerrarChat = document.getElementById('cerrar-chat');
+  const inputChat = document.getElementById('input-chat');
+  const enviarChat = document.getElementById('enviar-chat');
+  const mensajesChat = document.getElementById('mensajes-chat');
+  const indicadorEscribiendo = document.getElementById('indicador-escribiendo');
+
+  if (!btnChat) return; // Si no existe el botón, no hace nada
+
+  // Abrir y cerrar ventana
+  btnChat.addEventListener('click', () => {
+    ventanaChat.classList.toggle('oculto');
+    if (!ventanaChat.classList.contains('oculto')) inputChat.focus();
+  });
+  
+  cerrarChat.addEventListener('click', () => ventanaChat.classList.add('oculto'));
+
+  // Función para enviar mensaje
+  function enviarMensaje() {
+    const textoUsuario = inputChat.value.trim();
+    if (!textoUsuario) return;
+
+    // 1. Mostrar mensaje del usuario
+    const msjUser = document.createElement('p');
+    msjUser.className = 'msj-user';
+    msjUser.textContent = textoUsuario;
+    mensajesChat.appendChild(msjUser);
+    inputChat.value = '';
+    mensajesChat.scrollTop = mensajesChat.scrollHeight;
+
+    // 2. Mostrar "Escribiendo..."
+    indicadorEscribiendo.classList.remove('oculto');
+    mensajesChat.scrollTop = mensajesChat.scrollHeight;
+
+    // 3. Dexter piensa y responde
+    setTimeout(() => {
+      indicadorEscribiendo.classList.add('oculto');
+      
+      let respuesta = "Mmm, no estoy seguro de eso. Te recomiendo leer las secciones de arriba o preguntarme sobre 'síntomas', 'prevención' o 'alarma'.";
+      const textoLimpio = textoUsuario.toLowerCase();
+
+      // Buscar palabras clave en el texto del usuario
+      for (const [clave, respuestaBot] of Object.entries(respuestasDexter)) {
+        if (textoLimpio.includes(clave)) {
+          respuesta = respuestaBot;
+          break;
+        }
+      }
+
+      const msjBot = document.createElement('p');
+      msjBot.className = 'msj-bot';
+      msjBot.textContent = respuesta;
+      mensajesChat.appendChild(msjBot);
+      mensajesChat.scrollTop = mensajesChat.scrollHeight;
+    }, 1200); // Dexter "piensa" por 1.2 segundos antes de responder
+  }
+
+  // Eventos para enviar
+  enviarChat.addEventListener('click', enviarMensaje);
+  inputChat.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') enviarMensaje();
+  });
+});
