@@ -813,3 +813,44 @@ function inicializarPestanasRanking() {
     });
   });
 }
+
+// MAPA DE CALOR
+let capaCalor = null;
+let mostrarCalor = false;
+
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('btn-calor');
+  if (!btn) return;
+
+  btn.addEventListener('click', () => {
+    mostrarCalor = !mostrarCalor;
+    if (mostrarCalor) {
+      btn.textContent = '📍 Ver Marcadores';
+      btn.classList.replace('boton-secundario', 'boton-primario');
+      dibujarCalor();
+    } else {
+      btn.textContent = '🔥 Ver Mapa de Calor';
+      btn.classList.replace('boton-primario', 'boton-secundario');
+      if (capaCalor) mapa.removeLayer(capaCalor);
+      marcadoresReportes.forEach(m => mapa.addLayer(m));
+    }
+  });
+});
+
+function dibujarCalor() {
+  if (!mapa) return;
+  marcadoresReportes.forEach(m => mapa.removeLayer(m));
+  if (reportes.length === 0) return;
+
+  const puntos = reportes.map(r => {
+    const riesgo = calcularRiesgo(r.lat, r.lng);
+    let intensidad = riesgo === 'rojo' ? 1.0 : (riesgo === 'amarillo' ? 0.8 : 0.4);
+    return [r.lat, r.lng, intensidad];
+  });
+
+  if (capaCalor) mapa.removeLayer(capaCalor);
+  capaCalor = L.heatLayer(puntos, {
+    radius: 35, blur: 20, maxZoom: 15,
+    gradient: {0.4: 'blue', 0.6: 'lime', 0.8: 'yellow', 1.0: 'red'}
+  }).addTo(mapa);
+}
