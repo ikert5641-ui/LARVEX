@@ -290,5 +290,29 @@
   <!-- Scripts propios -->
   <script src="js/app.js"></script>
   <script src="js/parallax.js"></script>
+  <!-- ASISTENTE VIRTUAL DEXTER -->
+  <button id="boton-chat" class="boton-chat" aria-label="Abrir asistente Dexter">🤖</button>
+  
+  <div id="ventana-chat" class="ventana-chat oculto">
+    <div class="cabecera-chat">
+      <span>Dexter - Asistente Larvex</span>
+      <button id="cerrar-chat" aria-label="Cerrar asistente">&times;</button>
+    </div>
+    
+    <div id="mensajes-chat" class="mensajes-chat">
+      <p class="msj-bot">¡Hola! Soy Dexter 🤖. Pregúntame sobre síntomas, prevención, el zancudo o cómo reportar una zona.</p>
+    </div>
+    
+    <!-- Indicador de que Dexter está escribiendo -->
+    <div id="indicador-escribiendo" class="indicador-escribiendo oculto">
+      <span></span><span></span><span></span>
+    </div>
+
+    <div class="input-chat">
+      <input type="text" id="input-chat" placeholder="Escribe tu duda aquí..." aria-label="Escribe tu mensaje">
+      <button id="enviar-chat">Enviar</button>
+    </div>
+  </div>
+  
 </body>
 </html>
