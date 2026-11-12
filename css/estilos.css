@@ -989,3 +989,30 @@ body.modo-oscuro .botones-inicio .boton-secundario:hover {
   color: #ffffff !important;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
 }
+
+/* ============================================================
+   PARCHE DE EMERGENCIA: FORZAR MENÚ BLANCO ARRIBA
+   ============================================================ */
+
+/* Forzar que el texto, el logo y el botón de la luna sean blancos */
+#encabezado.transparente .logo-texto,
+#encabezado.transparente .enlace-menu,
+#encabezado.transparente .boton-tema {
+  color: #ffffff !important;
+}
+
+/* El enlace activo (Inicio) se queda verde claro para que resalte */
+#encabezado.transparente .enlace-menu.activo {
+  color: #2ecc71 !important; 
+  border-bottom-color: #2ecc71 !important;
+}
+
+/* El logo de la cabecera se vuelve blanco */
+#encabezado.transparente .logo-img {
+  filter: brightness(0) invert(1) !important;
+}
+
+/* El borde del botón de la luna se vuelve blanco */
+#encabezado.transparente .boton-tema {
+  border-color: rgba(255, 255, 255, 0.5) !important;
+}
