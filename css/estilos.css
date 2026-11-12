@@ -1059,42 +1059,33 @@ body.modo-oscuro .botones-inicio .boton-secundario:hover {
    AJUSTES EXCLUSIVOS PARA CELULARES (Responsive Perfecto)
    ============================================================ */
 @media (max-width: 768px) {
-  
-  /* 1. Arreglar las imágenes para que se vean grandes y sin cortes raros */
-  .imagen-seccion {
-    height: 300px !important; /* Le damos una altura fija y buena */
-    margin-bottom: 2rem;
-  }
-  
-  .imagen-seccion img {
-    aspect-ratio: auto !important; /* Quitamos la proporción de tira */
-    height: 100% !important;
-    object-fit: cover !important; /* Mantiene la foto centrada */
-  }
-  
-  /* 2. Arreglar el cuadro de Dexter (Asistente IA) para que FLOTE */
+  /* ... (deja lo de las imágenes igual) ... */
+
+  /* Arreglar el cuadro de Dexter para que FLOTE como una app */
   .ventana-chat {
-    position: fixed !important; /* Forzamos a que flote */
-    top: 10vh !important;       /* Lo ubicamos en el centro de la pantalla */
-    bottom: 10vh !important;
+    position: fixed !important; 
+    top: auto !important;       /* Lo anclamos abajo */
+    bottom: 110px !important;   /* Justo arriba del botón del robot */
     left: 5vw !important;
     right: 5vw !important;
     width: 90vw !important;
-    height: 80vh !important;
-    z-index: 9999 !important;   /* Aseguramos que esté por encima de todo */
+    height: 60vh !important;    /* Un poco más pequeño para que no tape todo */
+    max-height: 450px !important;
+    z-index: 9999 !important;   
     background: white !important;
     box-shadow: 0 10px 40px rgba(0,0,0,0.5) !important;
-    border-radius: 12px !important;
+    border-radius: 16px !important; /* Bordes redondeados */
+    border: 2px solid var(--verde-oscuro) !important;
     display: flex;
     flex-direction: column;
   }
 
-  /* 3. Asegurar que los mensajes se puedan deslizar dentro del cuadro */
   .mensajes-chat {
-    flex: 1 !important;          /* Ocupa todo el espacio disponible */
+    flex: 1 !important;          
     height: auto !important;
     max-height: none !important;
   }
+}
 
   /* 4. El botón del robot se queda abajo a la derecha */
   .boton-chat {
