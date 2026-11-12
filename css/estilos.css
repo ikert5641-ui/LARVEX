@@ -1051,3 +1051,38 @@ body.modo-oscuro .botones-inicio .boton-secundario:hover {
   background-color: #ffffff !important;
   color: var(--verde-oscuro) !important;
 }
+
+/* ============================================================
+   AJUSTES EXCLUSIVOS PARA CELULARES (Responsive)
+   ============================================================ */
+@media (max-width: 768px) {
+  
+  /* 1. Hacer que las imágenes sean más cuadradas (más grandes) en el celular */
+  .imagen-seccion img {
+    aspect-ratio: 4 / 3 !important; /* En vez de 16:9, ahora es 4:3 (más alta) */
+    height: 100% !important;
+  }
+  
+  /* 2. Ajustar el cuadro de Dexter (Asistente IA) para que no se salga de la pantalla */
+  .ventana-chat {
+    width: 92vw !important;       /* Ocupa casi todo el ancho */
+    left: 4vw !important;         /* Lo centra */
+    right: 4vw !important;
+    bottom: 100px !important;     /* Lo sube para que no choque con el teclado */
+    max-height: 75vh !important;  /* Evita que se salga por arriba */
+  }
+
+  /* 3. Hacer la zona de mensajes más pequeña en celular */
+  .mensajes-chat {
+    height: 50vh !important;      /* Se adapta a la altura de la pantalla */
+    max-height: 350px !important;
+  }
+  
+  /* 4. Ajustar el botón de Dexter para que no estorbe */
+  .boton-chat {
+    width: 75px !important;
+    height: 75px !important;
+    bottom: 15px !important;
+    right: 15px !important;
+  }
+}
