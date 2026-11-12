@@ -1161,3 +1161,54 @@ body.modo-oscuro .botones-inicio .boton-secundario:hover {
   }
 }
 
+/* ============================================================
+   DISEÑO DEFINITIVO: MAPA Y FORMULARIO (LAPTOP Y CELULAR)
+   ============================================================ */
+
+/* 1. El contenedor principal (Evita que se salga de la pantalla) */
+.contenedor-reporta {
+  display: grid !important;
+  grid-template-columns: 1.5fr 1fr !important; /* Mapa a la izquierda (60%), Formulario a la derecha (40%) */
+  gap: 2rem !important;
+  align-items: start !important;
+  width: 100% !important;
+  max-width: 1200px !important; /* Evita que se estire sin control */
+  margin: 0 auto !important;
+  overflow: hidden !important; /* Corta cualquier cosa que se salga */
+}
+
+/* 2. La columna del mapa */
+.columna-mapa {
+  width: 100% !important;
+  overflow: hidden !important;
+}
+
+/* 3. El mapa de Trujillo (Tamaño controlado) */
+#mapa {
+  width: 100% !important;
+  height: 500px !important; 
+  border-radius: var(--radio) !important;
+  box-shadow: var(--sombra) !important;
+  z-index: 1;
+}
+
+/* 4. El formulario */
+.panel-reporta {
+  width: 100% !important;
+  background: var(--gris-suave) !important;
+  padding: 1.5rem !important;
+  border-radius: var(--radio) !important;
+  box-shadow: var(--sombra) !important;
+  overflow: hidden !important;
+}
+
+/* 5. Ajuste para celulares (Se apilan uno abajo del otro) */
+@media (max-width: 900px) {
+  .contenedor-reporta {
+    grid-template-columns: 1fr !important; /* Una sola columna */
+    gap: 2rem !important;
+  }
+  #mapa {
+    height: 350px !important;
+  }
+}
