@@ -1191,3 +1191,45 @@ section, main, header, footer, .contenedor-reporta, .seccion-dos-columnas {
 iframe {
   max-width: 100% !important;
 }
+
+/* ============================================================
+   LAYOUT PROFESIONAL: MAPA Y FORMULARIO (LADO A LADO)
+   ============================================================ */
+
+/* 1. Creamos la cuadrícula principal */
+.contenedor-reporta {
+  display: grid !important;
+  grid-template-columns: 1.5fr 1fr !important; /* Mapa 60%, Formulario 40% */
+  gap: 3rem !important;
+  align-items: start !important;
+  width: 100% !important;
+}
+
+/* 2. Ajustamos el mapa para que se vea grande */
+#mapa {
+  width: 100% !important;
+  height: 500px !important; 
+  border-radius: var(--radio) !important;
+  box-shadow: var(--sombra) !important;
+  z-index: 1;
+}
+
+/* 3. Ajustamos la caja del formulario */
+.panel-reporta {
+  width: 100% !important;
+  background: var(--gris-suave) !important;
+  padding: 2rem !important;
+  border-radius: var(--radio) !important;
+  box-shadow: var(--sombra) !important;
+}
+
+/* 4. Hacemos que en celular se pongan uno abajo del otro */
+@media (max-width: 900px) {
+  .contenedor-reporta {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  #mapa {
+    height: 350px !important;
+  }
+}
