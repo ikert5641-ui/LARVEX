@@ -1160,3 +1160,31 @@ body.modo-oscuro .botones-inicio .boton-secundario:hover {
     color: #000000 !important; /* Forzar texto negro en el bot */
   }
 }
+
+/* ============================================================
+   ELIMINAR LA BARRA BLANCA (SCROLL HORIZONTAL) Y ARREGLAR MODO OSCURO
+   ============================================================ */
+
+html, body {
+  overflow-x: hidden !important; /* Prohíbe que la página se mueva a los lados */
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Asegurar que el fondo oscuro cubra TODO, incluso los bordes */
+body.modo-oscuro {
+  background-color: #121a16 !important; 
+}
+
+/* Hacer que la barra de desplazamiento (scroll) combine con tu diseño */
+body.modo-oscuro::-webkit-scrollbar {
+  width: 10px;
+}
+body.modo-oscuro::-webkit-scrollbar-track {
+  background: #121a16; /* Fondo oscuro */
+}
+body.modo-oscuro::-webkit-scrollbar-thumb {
+  background: #2ecc71; /* El verde claro de Larvex */
+  border-radius: 5px;
+}
