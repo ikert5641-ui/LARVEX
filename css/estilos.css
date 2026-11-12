@@ -1170,36 +1170,53 @@ body.modo-oscuro .botones-inicio .boton-secundario:hover {
   overflow: hidden !important; /* Corta cualquier cosa que se salga */
 }
 
-/* 2. La columna del mapa */
-.columna-mapa {
-  width: 100% !important;
-  overflow: hidden !important;
+/* 5. Ajuste para celulares (Se apilan uno abajo del otro) */
+@media (max-width: 900px) {
+  .contenedor-reporta {
+    grid-template-columns: 1fr !important; /* Una sola columna */
+    gap: 2rem !important;
+  }
+  #mapa {
+    height: 350px !important;
+  }
 }
 
-/* 3. El mapa de Trujillo (Tamaño controlado) */
+/* ============================================================
+   DISEÑO DEFINITIVO Y FINAL: MAPA Y FORMULARIO
+   ============================================================ */
+.contenedor-reporta {
+  display: grid !important;
+  grid-template-columns: 1.5fr 1fr !important; /* 60% mapa, 40% formulario */
+  gap: 2rem !important;
+  align-items: start !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+}
+
+.columna-mapa {
+  width: 100% !important;
+}
+
 #mapa {
   width: 100% !important;
-  height: 500px !important; 
+  height: 450px !important;
   border-radius: var(--radio) !important;
   box-shadow: var(--sombra) !important;
   z-index: 1;
 }
 
-/* 4. El formulario */
 .panel-reporta {
   width: 100% !important;
   background: var(--gris-suave) !important;
   padding: 1.5rem !important;
   border-radius: var(--radio) !important;
   box-shadow: var(--sombra) !important;
-  overflow: hidden !important;
 }
 
-/* 5. Ajuste para celulares (Se apilan uno abajo del otro) */
+/* Para celular: se apilan uno abajo del otro */
 @media (max-width: 900px) {
   .contenedor-reporta {
-    grid-template-columns: 1fr !important; /* Una sola columna */
-    gap: 2rem !important;
+    grid-template-columns: 1fr !important;
   }
   #mapa {
     height: 350px !important;
