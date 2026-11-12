@@ -1118,3 +1118,45 @@ body.modo-oscuro .botones-inicio .boton-secundario:hover {
     color: #333333 !important;
   }
 }
+
+/* ============================================================
+   PARCHE DE EMERGENCIA FINAL: IMÁGENES Y CHAT
+   ============================================================ */
+.imagen-seccion {
+  height: 400px !important;
+  width: 100% !important;
+  overflow: hidden !important;
+  position: relative !important;
+  border-radius: var(--radio) !important;
+  background-color: var(--verde-oscuro) !important; /* Evita que se vea blanco si falla la img */
+}
+
+.imagen-seccion img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+}
+
+@media (max-width: 768px) {
+  .imagen-seccion {
+    height: 300px !important; /* Tamaño perfecto para celular */
+  }
+  
+  .ventana-chat {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    bottom: 100px !important;
+    height: 55vh !important; 
+  }
+
+  .mensajes-chat {
+    background-color: #ffffff !important;
+  }
+
+  .msj-bot {
+    background-color: #e8f5e9 !important;
+    color: #000000 !important; /* Forzar texto negro en el bot */
+  }
+}
