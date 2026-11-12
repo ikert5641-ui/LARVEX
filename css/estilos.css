@@ -1055,34 +1055,51 @@ body.modo-oscuro .botones-inicio .boton-secundario:hover {
 /* ============================================================
    AJUSTES EXCLUSIVOS PARA CELULARES (Responsive)
    ============================================================ */
+/* ============================================================
+   AJUSTES EXCLUSIVOS PARA CELULARES (Responsive Perfecto)
+   ============================================================ */
 @media (max-width: 768px) {
   
-  /* 1. Hacer que las imágenes sean más cuadradas (más grandes) en el celular */
-  .imagen-seccion img {
-    aspect-ratio: 4 / 3 !important; /* En vez de 16:9, ahora es 4:3 (más alta) */
-    height: 100% !important;
+  /* 1. Arreglar las imágenes para que se vean grandes y sin cortes raros */
+  .imagen-seccion {
+    height: 300px !important; /* Le damos una altura fija y buena */
+    margin-bottom: 2rem;
   }
   
-  /* 2. Ajustar el cuadro de Dexter (Asistente IA) para que no se salga de la pantalla */
+  .imagen-seccion img {
+    aspect-ratio: auto !important; /* Quitamos la proporción de tira */
+    height: 100% !important;
+    object-fit: cover !important; /* Mantiene la foto centrada */
+  }
+  
+  /* 2. Arreglar el cuadro de Dexter (Asistente IA) para que FLOTE */
   .ventana-chat {
-    width: 92vw !important;       /* Ocupa casi todo el ancho */
-    left: 4vw !important;         /* Lo centra */
-    right: 4vw !important;
-    bottom: 100px !important;     /* Lo sube para que no choque con el teclado */
-    max-height: 75vh !important;  /* Evita que se salga por arriba */
+    position: fixed !important; /* Forzamos a que flote */
+    top: 10vh !important;       /* Lo ubicamos en el centro de la pantalla */
+    bottom: 10vh !important;
+    left: 5vw !important;
+    right: 5vw !important;
+    width: 90vw !important;
+    height: 80vh !important;
+    z-index: 9999 !important;   /* Aseguramos que esté por encima de todo */
+    background: white !important;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5) !important;
+    border-radius: 12px !important;
+    display: flex;
+    flex-direction: column;
   }
 
-  /* 3. Hacer la zona de mensajes más pequeña en celular */
+  /* 3. Asegurar que los mensajes se puedan deslizar dentro del cuadro */
   .mensajes-chat {
-    height: 50vh !important;      /* Se adapta a la altura de la pantalla */
-    max-height: 350px !important;
+    flex: 1 !important;          /* Ocupa todo el espacio disponible */
+    height: auto !important;
+    max-height: none !important;
   }
-  
-  /* 4. Ajustar el botón de Dexter para que no estorbe */
+
+  /* 4. El botón del robot se queda abajo a la derecha */
   .boton-chat {
-    width: 75px !important;
-    height: 75px !important;
     bottom: 15px !important;
     right: 15px !important;
+    z-index: 10000 !important;
   }
 }
