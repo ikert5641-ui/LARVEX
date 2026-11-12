@@ -856,7 +856,7 @@ function dibujarCalor() {
 }
 
 // ============================================================
-// CEREBRO V2 DE DEXTER - EXPERTO EN DENGUE Y EL NIÑO
+// CEREBRO V2 DE DEXTER - LÓGICA COMPLETA
 // ============================================================
 const conocimientoDexter = [
   {
@@ -920,3 +920,85 @@ const conocimientoDexter = [
     respuesta: "¡Hasta luego! Recuerda revisar tu patio y tapar tus depósitos de agua hoy mismo. ¡Cuídate mucho!"
   }
 ];
+
+document.addEventListener('DOMContentLoaded', () => {
+  const btnChat = document.getElementById('boton-chat');
+  const ventanaChat = document.getElementById('ventana-chat');
+  const cerrarChat = document.getElementById('cerrar-chat');
+  const inputChat = document.getElementById('input-chat');
+  const enviarChat = document.getElementById('enviar-chat');
+  const mensajesChat = document.getElementById('mensajes-chat');
+  const indicadorEscribiendo = document.getElementById('indicador-escribiendo');
+
+  if (!btnChat) return; 
+
+  btnChat.addEventListener('click', () => {
+    ventanaChat.classList.toggle('oculto');
+    if (!ventanaChat.classList.contains('oculto')) inputChat.focus();
+  });
+  
+  cerrarChat.addEventListener('click', () => ventanaChat.classList.add('oculto'));
+
+  // Nueva lógica de puntuación para encontrar la mejor respuesta
+  function obtenerRespuesta(textoUsuario) {
+    const texto = textoUsuario.toLowerCase();
+    let mejorRespuesta = null;
+    let puntajeMaximo = 0;
+
+    conocimientoDexter.forEach(item => {
+      let puntajeActual = 0;
+      item.palabras.forEach(palabra => {
+        if (texto.includes(palabra)) {
+          puntajeActual++;
+        }
+      });
+
+      if (puntajeActual > puntajeMaximo) {
+        puntajeMaximo = puntajeActual;
+        mejorRespuesta = item.respuesta;
+      }
+    });
+
+    if (puntajeMaximo === 0) {
+      return "No tengo la respuesta exacta a eso. Te recomiendo leer las secciones de arriba o preguntarme sobre 'síntomas', 'prevención', 'picadura' o 'tratamiento'.";
+    }
+
+    return mejorRespuesta;
+  }
+
+  function enviarMensaje() {
+    const textoUsuario = inputChat.value.trim();
+    if (!textoUsuario) return;
+
+    // 1. Mostrar mensaje del usuario
+    const msjUser = document.createElement('p');
+    msjUser.className = 'msj-user';
+    msjUser.textContent = textoUsuario;
+    mensajesChat.appendChild(msjUser);
+    inputChat.value = '';
+    mensajesChat.scrollTop = mensajesChat.scrollHeight;
+
+    // 2. Mostrar "Escribiendo..."
+    indicadorEscribiendo.classList.remove('oculto');
+    mensajesChat.scrollTop = mensajesChat.scrollHeight;
+
+    // 3. Dexter piensa y responde
+    const respuestaFinal = obtenerRespuesta(textoUsuario);
+    const tiempoPensar = 800 + (respuestaFinal.length * 5); // Tarda más si la respuesta es larga
+
+    setTimeout(() => {
+      indicadorEscribiendo.classList.add('oculto');
+      
+      const msjBot = document.createElement('p');
+      msjBot.className = 'msj-bot';
+      msjBot.textContent = respuestaFinal;
+      mensajesChat.appendChild(msjBot);
+      mensajesChat.scrollTop = mensajesChat.scrollHeight;
+    }, tiempoPensar);
+  }
+
+  enviarChat.addEventListener('click', enviarMensaje);
+  inputChat.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') enviarMensaje();
+  });
+});
