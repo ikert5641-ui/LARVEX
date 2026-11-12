@@ -1319,3 +1319,137 @@ body.modo-oscuro .botones-inicio .boton-secundario:hover {
 .oculto {
   display: none !important;
 }
+
+/* ============================================================
+   RESTAURACIÓN TOTAL DEL CHAT DE DEXTER (LAPTOP Y CELULAR)
+   ============================================================ */
+
+/* El botón redondo del robot */
+.boton-chat { 
+  position: fixed !important; 
+  bottom: 20px !important; 
+  right: 20px !important; 
+  width: 80px !important; 
+  height: 80px !important; 
+  border-radius: 16px !important; 
+  background: var(--verde-oscuro) !important; 
+  color: white !important; 
+  border: 2px solid var(--verde-claro) !important; 
+  cursor: pointer !important; 
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important; 
+  z-index: 99999 !important; 
+  display: flex !important; 
+  flex-direction: column !important; 
+  justify-content: center !important; 
+  align-items: center !important; 
+  gap: 4px !important;
+  padding: 8px !important;
+}
+
+/* La ventana del chat */
+.ventana-chat { 
+  position: fixed !important; 
+  bottom: 110px !important; 
+  right: 20px !important; 
+  width: 350px !important; 
+  max-width: 90vw !important; 
+  background: white !important; 
+  border-radius: 12px !important; 
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important; 
+  z-index: 99999 !important; 
+  display: flex !important; 
+  flex-direction: column !important; 
+  overflow: hidden !important; 
+  border: 1px solid #ddd !important;
+}
+
+/* Encabezado verde */
+.cabecera-chat { 
+  background: var(--verde-oscuro) !important; 
+  color: white !important; 
+  padding: 12px 15px !important; 
+  display: flex !important; 
+  justify-content: space-between !important; 
+  align-items: center !important; 
+  font-weight: bold !important; 
+  font-family: var(--fuente-texto) !important;
+}
+
+/* Área de mensajes */
+.mensajes-chat { 
+  height: 300px !important; 
+  overflow-y: auto !important; 
+  padding: 15px !important; 
+  display: flex !important; 
+  flex-direction: column !important; 
+  gap: 12px !important; 
+  background: #fdfdfd !important; 
+}
+
+/* Globos de texto */
+.mensajes-chat p { 
+  margin: 0 !important; 
+  padding: 10px 14px !important; 
+  border-radius: 12px !important; 
+  font-size: 0.9rem !important; 
+  max-width: 85% !important; 
+  line-height: 1.4 !important; 
+}
+
+.msj-bot { 
+  background: #e8f5e9 !important; 
+  color: #333 !important; 
+  align-self: flex-start !important; 
+  border-bottom-left-radius: 2px !important; 
+  border-left: 3px solid var(--verde-claro) !important;
+}
+
+.msj-user { 
+  background: var(--verde-oscuro) !important; 
+  color: white !important; 
+  align-self: flex-end !important; 
+  border-bottom-right-radius: 2px !important; 
+}
+
+/* Barra de escribir */
+.input-chat { 
+  display: flex !important; 
+  border-top: 1px solid #eee !important; 
+  background: white !important; 
+  padding: 5px !important; 
+}
+
+.input-chat input { 
+  flex: 1 !important; 
+  border: none !important; 
+  padding: 12px !important; 
+  outline: none !important; 
+  background: white !important;
+  color: #333 !important;
+  font-family: var(--fuente-texto) !important;
+}
+
+.input-chat button { 
+  background: var(--verde-oscuro) !important; 
+  color: white !important; 
+  border: none !important; 
+  padding: 0 20px !important; 
+  cursor: pointer !important; 
+  font-weight: bold !important; 
+  border-radius: 8px !important; 
+}
+
+/* Ajuste para celular (que no ocupe toda la pantalla) */
+@media (max-width: 768px) {
+  .ventana-chat {
+    width: 90vw !important;
+    left: 5vw !important;
+    right: 5vw !important;
+    bottom: 100px !important;
+    height: 60vh !important;
+  }
+  .mensajes-chat {
+    height: auto !important;
+    flex: 1 !important;
+  }
+}
