@@ -824,35 +824,50 @@ body.modo-oscuro .contenido-inicio {
 }
 
 /* ============================================================
-   ASISTENTE VIRTUAL DEXTER (ESTILOS)
+   ASISTENTE VIRTUAL DEXTER (ESTILOS ACTUALIZADOS)
    ============================================================ */
 .boton-chat { 
   position: fixed; 
   bottom: 20px; 
   right: 20px; 
-  width: 60px; 
-  height: 60px; 
-  border-radius: 50%; 
+  width: 80px; 
+  height: 80px; 
+  border-radius: 20px; /* Forma de cuadrado redondeado */
   background: var(--verde-oscuro); 
   color: white; 
-  font-size: 28px; 
   border: 2px solid var(--verde-claro); 
   cursor: pointer; 
   box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
   z-index: 1000; 
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+  transition: transform 0.3s, background 0.3s; 
   display: flex; 
+  flex-direction: column; /* Pone el texto debajo del emoji */
   justify-content: center; 
   align-items: center; 
+  gap: 4px;
 }
 
 .boton-chat:hover { 
-  transform: scale(1.1) rotate(10deg); 
+  transform: translateY(-5px); /* Efecto de salto al pasar el mouse */
+  background: #0a4024; 
 }
 
+.icono-bot {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.texto-bot {
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--fuente-texto);
+  letter-spacing: 0.5px;
+}
+
+/* Ventana del chat (ajustada para el nuevo botón) */
 .ventana-chat { 
   position: fixed; 
-  bottom: 90px; 
+  bottom: 110px; /* Subimos la ventana para que no tape el botón */
   right: 20px; 
   width: 350px; 
   max-width: 90vw; 
@@ -889,7 +904,7 @@ body.modo-oscuro .contenido-inicio {
 }
 
 .mensajes-chat { 
-  height: 280px; 
+  height: 300px; 
   overflow-y: auto; 
   padding: 15px; 
   display: flex; 
