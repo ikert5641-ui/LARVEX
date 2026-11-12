@@ -1222,3 +1222,100 @@ body.modo-oscuro .botones-inicio .boton-secundario:hover {
     height: 350px !important;
   }
 }
+
+/* ============================================================
+   RESTAURACIÓN DEL CHAT DE DEXTER (LAPTOP / ESCRITORIO)
+   ============================================================ */
+.ventana-chat { 
+  position: fixed !important; 
+  bottom: 100px !important; 
+  right: 20px !important; 
+  width: 350px !important; /* Tamaño perfecto para laptop */
+  max-height: 500px !important;
+  background: white !important; 
+  border-radius: 12px !important; 
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important; 
+  z-index: 9999 !important; 
+  display: flex !important; 
+  flex-direction: column !important; 
+  overflow: hidden !important; 
+  border: 1px solid #ddd !important;
+}
+
+/* El encabezado del chat */
+.cabecera-chat { 
+  background: var(--verde-oscuro) !important; 
+  color: white !important; 
+  padding: 12px 15px !important; 
+  display: flex !important; 
+  justify-content: space-between !important; 
+  align-items: center !important; 
+  font-weight: bold !important; 
+}
+
+/* El área de los mensajes */
+.mensajes-chat { 
+  height: 300px !important; 
+  overflow-y: auto !important; 
+  padding: 15px !important; 
+  display: flex !important; 
+  flex-direction: column !important; 
+  gap: 12px !important; 
+  background: #fdfdfd !important; 
+}
+
+/* Los globos de texto */
+.mensajes-chat p { 
+  margin: 0 !important; 
+  padding: 10px 14px !important; 
+  border-radius: 12px !important; 
+  font-size: 0.9rem !important; 
+  max-width: 85% !important; 
+  line-height: 1.4 !important; 
+}
+
+.msj-bot { 
+  background: #e8f5e9 !important; 
+  color: #333 !important; 
+  align-self: flex-start !important; 
+  border-bottom-left-radius: 2px !important; 
+}
+
+.msj-user { 
+  background: var(--verde-oscuro) !important; 
+  color: white !important; 
+  align-self: flex-end !important; 
+  border-bottom-right-radius: 2px !important; 
+}
+
+/* La barra de escribir */
+.input-chat { 
+  display: flex !important; 
+  border-top: 1px solid #eee !important; 
+  background: white !important; 
+  padding: 5px !important; 
+}
+
+.input-chat input { 
+  flex: 1 !important; 
+  border: none !important; 
+  padding: 12px !important; 
+  outline: none !important; 
+  background: white !important;
+  color: #333 !important;
+}
+
+.input-chat button { 
+  background: var(--verde-oscuro) !important; 
+  color: white !important; 
+  border: none !important; 
+  padding: 0 20px !important; 
+  cursor: pointer !important; 
+  font-weight: bold !important; 
+  border-radius: 8px !important; 
+}
+
+/* Ocultar el chat cuando tiene la clase .oculto */
+.oculto {
+  display: none !important;
+}
