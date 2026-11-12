@@ -1162,32 +1162,33 @@ body.modo-oscuro .botones-inicio .boton-secundario:hover {
 }
 
 /* ============================================================
-   SOLUCIÓN DEFINITIVA: ELIMINAR SCROLL HORIZONTAL (BARRA VERDE/BLANCA)
+   ERRADICACIÓN TOTAL DEL SCROLL HORIZONTAL
    ============================================================ */
 
-/* 1. Bloquear la pantalla a la fuerza */
+/* 1. Forzar al body y html a no salirse JAMÁS */
 html, body {
   overflow-x: hidden !important;
   width: 100% !important;
-  max-width: 100vw !important;
+  max-width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
-  position: relative;
+  background-color: var(--blanco-calido) !important; /* Fuerza el color de fondo del body */
 }
 
-/* 2. Obligar a TODOS los elementos a calcular su ancho correctamente */
-*, *::before, *::after {
-  box-sizing: border-box !important;
+body.modo-oscuro {
+  background-color: #121a16 !important; /* Fuerza el fondo oscuro */
 }
 
-/* 3. Asegurar que las secciones no se salgan */
-section, main, header, footer, .contenedor-reporta, .seccion-dos-columnas {
+/* 2. Atacar al principal sospechoso: El contenedor de la foto de lluvia */
+.seccion-inicio, .fondo-parallax {
   width: 100% !important;
-  max-width: 100% !important;
-  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  overflow: hidden !important;
 }
 
-/* 4. Evitar que el iframe (mapa de la NASA) empuje la página */
-iframe {
-  max-width: 100% !important;
+/* 3. Los encabezados y el pie de página no deben tener márgenes */
+header, footer, main {
+  width: 100% !important;
+  max-width: 100vw !important;
+  margin: 0 !important;
 }
