@@ -35,11 +35,11 @@
 
   imagenesParallax.forEach((img) => {
     // Animación de escala y opacidad
-    gsap.fromTo(
+      gsap.fromTo(
       img,
-      { scale: 0.7, opacity: 0 },
+      { scale: 1, opacity: 0 }, // <-- Cambiamos el 0.7 por 1
       {
-        scale: 1.2,
+        scale: 1.15, // <-- Bajamos un poquito el 1.2 para que no se recorte tanto
         opacity: 1,
         ease: 'power2.out',
         scrollTrigger: {
