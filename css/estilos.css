@@ -830,9 +830,9 @@ body.modo-oscuro .contenido-inicio {
   position: fixed; 
   bottom: 20px; 
   right: 20px; 
-  width: 80px; 
-  height: 80px; 
-  border-radius: 20px; /* Forma de cuadrado redondeado */
+  width: 95px;  /* Más ancho para que quepa el texto */
+  height: 85px; /* Un poco más alto */
+  border-radius: 16px; /* Bordes redondeados (cuadrado suave) */
   background: var(--verde-oscuro); 
   color: white; 
   border: 2px solid var(--verde-claro); 
@@ -841,14 +841,15 @@ body.modo-oscuro .contenido-inicio {
   z-index: 1000; 
   transition: transform 0.3s, background 0.3s; 
   display: flex; 
-  flex-direction: column; /* Pone el texto debajo del emoji */
+  flex-direction: column; /* Emoji arriba, texto abajo */
   justify-content: center; 
   align-items: center; 
   gap: 4px;
+  padding: 8px;
 }
 
 .boton-chat:hover { 
-  transform: translateY(-5px); /* Efecto de salto al pasar el mouse */
+  transform: translateY(-5px); 
   background: #0a4024; 
 }
 
@@ -858,142 +859,9 @@ body.modo-oscuro .contenido-inicio {
 }
 
 .texto-bot {
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   font-family: var(--fuente-texto);
-  letter-spacing: 0.5px;
-}
-
-/* Ventana del chat (ajustada para el nuevo botón) */
-.ventana-chat { 
-  position: fixed; 
-  bottom: 110px; /* Subimos la ventana para que no tape el botón */
-  right: 20px; 
-  width: 350px; 
-  max-width: 90vw; 
-  background: white; 
-  border-radius: 12px; 
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
-  z-index: 1000; 
-  display: flex; 
-  flex-direction: column; 
-  overflow: hidden; 
-  border: 1px solid #ddd; 
-  transition: opacity 0.3s, transform 0.3s; 
-}
-
-.cabecera-chat { 
-  background: var(--verde-oscuro); 
-  color: white; 
-  padding: 12px 15px; 
-  display: flex; 
-  justify-content: space-between; 
-  align-items: center; 
-  font-weight: bold; 
-  font-family: var(--fuente-texto); 
-  letter-spacing: 0.5px; 
-}
-
-.cabecera-chat button {
-  background: none; 
-  border: none; 
-  color: white; 
-  font-size: 1.5rem; 
-  cursor: pointer;
-  line-height: 1;
-}
-
-.mensajes-chat { 
-  height: 300px; 
-  overflow-y: auto; 
-  padding: 15px; 
-  display: flex; 
-  flex-direction: column; 
-  gap: 12px; 
-  background: #fdfdfd; 
-}
-
-.mensajes-chat p { 
-  margin: 0; 
-  padding: 10px 14px; 
-  border-radius: 12px; 
-  font-size: 0.9rem; 
-  max-width: 85%; 
-  line-height: 1.4; 
-  font-family: var(--fuente-texto); 
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05); 
-}
-
-.msj-bot { 
-  background: #e8f5e9; 
-  align-self: flex-start; 
-  color: #333; 
-  border-bottom-left-radius: 2px; 
-  border-left: 3px solid var(--verde-claro); 
-}
-
-.msj-user { 
-  background: var(--verde-oscuro); 
-  color: white; 
-  align-self: flex-end; 
-  border-bottom-right-radius: 2px; 
-}
-
-.input-chat { 
-  display: flex; 
-  border-top: 1px solid #eee; 
-  background: white; 
-  padding: 5px; 
-}
-
-.input-chat input { 
-  flex: 1; 
-  border: none; 
-  padding: 12px; 
-  outline: none; 
-  font-family: var(--fuente-texto); 
-  font-size: 0.95rem; 
-  border-radius: 8px; 
-}
-
-.input-chat button { 
-  background: var(--verde-oscuro); 
-  color: white; 
-  border: none; 
-  padding: 0 20px; 
-  cursor: pointer; 
-  font-weight: bold; 
-  font-family: var(--fuente-texto); 
-  border-radius: 8px; 
-  transition: background 0.2s; 
-}
-
-.input-chat button:hover { 
-  background: #0a4024; 
-}
-
-/* Animación de los puntitos de Dexter */
-.indicador-escribiendo { 
-  padding: 10px 15px; 
-  display: flex; 
-  gap: 5px; 
-  background: #fdfdfd; 
-  align-self: flex-start; 
-}
-
-.indicador-escribiendo span { 
-  width: 8px; 
-  height: 8px; 
-  background-color: #aaa; 
-  border-radius: 50%; 
-  display: inline-block; 
-  animation: rebote 1.4s infinite ease-in-out both; 
-}
-
-.indicador-escribiendo span:nth-child(1) { animation-delay: -0.32s; }
-.indicador-escribiendo span:nth-child(2) { animation-delay: -0.16s; }
-
-@keyframes rebote {
-  0%, 80%, 100% { transform: scale(0); }
-  40% { transform: scale(1); }
+  text-align: center; /* Centra el texto si se divide en dos líneas */
+  line-height: 1.2;
 }
