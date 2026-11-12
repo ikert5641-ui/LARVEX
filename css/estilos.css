@@ -867,36 +867,35 @@ body.modo-oscuro .contenido-inicio {
 }
 
 /* ============================================================
-   ARREGLO DE CONTRASTE PARA EL MODO OSCURO
+   FORZAR CONTRASTE EN MODO OSCURO (A PRUEBA DE BALAS)
    ============================================================ */
 
-/* 1. Título principal en modo oscuro (que sea blanco en vez de verde oscuro) */
+/* 1. Título y subtítulo del Inicio en blanco */
 body.modo-oscuro .titulo-principal {
-  color: #f8fef9; 
+  color: #f8fef9 !important; 
 }
 
-/* 2. El subtítulo en modo oscuro */
 body.modo-oscuro .subtitulo {
-  color: #d1d5db;
+  color: #d1d5db !important;
 }
 
-/* 3. El menú de arriba cuando está transparente en modo oscuro */
-body.modo-oscuro .encabezado.transparente .enlace-menu {
-  color: #ffffff;
+/* 2. Menú superior en blanco */
+body.modo-oscuro .encabezado .enlace-menu {
+  color: #ffffff !important; 
 }
 
-body.modo-oscuro .encabezado.transparente .enlace-menu.activo {
-  color: var(--verde-claro);
-  border-bottom-color: var(--verde-claro);
+body.modo-oscuro .encabezado .enlace-menu.activo {
+  color: var(--verde-claro) !important;
+  border-bottom-color: var(--verde-claro) !important;
 }
 
-/* 4. El logo en el menú transparente de modo oscuro (lo pone blanco) */
+/* 3. Logo en blanco cuando está sobre la foto */
 body.modo-oscuro .encabezado.transparente .logo-img {
-  filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1) !important;
 }
 
-/* 5. El botón de la luna/sol en modo oscuro */
+/* 4. Icono del sol/luna en blanco */
 body.modo-oscuro .encabezado.transparente .boton-tema {
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.5);
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
 }
