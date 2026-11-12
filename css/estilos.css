@@ -1026,3 +1026,28 @@ body.modo-oscuro .botones-inicio .boton-secundario:hover {
 #encabezado.transparente .boton-tema {
   border-color: rgba(255, 255, 255, 0.5) !important;
 }
+
+/* ============================================================
+   ARREGLO DEFINITIVO: BOTÓN JUGAR (MODO CLARO Y OSCURO)
+   ============================================================ */
+
+/* Modo Claro: Fondo transparente, borde verde y texto verde */
+body .botones-inicio .boton-secundario {
+  background-color: transparent !important;
+  border: 2px solid var(--verde-oscuro) !important;
+  color: var(--verde-oscuro) !important;
+}
+body .botones-inicio .boton-secundario:hover {
+  background-color: var(--verde-oscuro) !important;
+  color: #ffffff !important;
+}
+
+/* Modo Oscuro: Fondo transparente, borde blanco y texto blanco */
+body.modo-oscuro .botones-inicio .boton-secundario {
+  border: 2px solid #ffffff !important;
+  color: #ffffff !important;
+}
+body.modo-oscuro .botones-inicio .boton-secundario:hover {
+  background-color: #ffffff !important;
+  color: var(--verde-oscuro) !important;
+}
