@@ -1053,44 +1053,68 @@ body.modo-oscuro .botones-inicio .boton-secundario:hover {
 }
 
 /* ============================================================
-   AJUSTES EXCLUSIVOS PARA CELULARES (Responsive)
-   ============================================================ */
-/* ============================================================
-   AJUSTES EXCLUSIVOS PARA CELULARES (Responsive Perfecto)
+   AJUSTES EXCLUSIVOS PARA CELULARES (VERSIÓN PROFESIONAL)
    ============================================================ */
 @media (max-width: 768px) {
-  /* ... (deja lo de las imágenes igual) ... */
-
-  /* Arreglar el cuadro de Dexter para que FLOTE como una app */
+  
+  /* 1. Imágenes perfectas: Altura fija y recorte centrado */
+  .imagen-seccion {
+    height: 320px !important; /* Altura ideal para celular */
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radio);
+    margin-bottom: 2rem;
+  }
+  
+  .imagen-seccion img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important; /* Recorta los bordes sin deformar */
+    object-position: center !important;
+  }
+  
+  /* 2. Chat de Dexter Flotante y Sólido */
   .ventana-chat {
     position: fixed !important; 
-    top: auto !important;       /* Lo anclamos abajo */
-    bottom: 110px !important;   /* Justo arriba del botón del robot */
+    bottom: 100px !important;   
     left: 5vw !important;
     right: 5vw !important;
     width: 90vw !important;
-    height: 60vh !important;    /* Un poco más pequeño para que no tape todo */
+    height: 60vh !important;    
     max-height: 450px !important;
-    z-index: 9999 !important;   
-    background: white !important;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.5) !important;
-    border-radius: 16px !important; /* Bordes redondeados */
+    z-index: 99999 !important;   
+    background-color: #ffffff !important; /* Forzar fondo blanco */
     border: 2px solid var(--verde-oscuro) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4) !important;
     display: flex;
     flex-direction: column;
   }
 
+  /* Forzar colores para que el texto se lea en celular */
   .mensajes-chat {
-    flex: 1 !important;          
+    background-color: #f9f9f9 !important;
+    flex: 1 !important;
     height: auto !important;
-    max-height: none !important;
   }
-}
 
-  /* 4. El botón del robot se queda abajo a la derecha */
-  .boton-chat {
-    bottom: 15px !important;
-    right: 15px !important;
-    z-index: 10000 !important;
+  .msj-bot {
+    background-color: #e8f5e9 !important;
+    color: #333333 !important; /* Texto oscuro obligatorio */
+  }
+
+  .msj-user {
+    background-color: var(--verde-oscuro) !important;
+    color: #ffffff !important; /* Texto blanco obligatorio */
+  }
+
+  .input-chat {
+    background-color: #ffffff !important;
+    border-top: 1px solid #ddd !important;
+  }
+
+  .input-chat input {
+    background-color: #ffffff !important;
+    color: #333333 !important;
   }
 }
