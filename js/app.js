@@ -856,7 +856,7 @@ function dibujarCalor() {
 }
 
 // ============================================================
-// CEREBRO V2 DE DEXTER - LÓGICA COMPLETA
+// CEREBRO V3 DE DEXTER - CON SOPORTE Y COMENTARIOS
 // ============================================================
 const conocimientoDexter = [
   {
@@ -869,55 +869,55 @@ const conocimientoDexter = [
   },
   {
     palabras: ["tratamiento", "curar", "medicina", "pastilla", "paracetamol", "tomar"],
-    respuesta: "No existe un medicamento específico para curar el dengue, solo tratamiento para aliviar los síntomas. Se recomienda reposo, abundante líquido y PARACETAMOL para la fiebre. ¡NUNCA tomes aspirina o ibuprofeno, ya que aumentan el riesgo de sangrado!"
+    respuesta: "No existe un medicamento específico para curar el dengue, solo tratamiento para aliviar los síntomas. Se recomienda reposo, abundante líquido y PARACETAMOL para la fiebre. ¡NUNCA tomes aspirina o ibuprofeno!"
   },
   {
     palabras: ["contagio", "persona", "saliva", "estornudo", "tocar", "beso", "abrazo"],
-    respuesta: "El dengue NO se transmite de persona a persona por estar cerca, toser o darse la mano. Solo se contagia por la picadura de la hembra del zancudo Aedes aegypti infectada."
+    respuesta: "El dengue NO se transmite de persona a persona. Solo se contagia por la picadura de la hembra del zancudo Aedes aegypti infectada."
   },
   {
     palabras: ["prevencion", "prevenir", "evitar", "cuidado", "balde", "llanta", "tanque", "criaderos", "limpiar"],
-    respuesta: "La medida más efectiva es la descacharrización: voltea baldes, tapa tanques de agua, lava con escobilla los bebederos de animales y elimina llantas o botellas viejas. ¡Recuerda: Sin criaderos, no hay mosquitos!"
+    respuesta: "La medida más efectiva es la descacharrización: voltea baldes, tapa tanques de agua, lava con escobilla los bebederos y elimina llantas viejas. ¡Sin criaderos, no hay mosquitos!"
   },
   {
     palabras: ["criadero", "larva", "huevo", "agua", "estancada", "charco", "pozo"],
-    respuesta: "Un criadero es cualquier recipiente con agua limpia y estancada. A los zancudos les encanta el agua de lluvia acumulada en baldes, floreros, canaletas, botellas y hasta en una tapita de gaseosa."
+    respuesta: "Un criadero es cualquier recipiente con agua limpia y estancada. A los zancudos les encanta el agua de lluvia acumulada en baldes, floreros y canaletas."
   },
   {
     palabras: ["mosquito", "zancudo", "aedes", "pica", "vuela", "negro", "rayas"],
-    respuesta: "El Aedes aegypti es un zancudo de color oscuro con rayas blancas en las patas. Pica principalmente al amanecer y al atardecer. Su peligro es que transmite el dengue, zika y chikungunya."
+    respuesta: "El Aedes aegypti es un zancudo oscuro con rayas blancas. Pica al amanecer y atardecer. Su peligro es que transmite el dengue, zika y chikungunya."
   },
   {
     palabras: ["picadura", "me pico", "me pico uno", "me picó", "pique"],
-    respuesta: "Si te picó un zancudo, no entres en pánico. Lava la zona con agua y jabón. No te rasques para evitar infecciones. Mantente atento a los síntomas (fiebre, dolor) en los próximos 4 a 10 días. Si presentas fiebre alta, acude al médico."
+    respuesta: "Si te picó un zancudo, lava la zona con agua y jabón. No te rasques. Mantente atento a síntomas (fiebre, dolor) en los próximos 4 a 10 días. Si hay fiebre alta, acude al médico."
   },
   {
     palabras: ["niño", "el niño", "lluvia", "clima", "calor", "inundacion"],
-    respuesta: "El Fenómeno El Niño provoca lluvias intensas y aumento de temperatura. Esto genera agua estancada en las calles y patios, lo que crea el ambiente perfecto para que el zancudo se reproduzca rápidamente."
+    respuesta: "El Fenómeno El Niño provoca lluvias intensas y calor. Esto genera agua estancada en las calles y patios, creando el ambiente perfecto para que el zancudo se reproduzca."
   },
   {
     palabras: ["vacuna", "qdenga", "inyeccion"],
-    respuesta: "Existe una vacuna llamada Qdenga (TAK-003), recomendada para niños y adolescentes que viven en zonas de riesgo. Sin embargo, la medida más efectiva siempre será eliminar los criaderos en casa."
+    respuesta: "Existe la vacuna Qdenga, recomendada para niños y adolescentes en zonas de riesgo. Sin embargo, la medida más efectiva siempre será eliminar los criaderos."
   },
   {
     palabras: ["reportar", "mapa", "zona", "reporte", "aqui", "aplicacion"],
-    respuesta: "Puedes reportar una zona de riesgo usando nuestro mapa interactivo. Ve a la sección 'Reporta' en el menú de arriba, toca el mapa para ubicar el foco de agua estancada y envía el formulario."
+    respuesta: "Puedes reportar una zona de riesgo usando nuestro mapa interactivo. Ve a la sección 'Reporta' en el menú de arriba, toca el mapa y envía el formulario."
   },
   {
     palabras: ["mito", "verdad", "falso", "creencia"],
-    respuesta: "¡Cuidado con los mitos! El dengue no se cura con antibióticos, no solo da en zonas sucias (al zancudo le gusta el agua limpia), y la fumigación sola no es suficiente (hay que eliminar los huevos)."
+    respuesta: "¡Cuidado con los mitos! El dengue no se cura con antibióticos, no solo da en zonas sucias, y la fumigación sola no es suficiente."
   },
   {
     palabras: ["hola", "buenos", "tardes", "dias", "noches", "saludos", "que tal"],
-    respuesta: "¡Hola! Soy Dexter, tu asistente de Larvex. ¿En qué te puedo ayudar hoy? Puedo hablarte sobre síntomas, prevención, el Fenómeno El Niño o cómo reportar una zona."
+    respuesta: "¡Hola! Soy Dexter. ¿En qué te puedo ayudar? Puedo hablarte sobre síntomas, prevención o reportar zonas. Si tienes un problema técnico, escribe 'soporte'."
   },
   {
-    palabras: ["gracias", "genial", "ayuda", "buen trabajo"],
-    respuesta: "¡De nada! Juntos podemos prevenir el dengue en Trujillo y el Perú. Recuerda revisar tu patio y tapar tus depósitos de agua. ¿Tienes otra duda?"
+    palabras: ["gracias", "genial", "buen trabajo"],
+    respuesta: "¡De nada! Juntos podemos prevenir el dengue en Trujillo. ¿Tienes otra duda?"
   },
   {
     palabras: ["adios", "chau", "luego", "bye", "hasta"],
-    respuesta: "¡Hasta luego! Recuerda revisar tu patio y tapar tus depósitos de agua hoy mismo. ¡Cuídate mucho!"
+    respuesta: "¡Hasta luego! Recuerda revisar tu patio y tapar tus depósitos de agua hoy mismo."
   }
 ];
 
@@ -932,6 +932,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!btnChat) return; 
 
+  let esperandoComentario = false; // Bandera para saber si estamos guardando un ticket de soporte
+
   btnChat.addEventListener('click', () => {
     ventanaChat.classList.toggle('oculto');
     if (!ventanaChat.classList.contains('oculto')) inputChat.focus();
@@ -939,9 +941,23 @@ document.addEventListener('DOMContentLoaded', () => {
   
   cerrarChat.addEventListener('click', () => ventanaChat.classList.add('oculto'));
 
-  // Nueva lógica de puntuación para encontrar la mejor respuesta
   function obtenerRespuesta(textoUsuario) {
     const texto = textoUsuario.toLowerCase();
+
+    // 1. Si el usuario está dejando un comentario de soporte
+    if (esperandoComentario) {
+      guardarComentario(textoUsuario);
+      esperandoComentario = false;
+      return "¡Muchas gracias! Tu comentario ha sido guardado en el sistema y el Equipo G.E.N lo revisará pronto.";
+    }
+
+    // 2. Si pide soporte o tiene un problema
+    if (texto.includes("soporte") || texto.includes("problema") || texto.includes("ayuda") || texto.includes("comentario") || texto.includes("queja") || texto.includes("sugerencia") || texto.includes("error")) {
+      esperandoComentario = true;
+      return "Entiendo. Por favor, escribe tu problema, sugerencia o comentario a continuación y presiona 'Enviar'. Lo guardaré para que el Equipo G.E.N lo revise.";
+    }
+
+    // 3. Búsqueda normal en el conocimiento
     let mejorRespuesta = null;
     let puntajeMaximo = 0;
 
@@ -960,17 +976,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (puntajeMaximo === 0) {
-      return "No tengo la respuesta exacta a eso. Te recomiendo leer las secciones de arriba o preguntarme sobre 'síntomas', 'prevención', 'picadura' o 'tratamiento'.";
+      return "No tengo la respuesta exacta a eso. Pregúntame sobre 'síntomas' o 'prevención'. Si tienes un problema técnico, escribe 'soporte'.";
     }
 
     return mejorRespuesta;
+  }
+
+  // Función para guardar el comentario en el navegador
+  function guardarComentario(mensaje) {
+    let comentarios = JSON.parse(localStorage.getItem('larvex-comentarios') || '[]');
+    comentarios.push({
+      mensaje: mensaje,
+      fecha: new Date().toISOString()
+    });
+    localStorage.setItem('larvex-comentarios', JSON.stringify(comentarios));
+    console.log("Comentario guardado:", mensaje); // Para que lo veas en la consola (F12)
   }
 
   function enviarMensaje() {
     const textoUsuario = inputChat.value.trim();
     if (!textoUsuario) return;
 
-    // 1. Mostrar mensaje del usuario
+    // Mostrar mensaje del usuario
     const msjUser = document.createElement('p');
     msjUser.className = 'msj-user';
     msjUser.textContent = textoUsuario;
@@ -978,13 +1005,13 @@ document.addEventListener('DOMContentLoaded', () => {
     inputChat.value = '';
     mensajesChat.scrollTop = mensajesChat.scrollHeight;
 
-    // 2. Mostrar "Escribiendo..."
+    // Mostrar "Escribiendo..."
     indicadorEscribiendo.classList.remove('oculto');
     mensajesChat.scrollTop = mensajesChat.scrollHeight;
 
-    // 3. Dexter piensa y responde
+    // Procesar respuesta
     const respuestaFinal = obtenerRespuesta(textoUsuario);
-    const tiempoPensar = 800 + (respuestaFinal.length * 5); // Tarda más si la respuesta es larga
+    const tiempoPensar = 800 + (respuestaFinal.length * 5);
 
     setTimeout(() => {
       indicadorEscribiendo.classList.add('oculto');
