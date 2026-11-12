@@ -972,13 +972,23 @@ body.modo-oscuro .botones-inicio .boton-secundario:hover {
   border-color: rgba(255, 255, 255, 0.5) !important;
 }
 
-/* 2. Hacer que el botón "Jugar" sea transparente con borde (Estilo Ghost) */
+/* 2. Botón "Jugar" (Estilo Ghost) - MODO CLARO */
 .botones-inicio .boton-secundario {
   background-color: transparent !important;
-  border: 2px solid #ffffff !important; /* Borde blanco porque está sobre foto oscura */
-  color: #ffffff !important;
+  border: 2px solid var(--verde-oscuro) !important;
+  color: var(--verde-oscuro) !important;
 }
 .botones-inicio .boton-secundario:hover {
+  background-color: var(--verde-oscuro) !important;
+  color: #ffffff !important;
+}
+
+/* 3. Botón "Jugar" (Estilo Ghost) - MODO OSCURO */
+body.modo-oscuro .botones-inicio .boton-secundario {
+  border: 2px solid #ffffff !important;
+  color: #ffffff !important;
+}
+body.modo-oscuro .botones-inicio .boton-secundario:hover {
   background-color: #ffffff !important;
   color: var(--verde-oscuro) !important;
 }
