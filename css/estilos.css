@@ -948,3 +948,44 @@ body.modo-oscuro .botones-inicio .boton-secundario:hover {
   box-shadow: 0 4px 15px rgba(15, 92, 53, 0.4) !important;
   transform: scale(1.05); /* Ligeramente más grande */
 }
+
+/* ============================================================
+   FORZAR DISEÑO PROFESIONAL (MENÚ Y BOTONES)
+   ============================================================ */
+
+/* 1. Forzar que el menú de arriba sea BLANCO cuando está sobre la foto */
+.encabezado.transparente .logo-texto {
+  color: #ffffff !important;
+}
+.encabezado.transparente .logo-img {
+  filter: brightness(0) invert(1) !important;
+}
+.encabezado.transparente .enlace-menu {
+  color: #ffffff !important;
+}
+.encabezado.transparente .enlace-menu.activo {
+  color: var(--verde-claro) !important; /* El activo se queda verde claro */
+  border-bottom-color: var(--verde-claro) !important;
+}
+.encabezado.transparente .boton-tema {
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* 2. Hacer que el botón "Jugar" sea transparente con borde (Estilo Ghost) */
+.botones-inicio .boton-secundario {
+  background-color: transparent !important;
+  border: 2px solid #ffffff !important; /* Borde blanco porque está sobre foto oscura */
+  color: #ffffff !important;
+}
+.botones-inicio .boton-secundario:hover {
+  background-color: #ffffff !important;
+  color: var(--verde-oscuro) !important;
+}
+
+/* 3. El botón "Reportar" se mantiene verde y destaca más */
+.botones-inicio .boton-primario {
+  background-color: var(--verde-oscuro) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+}
