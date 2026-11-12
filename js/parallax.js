@@ -34,23 +34,23 @@
   const imagenesParallax = document.querySelectorAll('.imagen-seccion img');
 
   imagenesParallax.forEach((img) => {
-       // Animación de escala y opacidad (Sin dejar bordes vacíos)
+
+         // Animación de escala (Sin huecos blancos)
     gsap.fromTo(
       img,
-      { scale: 1.15, opacity: 0 }, // Empieza más grande que la caja
+      { scale: 1.15 }, // Siempre empieza grande, cubriendo la caja
       {
-        scale: 1.25, // Termina aún más grande
-        opacity: 1,
-        ease: 'power2.out',
+        scale: 1.25, // Se hace un poco más grande
+        ease: 'none',
         scrollTrigger: {
           trigger: img,
           start: 'top bottom',
-          end: '+=600',
+          end: 'bottom top',
           scrub: true,
         },
       }
     );
-
+     
     // Movimiento vertical más lento que el scroll (parallax)
     gsap.to(img, {
       yPercent: -20,
