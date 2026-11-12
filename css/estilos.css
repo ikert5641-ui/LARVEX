@@ -899,3 +899,52 @@ body.modo-oscuro .encabezado.transparente .boton-tema {
   color: #ffffff !important;
   border-color: rgba(255, 255, 255, 0.5) !important;
 }
+
+/* ============================================================
+   JERARQUÍA VISUAL PROFESIONAL
+   ============================================================ */
+
+/* 1. El enlace "Reporta" del menú: que sea solo texto, sin fondo ni borde */
+.encabezado .enlace-menu[href="#reporta"] {
+  background: transparent !important;
+  color: var(--gris-texto) !important;
+  border: none !important;
+  padding: 0.3rem 0 !important;
+  font-weight: 500 !important;
+}
+
+.encabezado .enlace-menu[href="#reporta"]:hover {
+  color: var(--verde-oscuro) !important;
+  text-decoration: underline !important;
+}
+
+/* 2. El botón "Jugar" del inicio: que sea secundario (solo borde) */
+.botones-inicio .boton-secundario {
+  background-color: transparent !important;
+  border: 2px solid var(--verde-oscuro) !important;
+  color: var(--verde-oscuro) !important;
+}
+
+.botones-inicio .boton-secundario:hover {
+  background-color: var(--verde-oscuro) !important;
+  color: #ffffff !important;
+}
+
+/* En modo oscuro, que el borde y el texto sean blancos */
+body.modo-oscuro .botones-inicio .boton-secundario {
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+body.modo-oscuro .botones-inicio .boton-secundario:hover {
+  background-color: #ffffff !important;
+  color: var(--verde-oscuro) !important;
+}
+
+/* El botón de Reportar se mantiene sólido y es el protagonista */
+.botones-inicio .boton-primario {
+  background-color: var(--verde-oscuro) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 15px rgba(15, 92, 53, 0.4) !important;
+  transform: scale(1.05); /* Ligeramente más grande */
+}
