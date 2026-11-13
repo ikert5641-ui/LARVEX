@@ -1453,3 +1453,26 @@ body.modo-oscuro .botones-inicio .boton-secundario:hover {
     flex: 1 !important;
   }
 }
+
+/* ============================================================
+   BOTÓN DE CERRAR (X) DEL CHAT - DISEÑO ELEGANTE
+   ============================================================ */
+#cerrar-chat {
+  background: transparent !important;
+  border: none !important;
+  color: white !important;
+  font-size: 2rem !important; /* Tamaño perfecto */
+  font-weight: bold !important;
+  cursor: pointer !important;
+  padding: 0 10px !important;
+  margin: 0 !important;
+  line-height: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: color 0.2s !important;
+}
+
+#cerrar-chat:hover {
+  color: #2ecc71 !important; /* Se pone verde claro al pasar el mouse */
+}
