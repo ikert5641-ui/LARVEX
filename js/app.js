@@ -856,71 +856,8 @@ function dibujarCalor() {
 }
 
 // ============================================================
-// CEREBRO V3 DE DEXTER - CON SOPORTE Y COMENTARIOS
+// ASISTENTE VIRTUAL DEXTER - INTEGRACIÓN CON IA (PUTER.JS)
 // ============================================================
-const conocimientoDexter = [
-  {
-    palabras: ["sintoma", "fiebre", "duele", "cabeza", "sarpullido", "malestar", "musculo"],
-    respuesta: "Los síntomas más frecuentes del dengue son: fiebre alta repentina, dolor de cabeza intenso, dolor detrás de los ojos, dolores musculares y articulares, náuseas y sarpullido. Suelen aparecer entre 4 y 10 días después de la picadura."
-  },
-  {
-    palabras: ["alarma", "grave", "sangrado", "vomito", "abdominal", "desmayo", "muerte", "urgencia"],
-    respuesta: "¡ATENCIÓN MÉDICA INMEDIATA! Si presentas dolor abdominal intenso, vómitos persistentes, sangrado de encías o nariz, o mucha somnolencia/irritabilidad. No te automediques con aspirina ni ibuprofeno."
-  },
-  {
-    palabras: ["tratamiento", "curar", "medicina", "pastilla", "paracetamol", "tomar"],
-    respuesta: "No existe un medicamento específico para curar el dengue, solo tratamiento para aliviar los síntomas. Se recomienda reposo, abundante líquido y PARACETAMOL para la fiebre. ¡NUNCA tomes aspirina o ibuprofeno!"
-  },
-  {
-    palabras: ["contagio", "persona", "saliva", "estornudo", "tocar", "beso", "abrazo"],
-    respuesta: "El dengue NO se transmite de persona a persona. Solo se contagia por la picadura de la hembra del zancudo Aedes aegypti infectada."
-  },
-  {
-    palabras: ["prevencion", "prevenir", "evitar", "cuidado", "balde", "llanta", "tanque", "criaderos", "limpiar"],
-    respuesta: "La medida más efectiva es la descacharrización: voltea baldes, tapa tanques de agua, lava con escobilla los bebederos y elimina llantas viejas. ¡Sin criaderos, no hay mosquitos!"
-  },
-  {
-    palabras: ["criadero", "larva", "huevo", "agua", "estancada", "charco", "pozo"],
-    respuesta: "Un criadero es cualquier recipiente con agua limpia y estancada. A los zancudos les encanta el agua de lluvia acumulada en baldes, floreros y canaletas."
-  },
-  {
-    palabras: ["mosquito", "zancudo", "aedes", "pica", "vuela", "negro", "rayas"],
-    respuesta: "El Aedes aegypti es un zancudo oscuro con rayas blancas. Pica al amanecer y atardecer. Su peligro es que transmite el dengue, zika y chikungunya."
-  },
-  {
-    palabras: ["picadura", "me pico", "me pico uno", "me picó", "pique"],
-    respuesta: "Si te picó un zancudo, lava la zona con agua y jabón. No te rasques. Mantente atento a síntomas (fiebre, dolor) en los próximos 4 a 10 días. Si hay fiebre alta, acude al médico."
-  },
-  {
-    palabras: ["niño", "el niño", "lluvia", "clima", "calor", "inundacion"],
-    respuesta: "El Fenómeno El Niño provoca lluvias intensas y calor. Esto genera agua estancada en las calles y patios, creando el ambiente perfecto para que el zancudo se reproduzca."
-  },
-  {
-    palabras: ["vacuna", "qdenga", "inyeccion"],
-    respuesta: "Existe la vacuna Qdenga, recomendada para niños y adolescentes en zonas de riesgo. Sin embargo, la medida más efectiva siempre será eliminar los criaderos."
-  },
-  {
-    palabras: ["reportar", "mapa", "zona", "reporte", "aqui", "aplicacion"],
-    respuesta: "Puedes reportar una zona de riesgo usando nuestro mapa interactivo. Ve a la sección 'Reporta' en el menú de arriba, toca el mapa y envía el formulario."
-  },
-  {
-    palabras: ["mito", "verdad", "falso", "creencia"],
-    respuesta: "¡Cuidado con los mitos! El dengue no se cura con antibióticos, no solo da en zonas sucias, y la fumigación sola no es suficiente."
-  },
-  {
-    palabras: ["hola", "buenos", "tardes", "dias", "noches", "saludos", "que tal"],
-    respuesta: "¡Hola! Soy Dexter. ¿En qué te puedo ayudar? Puedo hablarte sobre síntomas, prevención o reportar zonas. Si tienes un problema técnico, escribe 'soporte'."
-  },
-  {
-    palabras: ["gracias", "genial", "buen trabajo"],
-    respuesta: "¡De nada! Juntos podemos prevenir el dengue en Trujillo. ¿Tienes otra duda?"
-  },
-  {
-    palabras: ["adios", "chau", "luego", "bye", "hasta"],
-    respuesta: "¡Hasta luego! Recuerda revisar tu patio y tapar tus depósitos de agua hoy mismo."
-  }
-];
-
 document.addEventListener('DOMContentLoaded', () => {
   const btnChat = document.getElementById('boton-chat');
   const ventanaChat = document.getElementById('ventana-chat');
@@ -932,72 +869,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!btnChat) return; 
 
-  let esperandoComentario = false; // Bandera para saber si estamos guardando un ticket de soporte
-
+  // Abrir y cerrar
   btnChat.addEventListener('click', () => {
     ventanaChat.classList.toggle('oculto');
     if (!ventanaChat.classList.contains('oculto')) inputChat.focus();
   });
   
-  cerrarChat.addEventListener('click', () => ventanaChat.classList.add('oculto'));
-
-  function obtenerRespuesta(textoUsuario) {
-    const texto = textoUsuario.toLowerCase();
-
-    // 1. Si el usuario está dejando un comentario de soporte
-    if (esperandoComentario) {
-      guardarComentario(textoUsuario);
-      esperandoComentario = false;
-      return "¡Muchas gracias! Tu comentario ha sido guardado en el sistema y el Equipo G.E.N lo revisará pronto.";
-    }
-
-    // 2. Si pide soporte o tiene un problema
-    if (texto.includes("soporte") || texto.includes("problema") || texto.includes("ayuda") || texto.includes("comentario") || texto.includes("queja") || texto.includes("sugerencia") || texto.includes("error")) {
-      esperandoComentario = true;
-      return "Entiendo. Por favor, escribe tu problema, sugerencia o comentario a continuación y presiona 'Enviar'. Lo guardaré para que el Equipo G.E.N lo revise.";
-    }
-
-    // 3. Búsqueda normal en el conocimiento
-    let mejorRespuesta = null;
-    let puntajeMaximo = 0;
-
-    conocimientoDexter.forEach(item => {
-      let puntajeActual = 0;
-      item.palabras.forEach(palabra => {
-        if (texto.includes(palabra)) {
-          puntajeActual++;
-        }
-      });
-
-      if (puntajeActual > puntajeMaximo) {
-        puntajeMaximo = puntajeActual;
-        mejorRespuesta = item.respuesta;
-      }
-    });
-
-    if (puntajeMaximo === 0) {
-      return "No tengo la respuesta exacta a eso. Pregúntame sobre 'síntomas' o 'prevención'. Si tienes un problema técnico, escribe 'soporte'.";
-    }
-
-    return mejorRespuesta;
+  // Cerrar ventana (compatible con celular)
+  function cerrarVentanaChat(e) {
+    if (e) e.stopPropagation();
+    ventanaChat.classList.add('oculto');
   }
+  cerrarChat.addEventListener('click', cerrarVentanaChat);
+  cerrarChat.addEventListener('touchstart', cerrarVentanaChat);
 
-  // Función para guardar el comentario en el navegador
-  function guardarComentario(mensaje) {
-    let comentarios = JSON.parse(localStorage.getItem('larvex-comentarios') || '[]');
-    comentarios.push({
-      mensaje: mensaje,
-      fecha: new Date().toISOString()
-    });
-    localStorage.setItem('larvex-comentarios', JSON.stringify(comentarios));
-    console.log("Comentario guardado:", mensaje); // Para que lo veas en la consola (F12)
-  }
-
-  function enviarMensaje() {
+  // Función para enviar mensaje (AHORA ES ASYNC POR LA IA)
+  async function enviarMensaje() {
     const textoUsuario = inputChat.value.trim();
     if (!textoUsuario) return;
 
-    // Mostrar mensaje del usuario
+    // 1. Mostrar mensaje del usuario
     const msjUser = document.createElement('p');
     msjUser.className = 'msj-user';
     msjUser.textContent = textoUsuario;
@@ -1005,23 +896,36 @@ document.addEventListener('DOMContentLoaded', () => {
     inputChat.value = '';
     mensajesChat.scrollTop = mensajesChat.scrollHeight;
 
-    // Mostrar "Escribiendo..."
+    // 2. Mostrar "Escribiendo..."
     indicadorEscribiendo.classList.remove('oculto');
     mensajesChat.scrollTop = mensajesChat.scrollHeight;
 
-    // Procesar respuesta
-    const respuestaFinal = obtenerRespuesta(textoUsuario);
-    const tiempoPensar = 800 + (respuestaFinal.length * 5);
+    // 3. Llamar a la IA de Puter.js
+    try {
+      // Le damos una personalidad a la IA para que responda como Dexter
+      const prompt = `Eres Dexter, el asistente virtual de Larvex, una plataforma escolar para prevenir el dengue durante el Fenómeno El Niño en Trujillo, Perú. Responde de forma clara, amable y breve (máximo 3 oraciones). La información médica debe estar basada en el MINSA, OMS y OPS. Si te preguntan algo que no sea de salud o de la página, di amablemente que solo puedes hablar de dengue. Pregunta del usuario: "${textoUsuario}"`;
 
-    setTimeout(() => {
+      // Conectamos con el modelo de IA
+      const respuesta = await puter.ai.chat(prompt, { model: "openai/gpt-4o-mini" });
+      
       indicadorEscribiendo.classList.add('oculto');
       
       const msjBot = document.createElement('p');
       msjBot.className = 'msj-bot';
-      msjBot.textContent = respuestaFinal;
+      msjBot.textContent = respuesta;
       mensajesChat.appendChild(msjBot);
       mensajesChat.scrollTop = mensajesChat.scrollHeight;
-    }, tiempoPensar);
+
+    } catch (error) {
+      console.error("Error con la IA:", error);
+      indicadorEscribiendo.classList.add('oculto');
+      
+      const msjError = document.createElement('p');
+      msjError.className = 'msj-bot';
+      msjError.textContent = "Lo siento, en este momento no puedo conectarme a mi cerebro de IA. Revisa tu conexión a internet o intenta de nuevo.";
+      mensajesChat.appendChild(msjError);
+      mensajesChat.scrollTop = mensajesChat.scrollHeight;
+    }
   }
 
   enviarChat.addEventListener('click', enviarMensaje);
