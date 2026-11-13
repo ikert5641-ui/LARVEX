@@ -1480,3 +1480,14 @@ body.modo-oscuro .botones-inicio .boton-secundario:hover {
 .ventana-chat.oculto {
   display: none !important;
 }
+
+/* Forzar fondo blanco en las opciones del cuestionario */
+.opcion {
+  background-color: #ffffff !important;
+  color: #333333 !important;
+  border: 1px solid #ccc !important;
+}
+.opcion:hover {
+  background-color: #f0f0f0 !important;
+  border-color: var(--verde-claro) !important;
+}
