@@ -301,7 +301,7 @@
   <div id="ventana-chat" class="ventana-chat oculto">
     <div class="cabecera-chat">
       <span>Dexter - Asistente Larvex</span>
-            <button id="cerrar-chat" onclick="document.getElementById('ventana-chat').classList.add('oculto')" aria-label="Cerrar asistente" style="background: transparent; border: none; color: white; font-size: 2rem; font-weight: bold; cursor: pointer; padding: 0 10px; margin: 0; line-height: 1;">&times;</button>
+            <button id="cerrar-chat" onclick="document.getElementById('ventana-chat').style.display='none'" aria-label="Cerrar asistente" style="background: transparent; border: none; color: white; font-size: 2rem; font-weight: bold; cursor: pointer; padding: 0 10px; margin: 0; line-height: 1; z-index: 999999; position: relative;">&times;</button>
     </div>
     
     <div id="mensajes-chat" class="mensajes-chat">
