@@ -10,7 +10,6 @@
   --sombra: 0 4px 20px rgba(0,0,0,0.08);
   --radio: 12px;
   --transicion: 0.3s ease;
-
   --fuente-titulos: 'Fraunces', serif;
   --fuente-texto: 'Inter', sans-serif;
 }
@@ -23,17 +22,8 @@ body.modo-oscuro {
   --sombra: 0 4px 20px rgba(0,0,0,0.4);
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-  font-size: 16px;
-}
-
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
 body {
   font-family: var(--fuente-texto);
   color: var(--gris-texto);
@@ -43,1463 +33,318 @@ body {
   overflow-x: hidden;
 }
 
-img {
-  max-width: 100%;
-  display: block;
-}
-
-a {
-  color: var(--verde-oscuro);
-  text-decoration: none;
-}
-
-a:hover,
-a:focus {
-  text-decoration: underline;
-}
+img { max-width: 100%; display: block; }
+a { color: var(--verde-oscuro); text-decoration: none; }
+a:hover, a:focus { text-decoration: underline; }
 
 /* ============================================================
-   BARRA DE PROGRESO
+   BARRA DE PROGRESO Y BANNER
    ============================================================ */
 #barra-progreso {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 0%;
-  height: 4px;
-  background: var(--verde-claro);
-  z-index: 1001;
-  transition: width 0.1s linear;
+  position: fixed; top: 0; left: 0; width: 0%; height: 4px;
+  background: var(--verde-claro); z-index: 1001; transition: width 0.1s linear;
 }
 
-/* ============================================================
-   BANNER DE LLUVIA
-   ============================================================ */
 .banner-lluvia {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1002;
-  background: #f39c12;
-  color: #fff;
-  padding: 0.8rem 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  font-size: 0.95rem;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1002;
+  background: #f39c12; color: #fff; padding: 0.8rem 1.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; font-size: 0.95rem;
 }
-
-.banner-lluvia.oculto {
-  display: none;
-}
-
-.banner-lluvia button {
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 1.5rem;
-  cursor: pointer;
-  line-height: 1;
-}
+.banner-lluvia.oculto { display: none; }
+.banner-lluvia button { background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
 
 /* ============================================================
-   ENCABEZADO
+   ENCABEZADO (MENÚ)
    ============================================================ */
 .encabezado {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
   transition: background-color var(--transicion), box-shadow var(--transicion), padding var(--transicion);
   padding: 0.8rem 0;
 }
+.encabezado.transparente { background: transparent; box-shadow: none; }
+.encabezado.solido { background: var(--blanco-calido); box-shadow: var(--sombra); padding: 0.4rem 0; }
 
-.encabezado.transparente {
-  background: transparent;
-  box-shadow: none;
-}
+/* Forzar menú blanco arriba (sobre foto oscura) */
+#encabezado.transparente .logo-texto,
+#encabezado.transparente .enlace-menu,
+#encabezado.transparente .boton-tema { color: #ffffff !important; }
+#encabezado.transparente .logo-img { filter: brightness(0) invert(1) !important; }
+#encabezado.transparente .enlace-menu.activo { color: var(--verde-claro) !important; border-bottom-color: var(--verde-claro) !important; }
+#encabezado.transparente .boton-tema { border-color: rgba(255, 255, 255, 0.5) !important; }
 
-.encabezado.solido {
-  background: var(--blanco-calido);
-  box-shadow: var(--sombra);
-  padding: 0.4rem 0;
-}
+/* En modo oscuro, el menú sólido también debe adaptarse */
+body.modo-oscuro .encabezado.solido { background: var(--blanco-calido); }
+body.modo-oscuro .encabezado .enlace-menu { color: var(--gris-texto) !important; }
 
 .contenedor-encabezado {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
 }
-
-.logo-enlace {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  text-decoration: none;
-  color: var(--verde-oscuro);
-}
-
-.logo-texto {
-  font-family: var(--fuente-titulos);
-  font-weight: 700;
-  font-size: 1.3rem;
-}
-
-/* Menú */
-.menu-principal ul {
-  display: flex;
-  list-style: none;
-  gap: 1.2rem;
-}
-
+.logo-enlace { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+.menu-principal ul { display: flex; list-style: none; gap: 1.2rem; }
 .enlace-menu {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--gris-texto);
-  padding: 0.3rem 0;
-  border-bottom: 2px solid transparent;
+  font-size: 0.9rem; font-weight: 500; color: var(--gris-texto);
+  padding: 0.3rem 0; border-bottom: 2px solid transparent;
   transition: color var(--transicion), border-color var(--transicion);
 }
-
-.enlace-menu:hover,
-.enlace-menu.activo {
-  color: var(--verde-oscuro);
-  border-bottom-color: var(--verde-claro);
-  text-decoration: none;
+.enlace-menu:hover, .enlace-menu.activo {
+  color: var(--verde-oscuro); border-bottom-color: var(--verde-claro); text-decoration: none;
 }
-
-/* Botón menú hamburguesa */
-.boton-menu {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0.5rem;
-}
-
-.boton-menu span {
-  display: block;
-  width: 25px;
-  height: 3px;
-  background: var(--gris-texto);
-  border-radius: 3px;
-  transition: var(--transicion);
-}
-
-/* Botón tema */
+.boton-menu { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+.boton-menu span { display: block; width: 25px; height: 3px; background: var(--gris-texto); border-radius: 3px; transition: var(--transicion); }
 .boton-tema {
-  background: none;
-  border: 1px solid var(--gris-suave);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background var(--transicion);
-}
-
-.boton-tema:hover {
-  background: var(--gris-suave);
+  background: none; border: 1px solid var(--gris-suave); border-radius: 50%;
+  width: 40px; height: 40px; font-size: 1.2rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; transition: background var(--transicion);
 }
 
 /* ============================================================
-   SECCIONES GENERALES
+   SECCIONES GENERALES E IMÁGENES
    ============================================================ */
-section {
-  padding: 5rem 1.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  scroll-margin-top: 90px;
-}
-
+section { padding: 5rem 1.5rem; max-width: 1200px; margin: 0 auto; scroll-margin-top: 90px; }
 .titulo-seccion {
-  font-family: var(--fuente-titulos);
-  font-size: clamp(2rem, 5vw, 2.8rem);
-  font-weight: 700;
-  color: var(--verde-oscuro);
-  margin-bottom: 1.5rem;
-  line-height: 1.2;
+  font-family: var(--fuente-titulos); font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 700; color: var(--verde-oscuro); margin-bottom: 1.5rem; line-height: 1.2;
 }
+.texto-seccion p { margin-bottom: 1.2rem; font-size: 1.05rem; }
 
-.texto-seccion p {
-  margin-bottom: 1.2rem;
-  font-size: 1.05rem;
-}
+.seccion-dos-columnas { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.seccion-dos-columnas.invertida { direction: rtl; }
+.seccion-dos-columnas.invertida .texto-seccion { direction: ltr; }
 
-/* Sección de dos columnas */
-.seccion-dos-columnas {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5rem;
-  align-items: center;
-}
-
-.seccion-dos-columnas.invertida {
-  direction: rtl;
-}
-
-.seccion-dos-columnas.invertida .texto-seccion {
-  direction: ltr;
-}
-
+/* Estilo unificado para imágenes */
 .imagen-seccion {
-  overflow: hidden;
-  border-radius: var(--radio);
-  box-shadow: var(--sombra);
-  background-color: #e0e0e0; /* Un fondo gris por si la imagen no llena todo */
+  height: 400px !important; width: 100% !important;
+  overflow: hidden !important; position: relative !important;
+  border-radius: var(--radio) !important; box-shadow: var(--sombra) !important;
+  background-color: var(--verde-oscuro) !important;
 }
-
 .imagen-seccion img {
-  width: 100%;
-  height: auto; /* Permite que la imagen mantenga su proporción natural */
-  aspect-ratio: 16 / 9; /* Le da una forma rectangular estándar (como las fotos de paisajes) */
-  object-fit: cover; /* Sigue recortando un poco, pero al tener aspect-ratio no se deforma */
-  object-position: center; /* Centra el recorte */
-  will-change: transform, opacity;
+  width: 100% !important; height: 100% !important;
+  object-fit: cover !important; object-position: center !important;
+  display: block !important; will-change: transform, opacity;
 }
 
-body.modo-oscuro .destacado-alarma {
-  background: #3d2e1a;
-  border-left-color: #f39c12;
+.destacado-alarma {
+  background: #fff3cd; border-left: 5px solid #e67e22;
+  padding: 1rem 1.2rem; border-radius: 0 var(--radio) var(--radio) 0; margin-top: 1.5rem;
 }
+body.modo-oscuro .destacado-alarma { background: #3d2e1a; border-left-color: #f39c12; }
 
 /* ============================================================
-   1. INICIO – PANTALLA COMPLETA CON PARALLAX
+   INICIO (HERO)
    ============================================================ */
 .seccion-inicio {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0 1.5rem;
-  overflow: hidden;
-  max-width: 100%;
+  position: relative; min-height: 100vh; display: flex;
+  align-items: center; justify-content: center; text-align: center;
+  padding: 0 1.5rem; overflow: hidden; max-width: 100%;
 }
-
 .fondo-parallax {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 120%;
+  position: absolute; top: 0; left: 0; width: 100%; height: 120%;
   background-image: url('../img/inicio-balde-lluvia.jpg');
-  background-size: cover;
-  background-position: center;
-  will-change: transform;
+  background-size: cover; background-position: center; will-change: transform;
 }
-
 .contenido-inicio {
-  position: relative;
-  z-index: 2;
-  max-width: 750px;
-  background: rgba(255, 255, 255, 0.88);
-  padding: 2.5rem 2rem;
-  border-radius: var(--radio);
-  backdrop-filter: blur(4px);
+  position: relative; z-index: 2; max-width: 750px;
+  background: rgba(255, 255, 255, 0.88); padding: 2.5rem 2rem;
+  border-radius: var(--radio); backdrop-filter: blur(4px);
 }
-
-body.modo-oscuro .contenido-inicio {
-  background: rgba(18, 26, 22, 0.9);
-}
-
+body.modo-oscuro .contenido-inicio { background: rgba(18, 26, 22, 0.9); }
 .titulo-principal {
-  font-family: var(--fuente-titulos);
-  font-size: clamp(2rem, 6vw, 3.5rem);
-  font-weight: 700;
-  color: var(--verde-oscuro);
-  line-height: 1.15;
-  margin-bottom: 1rem;
+  font-family: var(--fuente-titulos); font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 700; color: var(--verde-oscuro); line-height: 1.15; margin-bottom: 1rem;
 }
+body.modo-oscuro .titulo-principal { color: #f8fef9 !important; }
+body.modo-oscuro .subtitulo { color: #d1d5db !important; }
+.subtitulo { font-size: 1.15rem; margin-bottom: 2rem; color: var(--gris-texto); }
 
-.subtitulo {
-  font-size: 1.15rem;
-  margin-bottom: 2rem;
-  color: var(--gris-texto);
-}
-
-.botones-inicio {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
+/* Botones */
 .boton {
-  display: inline-block;
-  padding: 0.9rem 1.8rem;
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  border: none;
-  transition: transform 0.2s, box-shadow 0.2s;
-  text-decoration: none;
+  display: inline-block; padding: 0.9rem 1.8rem; border-radius: 50px;
+  font-weight: 600; font-size: 1rem; cursor: pointer; border: none;
+  transition: transform 0.2s, box-shadow 0.2s; text-decoration: none;
 }
+.boton:hover { transform: translateY(-2px); box-shadow: var(--sombra); text-decoration: none; }
+.boton-primario { background: var(--verde-oscuro); color: #ffffff !important; box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important; }
+.boton-whatsapp { background: #25d366; color: #fff; }
 
-.boton:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--sombra);
-  text-decoration: none;
-}
-
-.boton-primario {
-  background: var(--verde-oscuro);
-  color: #fff;
-}
-
-.boton-secundario {
-  background: var(--verde-claro);
-  color: #fff;
-}
-
-.boton-whatsapp {
-  background: #25d366;
-  color: #fff;
-}
+/* Estilo Ghost para el botón Jugar */
+.botones-inicio { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+body .botones-inicio .boton-secundario { background-color: transparent !important; border: 2px solid var(--verde-oscuro) !important; color: var(--verde-oscuro) !important; }
+body .botones-inicio .boton-secundario:hover { background-color: var(--verde-oscuro) !important; color: #ffffff !important; }
+body.modo-oscuro .botones-inicio .boton-secundario { border: 2px solid #ffffff !important; color: #ffffff !important; }
+body.modo-oscuro .botones-inicio .boton-secundario:hover { background-color: #ffffff !important; color: var(--verde-oscuro) !important; }
 
 /* ============================================================
-   5. REPORTA UNA ZONA
+   MAPA GLOBAL Y REPORTES
    ============================================================ */
-.seccion-reporta {
-  padding-top: 4rem;
-}
+.contenedor-mapa-mundo { margin: 2rem 0; }
+.fuente-mapa { font-size: 0.8rem; color: #777; text-align: right; margin-top: 0.5rem; font-style: italic; }
+.leaflet-control-attribution { font-size: 9px !important; background: rgba(255, 255, 255, 0.6) !important; color: #777 !important; }
 
-.texto-intro {
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
-  max-width: 700px;
-}
+.seccion-reporta { padding-top: 4rem; }
+.texto-intro { font-size: 1.1rem; margin-bottom: 2rem; max-width: 700px; }
 
-.mapa {
-  width: 100%;
-  height: 500px;
-  border-radius: var(--radio);
-  box-shadow: var(--sombra);
-  z-index: 1;
+.contenedor-reporta {
+  display: grid !important; grid-template-columns: 1.5fr 1fr !important;
+  gap: 2rem !important; align-items: start !important;
+  max-width: 1200px !important; margin: 0 auto !important; overflow: hidden !important;
 }
-
+.columna-mapa { width: 100% !important; }
+#mapa {
+  width: 100% !important; height: 450px !important;
+  border-radius: var(--radio) !important; box-shadow: var(--sombra) !important; z-index: 1;
+}
 .panel-reporta {
-  background: var(--gris-suave);
-  padding: 1.5rem;
-  border-radius: var(--radio);
+  width: 100% !important; background: var(--gris-suave) !important;
+  padding: 1.5rem !important; border-radius: var(--radio) !important; box-shadow: var(--sombra) !important;
 }
-
-.contador-reportes {
-  font-family: var(--fuente-titulos);
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--verde-oscuro);
-  margin-bottom: 1.5rem;
-  text-align: center;
+.contador-reportes { font-family: var(--fuente-titulos); font-size: 2rem; font-weight: 700; color: var(--verde-oscuro); margin-bottom: 1.5rem; text-align: center; }
+.contador-reportes span:first-child { display: block; font-size: 3rem; line-height: 1; }
+.formulario-reporte { display: flex; flex-direction: column; gap: 0.8rem; }
+.formulario-reporte label { font-weight: 500; font-size: 0.9rem; }
+.formulario-reporte input, .formulario-reporte select, .formulario-reporte textarea {
+  width: 100%; padding: 0.7rem; border: 1px solid #ccc; border-radius: 8px;
+  font-family: var(--fuente-texto); font-size: 0.95rem; background: var(--blanco-calido); color: var(--gris-texto);
 }
-
-.contador-reportes span:first-child {
-  display: block;
-  font-size: 3rem;
-  line-height: 1;
-}
-
-.formulario-reporte {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.formulario-reporte label {
-  font-weight: 500;
-  font-size: 0.9rem;
-}
-
-.formulario-reporte input,
-.formulario-reporte select,
-.formulario-reporte textarea {
-  width: 100%;
-  padding: 0.7rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-family: var(--fuente-texto);
-  font-size: 0.95rem;
-  background: var(--blanco-calido);
-  color: var(--gris-texto);
-}
-
-.boton-ubicacion {
-  background: var(--gris-texto);
-  color: #fff;
-  font-size: 0.9rem;
-  padding: 0.6rem 1rem;
-}
-
-.estado-ubicacion {
-  font-size: 0.85rem;
-  color: var(--verde-oscuro);
-  min-height: 1.2em;
-}
-
-.nota-prototipo {
-  font-size: 0.8rem;
-  color: #777;
-  margin-top: 1rem;
-  font-style: italic;
-}
+.boton-ubicacion { background: var(--gris-texto); color: #fff; font-size: 0.9rem; padding: 0.6rem 1rem; }
+.estado-ubicacion { font-size: 0.85rem; color: var(--verde-oscuro); min-height: 1.2em; }
 
 /* ============================================================
-   7. CAZADOR DE CRIADEROS
+   JUEGO (CUESTIONARIO) Y RANKING
    ============================================================ */
-.seccion-juego {
-  padding-top: 4rem;
+.seccion-juego { padding-top: 4rem; }
+.juego-pantalla { max-width: 700px; margin: 0 auto 3rem; background: var(--gris-suave); padding: 2rem; border-radius: var(--radio); }
+.juego-pantalla h3 { font-family: var(--fuente-titulos); font-size: 1.5rem; margin-bottom: 1rem; color: var(--verde-oscuro); }
+.juego-pantalla label { display: block; margin-bottom: 0.3rem; font-weight: 500; }
+.juego-pantalla input, .juego-pantalla select {
+  width: 100%; padding: 0.8rem; margin-bottom: 1rem; border: 1px solid #ccc;
+  border-radius: 8px; font-family: var(--fuente-texto); background: var(--blanco-calido); color: var(--gris-texto);
 }
-
-.juego-pantalla {
-  max-width: 700px;
-  margin: 0 auto 3rem;
-  background: var(--gris-suave);
-  padding: 2rem;
-  border-radius: var(--radio);
-}
-
-.juego-pantalla h3 {
-  font-family: var(--fuente-titulos);
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: var(--verde-oscuro);
-}
-
-.juego-pantalla label {
-  display: block;
-  margin-bottom: 0.3rem;
-  font-weight: 500;
-}
-
-.juego-pantalla input,
-.juego-pantalla select {
-  width: 100%;
-  padding: 0.8rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-family: var(--fuente-texto);
-  background: var(--blanco-calido);
-  color: var(--gris-texto);
-}
-
-.cabecera-juego {
-  display: flex;
-  justify-content: space-between;
-  font-weight: 600;
-  margin-bottom: 0.8rem;
-}
-
-.barra-progreso-juego {
-  width: 100%;
-  height: 8px;
-  background: #ddd;
-  border-radius: 4px;
-  margin-bottom: 1.5rem;
-  overflow: hidden;
-}
-
-#progreso-juego {
-  height: 100%;
-  width: 0%;
-  background: var(--verde-claro);
-  transition: width 0.3s;
-}
-
-.texto-pregunta {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 1.2rem;
-}
-
-.opciones-pregunta {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
+.cabecera-juego { display: flex; justify-content: space-between; font-weight: 600; margin-bottom: 0.8rem; }
+.barra-progreso-juego { width: 100%; height: 8px; background: #ddd; border-radius: 4px; margin-bottom: 1.5rem; overflow: hidden; }
+#progreso-juego { height: 100%; width: 0%; background: var(--verde-claro); transition: width 0.3s; }
+.texto-pregunta { font-size: 1.1rem; font-weight: 600; margin-bottom: 1.2rem; }
+.opciones-pregunta { display: flex; flex-direction: column; gap: 0.6rem; }
 
 .opcion {
-  padding: 0.8rem 1rem;
-  background: var(--blanco-calido);
-  border: 2px solid transparent;
-  border-radius: 8px;
-  cursor: pointer;
-  text-align: left;
-  font-size: 1rem;
-  font-family: var(--fuente-texto);
+  padding: 0.8rem 1rem; background-color: #ffffff !important; color: #000000 !important;
+  border: 2px solid #ccc !important; border-radius: 8px; cursor: pointer;
+  text-align: left; font-size: 1rem; font-family: var(--fuente-texto); font-weight: 500 !important;
   transition: border-color 0.2s, background 0.2s;
 }
+.opcion:hover { background-color: #f0f0f0 !important; border-color: var(--verde-oscuro) !important; }
+.opcion.correcta { background-color: #d4f5e0 !important; color: #0f5c35 !important; border-color: #2ecc71 !important; }
+.opcion.incorrecta { background-color: #fde8e8 !important; color: #c0392b !important; border-color: #e74c3c !important; }
 
-.opcion:hover {
-  border-color: var(--verde-claro);
-}
+.retroalimentacion { margin-top: 1rem; padding: 1rem; border-radius: 8px; font-size: 0.95rem; }
+.retroalimentacion.exito { background: #d4f5e0; color: #0f5c35; }
+.retroalimentacion.error { background: #fde8e8; color: #c0392b; }
+.oculto { display: none !important; }
+.puntaje-final { font-size: 2rem; font-weight: 700; color: var(--verde-oscuro); text-align: center; }
+.mensaje-final { text-align: center; margin: 1rem 0 1.5rem; }
+#juego-resultados .boton { display: block; width: 100%; margin-bottom: 0.8rem; text-align: center; }
 
-.opcion.correcta {
-  border-color: var(--verde-claro);
-  background: #d4f5e0;
-}
-
-.opcion.incorrecta {
-  border-color: #e74c3c;
-  background: #fde8e8;
-}
-
-.retroalimentacion {
-  margin-top: 1rem;
-  padding: 1rem;
-  border-radius: 8px;
-  font-size: 0.95rem;
-}
-
-.retroalimentacion.exito {
-  background: #d4f5e0;
-  color: #0f5c35;
-}
-
-.retroalimentacion.error {
-  background: #fde8e8;
-  color: #c0392b;
-}
-
-.oculto {
-  display: none !important;
-}
-
-.puntaje-final {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--verde-oscuro);
-  text-align: center;
-}
-
-.mensaje-final {
-  text-align: center;
-  margin: 1rem 0 1.5rem;
-}
-
-#juego-resultados .boton {
-  display: block;
-  width: 100%;
-  margin-bottom: 0.8rem;
-  text-align: center;
-}
-
-/* Ranking */
-.ranking {
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.pestanas-ranking {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.pestana {
-  padding: 0.6rem 1.2rem;
-  border: none;
-  background: var(--gris-suave);
-  border-radius: 8px;
-  cursor: pointer;
-  font-family: var(--fuente-texto);
-  font-weight: 500;
-  transition: background 0.2s;
-}
-
-.pestana.activa {
-  background: var(--verde-oscuro);
-  color: #fff;
-}
-
-.contenido-ranking table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.contenido-ranking th,
-.contenido-ranking td {
-  padding: 0.6rem 0.8rem;
-  text-align: left;
-  border-bottom: 1px solid var(--gris-suave);
-  font-size: 0.9rem;
-}
-
-.contenido-ranking th {
-  font-weight: 600;
-  color: var(--verde-oscuro);
-}
+.ranking { max-width: 700px; margin: 0 auto; }
+.pestanas-ranking { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+.pestana { padding: 0.6rem 1.2rem; border: none; background: var(--gris-suave); border-radius: 8px; cursor: pointer; font-family: var(--fuente-texto); font-weight: 500; transition: background 0.2s; }
+.pestana.activa { background: var(--verde-oscuro); color: #fff; }
+.contenido-ranking table { width: 100%; border-collapse: collapse; }
+.contenido-ranking th, .contenido-ranking td { padding: 0.6rem 0.8rem; text-align: left; border-bottom: 1px solid var(--gris-suave); font-size: 0.9rem; }
+.contenido-ranking th { font-weight: 600; color: var(--verde-oscuro); }
 
 /* ============================================================
-   8. EQUIPO
+   EQUIPO, FUENTES Y PIE DE PÁGINA
    ============================================================ */
-.seccion-equipo {
-  text-align: center;
-}
+.seccion-equipo { text-align: center; }
+.lista-equipo { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem 3rem; font-size: 1.1rem; }
+.seccion-fuentes ul { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+.seccion-fuentes a { font-weight: 500; color: var(--verde-oscuro); text-decoration: underline; }
 
-.lista-equipo {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem 3rem;
-  font-size: 1.1rem;
-}
+.pie-pagina { background: var(--verde-oscuro); color: #fff; text-align: center; padding: 2rem 1.5rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+.pie-pagina img { filter: brightness(0) invert(1); }
 
 /* ============================================================
-   9. FUENTES
+   ASISTENTE VIRTUAL DEXTER
    ============================================================ */
-.seccion-fuentes ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
+.boton-chat {
+  position: fixed; bottom: 20px; right: 20px; width: 80px; height: 80px;
+  border-radius: 16px; background: var(--verde-oscuro); color: white;
+  border: 2px solid var(--verde-claro); cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  z-index: 99999; display: flex; flex-direction: column; justify-content: center; align-items: center;
+  gap: 4px; padding: 8px; transition: transform 0.3s;
 }
+.boton-chat:hover { transform: translateY(-5px); background: #0a4024; }
+.icono-bot { font-size: 28px; line-height: 1; }
+.texto-bot { font-size: 11px; font-weight: 700; font-family: var(--fuente-texto); text-align: center; line-height: 1.2; }
 
-.seccion-fuentes a {
-  font-weight: 500;
-  color: var(--verde-oscuro);
-  text-decoration: underline;
+.ventana-chat {
+  position: fixed; bottom: 110px; right: 20px; width: 350px; max-width: 90vw;
+  background: white; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  z-index: 99999; display: flex; flex-direction: column; overflow: hidden; border: 1px solid #ddd;
 }
+.ventana-chat.oculto { display: none !important; }
+.cabecera-chat {
+  background: var(--verde-oscuro); color: white; padding: 12px 15px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-weight: bold; font-family: var(--fuente-texto);
+}
+#cerrar-chat {
+  background: transparent; border: none; color: white; font-size: 2rem;
+  font-weight: bold; cursor: pointer; padding: 0 10px; line-height: 1; transition: color 0.2s;
+}
+#cerrar-chat:hover { color: #2ecc71; }
+
+.mensajes-chat {
+  height: 300px; overflow-y: auto; padding: 15px;
+  display: flex; flex-direction: column; gap: 12px; background: #fdfdfd;
+}
+.mensajes-chat p { margin: 0; padding: 10px 14px; border-radius: 12px; font-size: 0.9rem; max-width: 85%; line-height: 1.4; }
+.msj-bot { background: #e8f5e9; color: #333; align-self: flex-start; border-bottom-left-radius: 2px; border-left: 3px solid var(--verde-claro); }
+.msj-user { background: var(--verde-oscuro); color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
+
+.input-chat { display: flex; border-top: 1px solid #eee; background: white; padding: 5px; }
+.input-chat input { flex: 1; border: none; padding: 12px; outline: none; background: white; color: #333; font-family: var(--fuente-texto); }
+.input-chat button { background: var(--verde-oscuro); color: white; border: none; padding: 0 20px; cursor: pointer; font-weight: bold; border-radius: 8px; }
 
 /* ============================================================
-   10. PIE DE PÁGINA
-   ============================================================ */
-.pie-pagina {
-  background: var(--verde-oscuro);
-  color: #fff;
-  text-align: center;
-  padding: 2rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-
-.pie-pagina img {
-  filter: brightness(0) invert(1);
-}
-
-/* ============================================================
-   RESPONSIVE
+   RESPONSIVE (CELULARES Y TABLETS)
    ============================================================ */
 @media (max-width: 900px) {
-  .seccion-dos-columnas,
-  .seccion-dos-columnas.invertida {
-    grid-template-columns: 1fr;
-    direction: ltr;
-  }
-
-  .imagen-seccion img {
-    height: 280px;
-  }
-
-  .contenedor-reporta {
-    grid-template-columns: 1fr;
-  }
-
-  .mapa {
-    height: 350px;
-  }
+  .seccion-dos-columnas, .seccion-dos-columnas.invertida { grid-template-columns: 1fr; direction: ltr; }
+  .contenedor-reporta { grid-template-columns: 1fr !important; }
+  #mapa { height: 350px !important; }
 }
 
 @media (max-width: 768px) {
   .menu-principal {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 80%;
-    max-width: 320px;
-    height: 100vh;
-    background: var(--blanco-calido);
-    box-shadow: var(--sombra);
-    padding: 5rem 2rem 2rem;
-    transition: right 0.3s ease;
-    z-index: 999;
+    position: fixed; top: 0; right: -100%; width: 80%; max-width: 320px;
+    height: 100vh; background: var(--blanco-calido); box-shadow: var(--sombra);
+    padding: 5rem 2rem 2rem; transition: right 0.3s ease; z-index: 999;
   }
+  .menu-principal.abierto { right: 0; }
+  .menu-principal ul { flex-direction: column; gap: 1rem; }
+  .enlace-menu { font-size: 1.1rem; }
+  .boton-menu { display: flex; z-index: 1001; }
+  .boton-menu.abierto span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .boton-menu.abierto span:nth-child(2) { opacity: 0; }
+  .boton-menu.abierto span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
-  .menu-principal.abierto {
-    right: 0;
-  }
+  section { padding: 3.5rem 1.2rem; }
+  .contenido-inicio { padding: 1.8rem 1.2rem; }
+  .titulo-principal { font-size: 1.8rem; }
+  .juego-pantalla { padding: 1.5rem; }
+  .lista-equipo { flex-direction: column; gap: 0.8rem; }
+  .imagen-seccion { height: 300px !important; }
 
-  .menu-principal ul {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .enlace-menu {
-    font-size: 1.1rem;
-  }
-
-  .boton-menu {
-    display: flex;
-    z-index: 1001;
-  }
-
-  .boton-menu.abierto span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
-
-  .boton-menu.abierto span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .boton-menu.abierto span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-  }
-
-  section {
-    padding: 3.5rem 1.2rem;
-  }
-
-  .contenido-inicio {
-    padding: 1.8rem 1.2rem;
-  }
-
-  .titulo-principal {
-    font-size: 1.8rem;
-  }
-
-  .juego-pantalla {
-    padding: 1.5rem;
-  }
-
-  .lista-equipo {
-    flex-direction: column;
-    gap: 0.8rem;
-  }
+  /* Chat en celular */
+  .ventana-chat { width: 90vw !important; left: 5vw !important; right: 5vw !important; bottom: 100px !important; height: 60vh !important; }
+  .mensajes-chat { height: auto !important; flex: 1 !important; }
+  .msj-bot { background-color: #e8f5e9 !important; color: #000000 !important; }
 }
 
-/* ============================================================
-   ACCESIBILIDAD – prefers-reduced-motion
-   ============================================================ */
+/* Accesibilidad */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-.contenedor-mapa-mundo {
-  margin: 2rem 0;
-}
-
-.fuente-mapa {
-  font-size: 0.8rem;
-  color: #777;
-  text-align: right;
-  margin-top: 0.5rem;
-  font-style: italic;
-}
-
-/* Hacer más discreta la marca de agua del mapa de Trujillo */
-.leaflet-control-attribution {
-  font-size: 9px !important;
-  background: rgba(255, 255, 255, 0.6) !important;
-  color: #777 !important;
-}
-
-/* ============================================================
-   ASISTENTE VIRTUAL DEXTER (ESTILOS ACTUALIZADOS)
-   ============================================================ */
-.boton-chat { 
-  position: fixed; 
-  bottom: 20px; 
-  right: 20px; 
-  width: 95px;  /* Más ancho para que quepa el texto */
-  height: 85px; /* Un poco más alto */
-  border-radius: 16px; /* Bordes redondeados (cuadrado suave) */
-  background: var(--verde-oscuro); 
-  color: white; 
-  border: 2px solid var(--verde-claro); 
-  cursor: pointer; 
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
-  z-index: 1000; 
-  transition: transform 0.3s, background 0.3s; 
-  display: flex; 
-  flex-direction: column; /* Emoji arriba, texto abajo */
-  justify-content: center; 
-  align-items: center; 
-  gap: 4px;
-  padding: 8px;
-}
-
-.boton-chat:hover { 
-  transform: translateY(-5px); 
-  background: #0a4024; 
-}
-
-.icono-bot {
-  font-size: 28px;
-  line-height: 1;
-}
-
-.texto-bot {
-  font-size: 11px;
-  font-weight: 700;
-  font-family: var(--fuente-texto);
-  text-align: center; /* Centra el texto si se divide en dos líneas */
-  line-height: 1.2;
-}
-
-/* ============================================================
-   FORZAR CONTRASTE EN MODO OSCURO (A PRUEBA DE BALAS)
-   ============================================================ */
-
-/* 1. Título y subtítulo del Inicio en blanco */
-body.modo-oscuro .titulo-principal {
-  color: #f8fef9 !important; 
-}
-
-body.modo-oscuro .subtitulo {
-  color: #d1d5db !important;
-}
-
-/* 2. Menú superior en blanco */
-body.modo-oscuro .encabezado .enlace-menu {
-  color: #ffffff !important; 
-}
-
-body.modo-oscuro .encabezado .enlace-menu.activo {
-  color: var(--verde-claro) !important;
-  border-bottom-color: var(--verde-claro) !important;
-}
-
-/* 3. Logo en blanco cuando está sobre la foto */
-body.modo-oscuro .encabezado.transparente .logo-img {
-  filter: brightness(0) invert(1) !important;
-}
-
-/* 4. Icono del sol/luna en blanco */
-body.modo-oscuro .encabezado.transparente .boton-tema {
-  color: #ffffff !important;
-  border-color: rgba(255, 255, 255, 0.5) !important;
-}
-
-/* ============================================================
-   JERARQUÍA VISUAL PROFESIONAL
-   ============================================================ */
-
-/* 1. El enlace "Reporta" del menú: que sea solo texto, sin fondo ni borde */
-.encabezado .enlace-menu[href="#reporta"] {
-  background: transparent !important;
-  color: var(--gris-texto) !important;
-  border: none !important;
-  padding: 0.3rem 0 !important;
-  font-weight: 500 !important;
-}
-
-.encabezado .enlace-menu[href="#reporta"]:hover {
-  color: var(--verde-oscuro) !important;
-  text-decoration: underline !important;
-}
-
-/* 2. El botón "Jugar" del inicio: que sea secundario (solo borde) */
-.botones-inicio .boton-secundario {
-  background-color: transparent !important;
-  border: 2px solid var(--verde-oscuro) !important;
-  color: var(--verde-oscuro) !important;
-}
-
-.botones-inicio .boton-secundario:hover {
-  background-color: var(--verde-oscuro) !important;
-  color: #ffffff !important;
-}
-
-/* En modo oscuro, que el borde y el texto sean blancos */
-body.modo-oscuro .botones-inicio .boton-secundario {
-  border-color: #ffffff !important;
-  color: #ffffff !important;
-}
-
-body.modo-oscuro .botones-inicio .boton-secundario:hover {
-  background-color: #ffffff !important;
-  color: var(--verde-oscuro) !important;
-}
-
-/* El botón de Reportar se mantiene sólido y es el protagonista */
-.botones-inicio .boton-primario {
-  background-color: var(--verde-oscuro) !important;
-  color: #ffffff !important;
-  box-shadow: 0 4px 15px rgba(15, 92, 53, 0.4) !important;
-  transform: scale(1.05); /* Ligeramente más grande */
-}
-
-/* ============================================================
-   FORZAR DISEÑO PROFESIONAL (MENÚ Y BOTONES)
-   ============================================================ */
-
-/* 1. Forzar que el menú de arriba sea BLANCO cuando está sobre la foto */
-.encabezado.transparente .logo-texto {
-  color: #ffffff !important;
-}
-.encabezado.transparente .logo-img {
-  filter: brightness(0) invert(1) !important;
-}
-.encabezado.transparente .enlace-menu {
-  color: #ffffff !important;
-}
-.encabezado.transparente .enlace-menu.activo {
-  color: var(--verde-claro) !important; /* El activo se queda verde claro */
-  border-bottom-color: var(--verde-claro) !important;
-}
-.encabezado.transparente .boton-tema {
-  color: #ffffff !important;
-  border-color: rgba(255, 255, 255, 0.5) !important;
-}
-
-/* 2. Botón "Jugar" (Estilo Ghost) - MODO CLARO */
-.botones-inicio .boton-secundario {
-  background-color: transparent !important;
-  border: 2px solid var(--verde-oscuro) !important;
-  color: var(--verde-oscuro) !important;
-}
-.botones-inicio .boton-secundario:hover {
-  background-color: var(--verde-oscuro) !important;
-  color: #ffffff !important;
-}
-
-/* 3. Botón "Jugar" (Estilo Ghost) - MODO OSCURO */
-body.modo-oscuro .botones-inicio .boton-secundario {
-  border: 2px solid #ffffff !important;
-  color: #ffffff !important;
-}
-body.modo-oscuro .botones-inicio .boton-secundario:hover {
-  background-color: #ffffff !important;
-  color: var(--verde-oscuro) !important;
-}
-
-/* 3. El botón "Reportar" se mantiene verde y destaca más */
-.botones-inicio .boton-primario {
-  background-color: var(--verde-oscuro) !important;
-  color: #ffffff !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
-}
-
-/* ============================================================
-   PARCHE DE EMERGENCIA: FORZAR MENÚ BLANCO ARRIBA
-   ============================================================ */
-
-/* Forzar que el texto, el logo y el botón de la luna sean blancos */
-#encabezado.transparente .logo-texto,
-#encabezado.transparente .enlace-menu,
-#encabezado.transparente .boton-tema {
-  color: #ffffff !important;
-}
-
-/* El enlace activo (Inicio) se queda verde claro para que resalte */
-#encabezado.transparente .enlace-menu.activo {
-  color: #2ecc71 !important; 
-  border-bottom-color: #2ecc71 !important;
-}
-
-/* El logo de la cabecera se vuelve blanco */
-#encabezado.transparente .logo-img {
-  filter: brightness(0) invert(1) !important;
-}
-
-/* El borde del botón de la luna se vuelve blanco */
-#encabezado.transparente .boton-tema {
-  border-color: rgba(255, 255, 255, 0.5) !important;
-}
-
-/* ============================================================
-   ARREGLO DEFINITIVO: BOTÓN JUGAR (MODO CLARO Y OSCURO)
-   ============================================================ */
-
-/* Modo Claro: Fondo transparente, borde verde y texto verde */
-body .botones-inicio .boton-secundario {
-  background-color: transparent !important;
-  border: 2px solid var(--verde-oscuro) !important;
-  color: var(--verde-oscuro) !important;
-}
-body .botones-inicio .boton-secundario:hover {
-  background-color: var(--verde-oscuro) !important;
-  color: #ffffff !important;
-}
-
-/* Modo Oscuro: Fondo transparente, borde blanco y texto blanco */
-body.modo-oscuro .botones-inicio .boton-secundario {
-  border: 2px solid #ffffff !important;
-  color: #ffffff !important;
-}
-body.modo-oscuro .botones-inicio .boton-secundario:hover {
-  background-color: #ffffff !important;
-  color: var(--verde-oscuro) !important;
-}
-
-/* ============================================================
-   AJUSTES EXCLUSIVOS PARA CELULARES (VERSIÓN PROFESIONAL)
-   ============================================================ */
-@media (max-width: 768px) {
-  
-  /* 1. Imágenes perfectas: Altura fija y recorte centrado */
-  .imagen-seccion {
-    height: 320px !important; /* Altura ideal para celular */
-    position: relative;
-    overflow: hidden;
-    border-radius: var(--radio);
-    margin-bottom: 2rem;
-  }
-  
-  .imagen-seccion img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important; /* Recorta los bordes sin deformar */
-    object-position: center !important;
-  }
-  
-  /* 2. Chat de Dexter Flotante y Sólido */
-  .ventana-chat {
-    position: fixed !important; 
-    bottom: 100px !important;   
-    left: 5vw !important;
-    right: 5vw !important;
-    width: 90vw !important;
-    height: 60vh !important;    
-    max-height: 450px !important;
-    z-index: 99999 !important;   
-    background-color: #ffffff !important; /* Forzar fondo blanco */
-    border: 2px solid var(--verde-oscuro) !important;
-    border-radius: 12px !important;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4) !important;
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* Forzar colores para que el texto se lea en celular */
-  .mensajes-chat {
-    background-color: #f9f9f9 !important;
-    flex: 1 !important;
-    height: auto !important;
-  }
-
-  .msj-bot {
-    background-color: #e8f5e9 !important;
-    color: #333333 !important; /* Texto oscuro obligatorio */
-  }
-
-  .msj-user {
-    background-color: var(--verde-oscuro) !important;
-    color: #ffffff !important; /* Texto blanco obligatorio */
-  }
-
-  .input-chat {
-    background-color: #ffffff !important;
-    border-top: 1px solid #ddd !important;
-  }
-
-  .input-chat input {
-    background-color: #ffffff !important;
-    color: #333333 !important;
-  }
-}
-
-/* ============================================================
-   PARCHE DE EMERGENCIA FINAL: IMÁGENES Y CHAT
-   ============================================================ */
-.imagen-seccion {
-  height: 400px !important;
-  width: 100% !important;
-  overflow: hidden !important;
-  position: relative !important;
-  border-radius: var(--radio) !important;
-  background-color: var(--verde-oscuro) !important; /* Evita que se vea blanco si falla la img */
-}
-
-.imagen-seccion img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  object-position: center !important;
-  display: block !important;
-}
-
-@media (max-width: 768px) {
-  .imagen-seccion {
-    height: 300px !important; /* Tamaño perfecto para celular */
-  }
-  
-  .ventana-chat {
-    background-color: #ffffff !important;
-    color: #000000 !important;
-    bottom: 100px !important;
-    height: 55vh !important; 
-  }
-
-  .mensajes-chat {
-    background-color: #ffffff !important;
-  }
-
-  .msj-bot {
-    background-color: #e8f5e9 !important;
-    color: #000000 !important; /* Forzar texto negro en el bot */
-  }
-}
-
-/* ============================================================
-   DISEÑO DEFINITIVO: MAPA Y FORMULARIO (LAPTOP Y CELULAR)
-   ============================================================ */
-
-/* 1. El contenedor principal (Evita que se salga de la pantalla) */
-.contenedor-reporta {
-  display: grid !important;
-  grid-template-columns: 1.5fr 1fr !important; /* Mapa a la izquierda (60%), Formulario a la derecha (40%) */
-  gap: 2rem !important;
-  align-items: start !important;
-  width: 100% !important;
-  max-width: 1200px !important; /* Evita que se estire sin control */
-  margin: 0 auto !important;
-  overflow: hidden !important; /* Corta cualquier cosa que se salga */
-}
-
-/* 5. Ajuste para celulares (Se apilan uno abajo del otro) */
-@media (max-width: 900px) {
-  .contenedor-reporta {
-    grid-template-columns: 1fr !important; /* Una sola columna */
-    gap: 2rem !important;
-  }
-  #mapa {
-    height: 350px !important;
-  }
-}
-
-/* ============================================================
-   DISEÑO DEFINITIVO Y FINAL: MAPA Y FORMULARIO
-   ============================================================ */
-.contenedor-reporta {
-  display: grid !important;
-  grid-template-columns: 1.5fr 1fr !important; /* 60% mapa, 40% formulario */
-  gap: 2rem !important;
-  align-items: start !important;
-  max-width: 1200px !important;
-  margin: 0 auto !important;
-}
-
-.columna-mapa {
-  width: 100% !important;
-}
-
-#mapa {
-  width: 100% !important;
-  height: 450px !important;
-  border-radius: var(--radio) !important;
-  box-shadow: var(--sombra) !important;
-  z-index: 1;
-}
-
-.panel-reporta {
-  width: 100% !important;
-  background: var(--gris-suave) !important;
-  padding: 1.5rem !important;
-  border-radius: var(--radio) !important;
-  box-shadow: var(--sombra) !important;
-}
-
-/* Para celular: se apilan uno abajo del otro */
-@media (max-width: 900px) {
-  .contenedor-reporta {
-    grid-template-columns: 1fr !important;
-  }
-  #mapa {
-    height: 350px !important;
-  }
-}
-
-/* ============================================================
-   RESTAURACIÓN DEL CHAT DE DEXTER (LAPTOP / ESCRITORIO)
-   ============================================================ */
-.ventana-chat { 
-  position: fixed !important; 
-  bottom: 100px !important; 
-  right: 20px !important; 
-  width: 350px !important; /* Tamaño perfecto para laptop */
-  max-height: 500px !important;
-  background: white !important; 
-  border-radius: 12px !important; 
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important; 
-  z-index: 9999 !important; 
-  display: flex !important; 
-  flex-direction: column !important; 
-  overflow: hidden !important; 
-  border: 1px solid #ddd !important;
-}
-
-/* El encabezado del chat */
-.cabecera-chat { 
-  background: var(--verde-oscuro) !important; 
-  color: white !important; 
-  padding: 12px 15px !important; 
-  display: flex !important; 
-  justify-content: space-between !important; 
-  align-items: center !important; 
-  font-weight: bold !important; 
-}
-
-/* El área de los mensajes */
-.mensajes-chat { 
-  height: 300px !important; 
-  overflow-y: auto !important; 
-  padding: 15px !important; 
-  display: flex !important; 
-  flex-direction: column !important; 
-  gap: 12px !important; 
-  background: #fdfdfd !important; 
-}
-
-/* Los globos de texto */
-.mensajes-chat p { 
-  margin: 0 !important; 
-  padding: 10px 14px !important; 
-  border-radius: 12px !important; 
-  font-size: 0.9rem !important; 
-  max-width: 85% !important; 
-  line-height: 1.4 !important; 
-}
-
-.msj-bot { 
-  background: #e8f5e9 !important; 
-  color: #333 !important; 
-  align-self: flex-start !important; 
-  border-bottom-left-radius: 2px !important; 
-}
-
-.msj-user { 
-  background: var(--verde-oscuro) !important; 
-  color: white !important; 
-  align-self: flex-end !important; 
-  border-bottom-right-radius: 2px !important; 
-}
-
-/* La barra de escribir */
-.input-chat { 
-  display: flex !important; 
-  border-top: 1px solid #eee !important; 
-  background: white !important; 
-  padding: 5px !important; 
-}
-
-.input-chat input { 
-  flex: 1 !important; 
-  border: none !important; 
-  padding: 12px !important; 
-  outline: none !important; 
-  background: white !important;
-  color: #333 !important;
-}
-
-.input-chat button { 
-  background: var(--verde-oscuro) !important; 
-  color: white !important; 
-  border: none !important; 
-  padding: 0 20px !important; 
-  cursor: pointer !important; 
-  font-weight: bold !important; 
-  border-radius: 8px !important; 
-}
-
-/* Ocultar el chat cuando tiene la clase .oculto */
-.oculto {
-  display: none !important;
-}
-
-/* ============================================================
-   RESTAURACIÓN TOTAL DEL CHAT DE DEXTER (LAPTOP Y CELULAR)
-   ============================================================ */
-
-/* El botón redondo del robot */
-.boton-chat { 
-  position: fixed !important; 
-  bottom: 20px !important; 
-  right: 20px !important; 
-  width: 80px !important; 
-  height: 80px !important; 
-  border-radius: 16px !important; 
-  background: var(--verde-oscuro) !important; 
-  color: white !important; 
-  border: 2px solid var(--verde-claro) !important; 
-  cursor: pointer !important; 
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important; 
-  z-index: 99999 !important; 
-  display: flex !important; 
-  flex-direction: column !important; 
-  justify-content: center !important; 
-  align-items: center !important; 
-  gap: 4px !important;
-  padding: 8px !important;
-}
-
-/* La ventana del chat */
-.ventana-chat { 
-  position: fixed !important; 
-  bottom: 110px !important; 
-  right: 20px !important; 
-  width: 350px !important; 
-  max-width: 90vw !important; 
-  background: white !important; 
-  border-radius: 12px !important; 
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important; 
-  z-index: 99999 !important; 
-  display: flex !important; 
-  flex-direction: column !important; 
-  overflow: hidden !important; 
-  border: 1px solid #ddd !important;
-}
-
-/* Encabezado verde */
-.cabecera-chat { 
-  background: var(--verde-oscuro) !important; 
-  color: white !important; 
-  padding: 12px 15px !important; 
-  display: flex !important; 
-  justify-content: space-between !important; 
-  align-items: center !important; 
-  font-weight: bold !important; 
-  font-family: var(--fuente-texto) !important;
-}
-
-/* Área de mensajes */
-.mensajes-chat { 
-  height: 300px !important; 
-  overflow-y: auto !important; 
-  padding: 15px !important; 
-  display: flex !important; 
-  flex-direction: column !important; 
-  gap: 12px !important; 
-  background: #fdfdfd !important; 
-}
-
-/* Globos de texto */
-.mensajes-chat p { 
-  margin: 0 !important; 
-  padding: 10px 14px !important; 
-  border-radius: 12px !important; 
-  font-size: 0.9rem !important; 
-  max-width: 85% !important; 
-  line-height: 1.4 !important; 
-}
-
-.msj-bot { 
-  background: #e8f5e9 !important; 
-  color: #333 !important; 
-  align-self: flex-start !important; 
-  border-bottom-left-radius: 2px !important; 
-  border-left: 3px solid var(--verde-claro) !important;
-}
-
-.msj-user { 
-  background: var(--verde-oscuro) !important; 
-  color: white !important; 
-  align-self: flex-end !important; 
-  border-bottom-right-radius: 2px !important; 
-}
-
-/* Barra de escribir */
-.input-chat { 
-  display: flex !important; 
-  border-top: 1px solid #eee !important; 
-  background: white !important; 
-  padding: 5px !important; 
-}
-
-.input-chat input { 
-  flex: 1 !important; 
-  border: none !important; 
-  padding: 12px !important; 
-  outline: none !important; 
-  background: white !important;
-  color: #333 !important;
-  font-family: var(--fuente-texto) !important;
-}
-
-.input-chat button { 
-  background: var(--verde-oscuro) !important; 
-  color: white !important; 
-  border: none !important; 
-  padding: 0 20px !important; 
-  cursor: pointer !important; 
-  font-weight: bold !important; 
-  border-radius: 8px !important; 
-}
-
-/* Ajuste para celular (que no ocupe toda la pantalla) */
-@media (max-width: 768px) {
-  .ventana-chat {
-    width: 90vw !important;
-    left: 5vw !important;
-    right: 5vw !important;
-    bottom: 100px !important;
-    height: 60vh !important;
-  }
-  .mensajes-chat {
-    height: auto !important;
-    flex: 1 !important;
-  }
-}
-
-/* ============================================================
-   BOTÓN DE CERRAR (X) DEL CHAT - DISEÑO ELEGANTE
-   ============================================================ */
-#cerrar-chat {
-  background: transparent !important;
-  border: none !important;
-  color: white !important;
-  font-size: 2rem !important; /* Tamaño perfecto */
-  font-weight: bold !important;
-  cursor: pointer !important;
-  padding: 0 10px !important;
-  margin: 0 !important;
-  line-height: 1 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  transition: color 0.2s !important;
-}
-
-#cerrar-chat:hover {
-  color: #2ecc71 !important; /* Se pone verde claro al pasar el mouse */
-}
-
-.ventana-chat.oculto {
-  display: none !important;
-}
-
-/* Forzar fondo blanco y letras oscuras en las opciones del cuestionario */
-.opcion {
-  background-color: #ffffff !important;
-  color: #000000 !important;
-  border: 2px solid #ccc !important;
-  font-weight: 500 !important;
-}
-.opcion:hover {
-  background-color: #f0f0f0 !important;
-  border-color: var(--verde-oscuro) !important;
-}
-/* Mantener los colores de acierto/error */
-.opcion.correcta {
-  background-color: #d4f5e0 !important; /* Verde claro */
-  color: #0f5c35 !important;
-  border-color: #2ecc71 !important;
-}
-.opcion.incorrecta {
-  background-color: #fde8e8 !important; /* Rojo claro */
-  color: #c0392b !important;
-  border-color: #e74c3c !important;
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
