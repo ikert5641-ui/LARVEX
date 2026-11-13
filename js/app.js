@@ -678,16 +678,12 @@ function siguientePregunta() {
 }
 
 function finalizarJuego() {
-  // 1. Ocultar preguntas y mostrar resultados
   document.getElementById('juego-preguntas').classList.add('oculto');
   document.getElementById('juego-resultados').classList.remove('oculto');
 
   const puntaje = juegoEstado.puntaje;
-  
-  // 2. Mostrar el puntaje
   document.getElementById('puntaje-final').textContent = `${puntaje} / 800 puntos`;
   
-  // 3. Mensaje según el puntaje
   let mensaje = '';
   if (puntaje === 800) mensaje = '¡Excelente! Tienes un conocimiento sobresaliente.';
   else if (puntaje >= 500) mensaje = '¡Muy bien! Conoces lo necesario.';
@@ -696,7 +692,6 @@ function finalizarJuego() {
 
   document.getElementById('mensaje-final').textContent = mensaje;
 
-  // 4. Guardar en el ranking
   guardarEnRanking({
     nombre: juegoEstado.nombre || 'Anónimo',
     region: juegoEstado.region,
@@ -705,6 +700,23 @@ function finalizarJuego() {
     total: 8,
     fecha: new Date().toISOString(),
   });
+
+  cargarRanking();
+
+  const btnJugarDeNuevo = document.getElementById('boton-jugar-de-nuevo');
+  const btnWhatsapp = document.getElementById('boton-compartir-whatsapp');
+  
+  if (btnWhatsapp) btnWhatsapp.style.display = 'none'; 
+  
+  if (btnJugarDeNuevo) {
+    btnJugarDeNuevo.textContent = '¡Gracias por participar en este estudio!';
+    btnJugarDeNuevo.classList.remove('boton-secundario');
+    btnJugarDeNuevo.classList.add('boton-primario');
+    btnJugarDeNuevo.disabled = true;
+    btnJugarDeNuevo.style.opacity = '0.8';
+    btnJugarDeNuevo.style.cursor = 'default';
+  }
+}
 
   cargarRanking();
 
