@@ -22,7 +22,7 @@
   <!-- Barra de progreso de lectura -->
   <div id="barra-progreso" aria-hidden="true"></div>
 
-  <!-- Banner de alerta de lluvia (se muestra solo si probabilidad > 40%) -->
+  <!-- Banner de alerta de lluvia -->
   <div id="banner-lluvia" class="banner-lluvia oculto" role="alert">
     <p id="texto-banner"></p>
     <button id="cerrar-banner" aria-label="Cerrar alerta">&times;</button>
@@ -32,7 +32,7 @@
   <header id="encabezado" class="encabezado transparente">
     <div class="contenedor-encabezado">
       <a href="#inicio" class="logo-enlace" aria-label="Larvex, ir al inicio">
-      <img src="img/logo-cabeza.png" alt="Logotipo de Larvex" class="logo-img" width="120">
+        <img src="img/logo-cabeza.png" alt="Logotipo de Larvex" class="logo-img" width="120">
       </a>
 
       <button id="boton-menu" class="boton-menu" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-principal">
@@ -75,29 +75,22 @@
     <section id="problema" class="seccion-dos-columnas">
       <div class="texto-seccion">
         <h2 class="titulo-seccion">El problema</h2>
-                <p>El Fenómeno El Niño es un evento climático global que altera las temperaturas y las lluvias en el planeta. Los océanos se calientan, provocando sequías extremas en algunas zonas y lluvias torrenciales en otras, como la costa peruana.</p>
+        <p>El Fenómeno El Niño es un evento climático global que altera las temperaturas y las lluvias en el planeta. Los océanos se calientan, provocando sequías extremas en algunas zonas y lluvias torrenciales en otras, como la costa peruana.</p>
         <p>Cuando este fenómeno llega a Trujillo, las precipitaciones intensas y prolongadas dejan agua estancada en calles, patios, llantas viejas, baldes, canaletas y floreros. Esa agua limpia y quieta es el lugar perfecto para que el zancudo <em>Aedes aegypti</em> ponga sus huevos.</p>
         <p>La hembra del zancudo deposita sus huevos en las paredes de los recipientes, justo por encima del nivel del agua. Cuando llueve o el recipiente se llena, los huevos eclosionan y las larvas se desarrollan en el agua. En condiciones favorables, una larva puede convertirse en zancudo adulto en unos 7 a 10 días.</p>
         <p>Por eso, revisar y eliminar el agua acumulada cada semana es la medida más eficaz para cortar el ciclo de reproducción del zancudo. No se necesita una gran inundación: un pequeño recipiente con agua puede ser suficiente para criar cientos de zancudos.</p>
       </div>
       <div class="imagen-seccion">
-        <!-- Foto: Balde o recipiente con agua estancada bajo la lluvia. Unsplash/Pexels -->
         <img src="img/problema-agua-estancada.jpg" alt="Recipiente con agua estancada en un patio durante la lluvia" loading="lazy">
       </div>
     </section>
 
-    <!-- NUEVA SECCIÓN: Mapa Global en grande -->
+    <!-- Mapa Global -->
     <section id="mapa-global" style="padding: 2rem 1.5rem;">
       <h2 class="titulo-seccion" style="text-align: center; margin-bottom: 1rem;">El clima en tiempo real</h2>
       <p style="text-align: center; margin-bottom: 2rem;">Observa cómo los vientos y las lluvias se mueven por el planeta. Los patrones anormales son los que provocan el Fenómeno El Niño.</p>
       <div class="contenedor-mapa-mundo" style="margin: 0;">
-                <iframe 
-          src="https://earth.nullschool.net/#current/wind/surface/level/orthographic=-70.00,-10.00,500" 
-          width="100%" 
-          height="450" 
-          style="border:none; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); background-color: #000;" 
-          allowfullscreen>
-        </iframe>
+        <iframe src="https://earth.nullschool.net/#current/wind/surface/level/orthographic=-70.00,-10.00,500" width="100%" height="450" style="border:none; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); background-color: #000;" allowfullscreen></iframe>
         <p class="fuente-mapa">Vientos globales en vivo. Fuente: Earth Nullschool.</p>
       </div>
     </section>
@@ -107,11 +100,10 @@
       <div class="texto-seccion">
         <h2 class="titulo-seccion">El dengue</h2>
         <p>El dengue se transmite por la picadura de la hembra infectada del zancudo <em>Aedes aegypti</em>. No se transmite de persona a persona. Los síntomas más frecuentes son fiebre alta de inicio repentino, dolor de cabeza intenso, dolor detrás de los ojos, dolor muscular y articular, sarpullido, náuseas o vómitos.</p>
-       <p class="destacado-alarma"><strong>Signos de alarma que exigen atención médica inmediata:</strong> dolor abdominal intenso y continuo, vómitos persistentes, sangrado de nariz o encías, y somnolencia o irritabilidad. Ante fiebre alta, acude al centro de salud más cercano y <strong>no te automediques con aspirina ni ibuprofeno</strong>.</p>
-             <p><strong>El ciclo del mosquito:</strong> La hembra del Aedes aegypti pone sus huevos en las paredes de los recipientes, justo por encima del nivel del agua. Cuando llueve, los huevos eclosionan y las larvas se desarrollan en el agua. En condiciones favorables, una larva se convierte en zancudo adulto en unos 7 a 10 días. Los huevos pueden sobrevivir meses en seco, por lo que la limpieza debe ser constante.</p>
+        <p class="destacado-alarma"><strong>Signos de alarma que exigen atención médica inmediata:</strong> dolor abdominal intenso y continuo, vómitos persistentes, sangrado de nariz o encías, y somnolencia o irritabilidad. Ante fiebre alta, acude al centro de salud más cercano y <strong>no te automediques con aspirina ni ibuprofeno</strong>.</p>
+        <p><strong>El ciclo del mosquito:</strong> La hembra del Aedes aegypti pone sus huevos en las paredes de los recipientes, justo por encima del nivel del agua. Cuando llueve, los huevos eclosionan y las larvas se desarrollan en el agua. En condiciones favorables, una larva se convierte en zancudo adulto en unos 7 a 10 días. Los huevos pueden sobrevivir meses en seco, por lo que la limpieza debe ser constante.</p>
       </div>
       <div class="imagen-seccion">
-        <!-- Foto: Zancudo Aedes aegypti en primer plano. Unsplash/Pexels -->
         <img src="img/dengue-mosquito.jpg" alt="Zancudo Aedes aegypti en primer plano sobre la piel" loading="lazy">
       </div>
     </section>
@@ -122,46 +114,43 @@
         <h2 class="titulo-seccion">Prevención en casa</h2>
         <p>La descacharrización consiste en eliminar o voltear todos los recipientes que puedan acumular agua. Revisa tu patio, techo y jardín: baldes, llantas, botellas, latas, macetas y floreros deben vaciarse o guardarse bajo techo. Los depósitos de agua deben estar bien tapados.</p>
         <p>Lava con escobilla los bordes de baldes y tanques, ya que los huevos del zancudo quedan adheridos a las paredes. Limpia canaletas y desagües para que el agua no se empoce. Usa repelente y ropa de manga larga, especialmente al amanecer y al atardecer, y coloca mallas en ventanas y puertas.</p>
-              <p><strong>Recomendaciones clave del MINSA:</strong> Lavar y escobillar los tanques de agua al menos cada 6 días; cambiar el agua de los floreros por arena húmeda; tapar herméticamente los depósitos de agua; y permitir el ingreso del personal de salud para las inspecciones.</p>
+        <p><strong>Recomendaciones clave del MINSA:</strong> Lavar y escobillar los tanques de agua al menos cada 6 días; cambiar el agua de los floreros por arena húmeda; tapar herméticamente los depósitos de agua; y permitir el ingreso del personal de salud para las inspecciones.</p>
       </div>
       <div class="imagen-seccion">
-        <!-- Foto: Patio limpio, sin recipientes con agua. Unsplash/Pexels -->
         <img src="img/prevencion-patio-limpio.jpg" alt="Patio de casa limpio y ordenado, sin criaderos de zancudos" loading="lazy">
       </div>
     </section>
 
-    <!-- NUEVA SECCIÓN: MITOS Y REALIDADES -->
+    <!-- MITOS Y REALIDADES -->
     <section id="mitos" class="seccion-dos-columnas invertida">
       <div class="texto-seccion">
         <h2 class="titulo-seccion">Mitos y realidades</h2>
-        <p><strong>Mito: "El dengue solo da en lugares sucios".</strong><br>
-        <strong>Realidad:</strong> Falso. El zancudo Aedes aegypti prefiere el agua limpia y estancada. Un balde con agua de lluvia recién caída es su lugar favorito.</p>
-        
-        <p><strong>Mito: "Si tengo dengue, puedo tomar aspirina".</strong><br>
-        <strong>Realidad:</strong> ¡Peligroso! La aspirina y el ibuprofeno aumentan el riesgo de sangrado. Solo se debe tomar paracetamol y acudir al médico.</p>
-        
-        <p><strong>Mito: "Fumigar es la única solución".</strong><br>
-        <strong>Realidad:</strong> La fumigación mata al zancudo adulto, pero no a los huevos. La medida más eficaz y duradera es eliminar los criaderos en casa.</p>
+        <p><strong>Mito: "El dengue solo da en lugares sucios".</strong><br><strong>Realidad:</strong> Falso. El zancudo Aedes aegypti prefiere el agua limpia y estancada. Un balde con agua de lluvia recién caída es su lugar favorito.</p>
+        <p><strong>Mito: "Si tengo dengue, puedo tomar aspirina".</strong><br><strong>Realidad:</strong> ¡Peligroso! La aspirina y el ibuprofeno aumentan el riesgo de sangrado. Solo se debe tomar paracetamol y acudir al médico.</p>
+        <p><strong>Mito: "Fumigar es la única solución".</strong><br><strong>Realidad:</strong> La fumigación mata al zancudo adulto, pero no a los huevos. La medida más eficaz y duradera es eliminar los criaderos en casa.</p>
       </div>
       <div class="imagen-seccion">
-        <!-- Foto: Persona fumigando o un balde con agua limpia -->
         <img src="img/mitos-realidades.jpg" alt="Persona fumigando para eliminar mosquitos" loading="lazy">
       </div>
     </section>
     
-    <!-- 5. REPORTA UNA ZONA -->
+    <!-- 5. REPORTA UNA ZONA (Corregido) -->
     <section id="reporta" class="seccion-reporta">
       <h2 class="titulo-seccion">Reporta una zona</h2>
       <p class="texto-intro">Ayuda a identificar focos de agua estancada en Trujillo. Toca el mapa para marcar la ubicación o usa tu ubicación actual.</p>
 
-          <!-- COLUMNA IZQUIERDA: Mapa y Botón -->
-    <div class="columna-mapa">
-      <div id="mapa" class="mapa" aria-label="Mapa interactivo de Trujillo para reportar zonas"></div>
-      <div style="text-align: center; margin-top: 1rem;">
-        <button id="btn-calor" class="boton boton-secundario" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">🔥 Ver Mapa de Calor</button>
-      </div>
-      </div>
+      <!-- AQUÍ ESTABA EL ERROR: Faltaba esta caja contenedora -->
+      <div class="contenedor-reporta">
         
+        <!-- COLUMNA IZQUIERDA: Mapa y Botón -->
+        <div class="columna-mapa">
+          <div id="mapa" class="mapa" aria-label="Mapa interactivo de Trujillo para reportar zonas"></div>
+          <div style="text-align: center; margin-top: 1rem;">
+            <button id="btn-calor" class="boton boton-secundario" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">🔥 Ver Mapa de Calor</button>
+          </div>
+        </div>
+        
+        <!-- COLUMNA DERECHA: Formulario -->
         <div class="panel-reporta">
           <div class="contador-reportes">
             <span id="total-reportes">0</span>
@@ -187,34 +176,30 @@
 
             <button type="button" id="boton-ubicacion" class="boton boton-ubicacion">Usar mi ubicación actual</button>
             <p id="estado-ubicacion" class="estado-ubicacion"></p>
-
             <button type="submit" class="boton boton-primario">Enviar reporte</button>
           </form>
-
         </div>
       </div>
     </section>
 
-    <!-- 6. ALERTA DE LLUVIA (el banner se inserta dinámicamente) -->
-    <!-- 7. CAZADOR DE CRIADEROS -->
-   <section id="juego" class="seccion-juego">
-  <h2 class="titulo-seccion">Estudio de Conocimiento Comunitario</h2>
-  <p class="texto-intro">Ayúdanos a medir cuánto sabemos los peruanos sobre el dengue y el Fenómeno El Niño. Tus respuestas nos ayudarán a calcular promedios por región y saber dónde enfocar la prevención.</p>
+    <!-- 7. CAZADOR DE CRIADEROS (Encuesta) -->
+    <section id="juego" class="seccion-juego">
+      <h2 class="titulo-seccion">Estudio de Conocimiento Comunitario</h2>
+      <p class="texto-intro">Ayúdanos a medir cuánto sabemos los peruanos sobre el dengue y el Fenómeno El Niño. Tus respuestas nos ayudarán a calcular promedios por región.</p>
 
-  <!-- Pantalla de inicio del estudio -->
-  <div id="juego-inicio" class="juego-pantalla">
-    <h3>Antes de empezar</h3>
-    <label for="nombre-jugador">Tu nombre (opcional)</label>
-    <input type="text" id="nombre-jugador" placeholder="Escribe tu nombre">
+      <!-- Pantalla de inicio del estudio -->
+      <div id="juego-inicio" class="juego-pantalla">
+        <h3>Antes de empezar</h3>
+        <label for="nombre-jugador">Tu nombre (opcional)</label>
+        <input type="text" id="nombre-jugador" placeholder="Escribe tu nombre">
 
-    <label for="region-jugador">Tu región</label>
-    <select id="region-jugador" required>
-      <option value="">Selecciona tu región</option>
-      <!-- Se llena con JS -->
-    </select>
+        <label for="region-jugador">Tu región</label>
+        <select id="region-jugador" required>
+          <option value="">Selecciona tu región</option>
+        </select>
 
-    <button id="boton-comenzar-juego" class="boton boton-primario">Comenzar Encuesta</button>
-  </div>
+        <button id="boton-comenzar-juego" class="boton boton-primario">Comenzar Encuesta</button>
+      </div>
 
       <!-- Pantalla de preguntas -->
       <div id="juego-preguntas" class="juego-pantalla oculto">
@@ -229,13 +214,13 @@
         <button id="boton-siguiente" class="boton boton-primario oculto">Siguiente</button>
       </div>
 
-      <!-- Pantalla de resultados -->
+      <!-- Pantalla de resultados (BOTONES CORREGIDOS) -->
       <div id="juego-resultados" class="juego-pantalla oculto">
         <h3>Resultado final</h3>
         <p id="puntaje-final" class="puntaje-final"></p>
         <p id="mensaje-final" class="mensaje-final"></p>
-        <button id="boton-compartir-whatsapp" class="boton boton-whatsapp">Compartir por WhatsApp</button>
-        <button id="boton-jugar-de-nuevo" class="boton boton-secundario">Jugar de nuevo</button>
+        <button id="boton-compartir-whatsapp" class="boton boton-whatsapp" style="display: none;">Compartir</button>
+        <button id="boton-jugar-de-nuevo" class="boton boton-primario" disabled style="opacity: 0.8; cursor: default;">¡Gracias por participar en este estudio!</button>
       </div>
 
       <!-- Ranking -->
@@ -252,7 +237,7 @@
     <section id="equipo" class="seccion-equipo">
       <h2 class="titulo-seccion">Equipo G.E.N</h2>
       <ul class="lista-equipo">
-       <li>Jhon Marcelo Reyes Obando</li>
+        <li>Jhon Marcelo Reyes Obando</li>
         <li>Iker Jaden Torres Terrones</li>
         <li>Andrea Ivana Monzon Rodriguez</li>
         <li>Irma Brillit Tolentino Valdiviezo</li>
@@ -270,45 +255,34 @@
         <li><a href="https://www.paho.org/es/temas/dengue" target="_blank" rel="noopener">Organización Panamericana de la Salud (OPS) – Dengue</a></li>
       </ul>
     </section>
-
   </main>
 
   <!-- 10. PIE DE PÁGINA -->
   <footer class="pie-pagina">
-     <img src="img/logo-pie.png" alt="Isologo de Larvex" width="60" height="60" class="logo-footer">
+    <img src="img/logo-pie.png" alt="Isologo de Larvex" width="60" height="60" class="logo-footer">
     <h2 class="titulo-footer">Sin criaderos, <span>no hay mosquitos.</span></h2>
     <p class="subtitulo-footer">La prevención comienza en casa y continúa en nuestra comunidad.</p>
     <div class="creditos-footer">
       <p>Larvex · Equipo G.E.N · I.E. Fe y Alegría N.° 36 · Trujillo</p>
     </div>
-</footer>
-  <!-- Librerías CDN -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  </footer>
 
-  <!-- Scripts propios -->
-  <script src="js/app.js"></script>
-  <script src="js/parallax.js"></script>
   <!-- ASISTENTE VIRTUAL DEXTER -->
   <button id="boton-chat" class="boton-chat" aria-label="Abrir asistente Dexter">
-  <span class="icono-bot">🤖</span>
-  <span class="texto-bot">Asistente IA</span>
-</button>
+    <span class="icono-bot">🤖</span>
+    <span class="texto-bot">Asistente IA</span>
+  </button>
   
   <div id="ventana-chat" class="ventana-chat oculto">
     <div class="cabecera-chat">
       <span>Dexter - Asistente Larvex</span>
-            <button id="cerrar-chat" onclick="document.getElementById('ventana-chat').style.display='none'" aria-label="Cerrar asistente" style="background: transparent; border: none; color: white; font-size: 2rem; font-weight: bold; cursor: pointer; padding: 0 10px; margin: 0; line-height: 1; z-index: 999999; position: relative;">&times;</button>
+      <button id="cerrar-chat" onclick="document.getElementById('ventana-chat').style.display='none'" aria-label="Cerrar asistente" style="background: transparent; border: none; color: white; font-size: 2rem; font-weight: bold; cursor: pointer; padding: 0 10px; margin: 0; line-height: 1; z-index: 999999; position: relative;">&times;</button>
     </div>
     
     <div id="mensajes-chat" class="mensajes-chat">
       <p class="msj-bot">¡Hola! Soy Dexter 🤖. Pregúntame sobre síntomas, prevención, el zancudo o cómo reportar una zona.</p>
     </div>
     
-    <!-- Indicador de que Dexter está escribiendo -->
     <div id="indicador-escribiendo" class="indicador-escribiendo oculto">
       <span></span><span></span><span></span>
     </div>
@@ -318,7 +292,17 @@
       <button id="enviar-chat">Enviar</button>
     </div>
   </div>
-    <!-- Script para la Inteligencia Artificial de Dexter -->
+
+  <!-- Librerías CDN -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
   <script src="https://js.puter.com/v2/"></script>
+
+  <!-- Scripts propios (Al final para que carguen rápido) -->
+  <script src="js/app.js"></script>
+  <script src="js/parallax.js"></script>
 </body>
 </html>
