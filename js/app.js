@@ -677,34 +677,7 @@ function siguientePregunta() {
   mostrarPregunta();
 }
 
-function finalizarJuego() {
-  $('#juego-preguntas').classList.add('oculto');
-  $('#juego-resultados').classList.remove('oculto');
 
-  const puntaje = juegoEstado.puntaje;
-  const aciertos = juegoEstado.aciertos;
-
-  $('#puntaje-final').textContent = `${puntaje} / 800 puntos`;
-  let mensaje = '';
-  if (puntaje === 800) mensaje = '¡Excelente! Eres un experto en prevención del dengue.';
-  else if (puntaje >= 500) mensaje = '¡Muy bien! Sabes lo necesario para cuidarte y cuidar a tu comunidad.';
-  else if (puntaje >= 300) mensaje = 'Vas por buen camino. Repasa las secciones de prevención y vuelve a intentarlo.';
-  else mensaje = 'Necesitas repasar un poco más. Lee las secciones de El problema y Prevención.';
-
-  $('#mensaje-final').textContent = mensaje;
-
-  // Guardar en ranking
-  guardarEnRanking({
-    nombre: juegoEstado.nombre,
-    region: juegoEstado.region,
-    puntaje,
-    aciertos,
-    total: PREGUNTAS.length,
-    fecha: new Date().toISOString(),
-  });
-
-  cargarRanking();
-}
 
 function reiniciarJuego() {
   $('#juego-resultados').classList.add('oculto');
