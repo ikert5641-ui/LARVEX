@@ -1476,3 +1476,7 @@ body.modo-oscuro .botones-inicio .boton-secundario:hover {
 #cerrar-chat:hover {
   color: #2ecc71 !important; /* Se pone verde claro al pasar el mouse */
 }
+
+.ventana-chat.oculto {
+  display: none !important;
+}
