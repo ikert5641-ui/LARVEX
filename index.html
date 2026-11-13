@@ -197,24 +197,24 @@
 
     <!-- 6. ALERTA DE LLUVIA (el banner se inserta dinámicamente) -->
     <!-- 7. CAZADOR DE CRIADEROS -->
-    <section id="juego" class="seccion-juego">
-      <h2 class="titulo-seccion">Cazador de Criaderos</h2>
-      <p class="texto-intro">Demuestra cuánto sabes sobre la prevención del dengue. Responde 8 preguntas y compite en el ranking.</p>
+   <section id="juego" class="seccion-juego">
+  <h2 class="titulo-seccion">Estudio de Conocimiento Comunitario</h2>
+  <p class="texto-intro">Ayúdanos a medir cuánto sabemos los peruanos sobre el dengue y el Fenómeno El Niño. Tus respuestas nos ayudarán a calcular promedios por región y saber dónde enfocar la prevención.</p>
 
-      <!-- Pantalla de inicio del juego -->
-      <div id="juego-inicio" class="juego-pantalla">
-        <h3>Antes de empezar</h3>
-        <label for="nombre-jugador">Tu nombre</label>
-        <input type="text" id="nombre-jugador" required placeholder="Escribe tu nombre">
+  <!-- Pantalla de inicio del estudio -->
+  <div id="juego-inicio" class="juego-pantalla">
+    <h3>Antes de empezar</h3>
+    <label for="nombre-jugador">Tu nombre (opcional)</label>
+    <input type="text" id="nombre-jugador" placeholder="Escribe tu nombre">
 
-        <label for="region-jugador">Tu región</label>
-        <select id="region-jugador" required>
-          <option value="">Selecciona tu región</option>
-          <!-- Se llena con JS -->
-        </select>
+    <label for="region-jugador">Tu región</label>
+    <select id="region-jugador" required>
+      <option value="">Selecciona tu región</option>
+      <!-- Se llena con JS -->
+    </select>
 
-        <button id="boton-comenzar-juego" class="boton boton-primario">Comenzar</button>
-      </div>
+    <button id="boton-comenzar-juego" class="boton boton-primario">Comenzar Encuesta</button>
+  </div>
 
       <!-- Pantalla de preguntas -->
       <div id="juego-preguntas" class="juego-pantalla oculto">
