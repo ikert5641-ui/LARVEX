@@ -875,13 +875,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!ventanaChat.classList.contains('oculto')) inputChat.focus();
   });
   
-  // Cerrar ventana (compatible con celular)
+   // Forzar el cierre del chat de todas las formas posibles
   function cerrarVentanaChat(e) {
-    if (e) e.stopPropagation();
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     ventanaChat.classList.add('oculto');
   }
+
+  // Escuchar clics y toques en el botón
   cerrarChat.addEventListener('click', cerrarVentanaChat);
-  cerrarChat.addEventListener('touchstart', cerrarVentanaChat);
+  cerrarChat.addEventListener('pointerdown', cerrarVentanaChat); // Detecta mouse y dedos
+  cerrarChat.addEventListener('touchstart', cerrarVentanaChat, {passive: false}); 
 
   // Función para enviar mensaje (AHORA ES ASYNC POR LA IA)
   async function enviarMensaje() {
