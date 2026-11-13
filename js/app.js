@@ -676,7 +676,6 @@ function siguientePregunta() {
 
   mostrarPregunta();
 }
-
 function finalizarJuego() {
   document.getElementById('juego-preguntas').classList.add('oculto');
   document.getElementById('juego-resultados').classList.remove('oculto');
@@ -703,23 +702,6 @@ function finalizarJuego() {
 
   cargarRanking();
 
-  const btnJugarDeNuevo = document.getElementById('boton-jugar-de-nuevo');
-  const btnWhatsapp = document.getElementById('boton-compartir-whatsapp');
-  
-  if (btnWhatsapp) btnWhatsapp.style.display = 'none'; 
-  
-  if (btnJugarDeNuevo) {
-    btnJugarDeNuevo.textContent = '¡Gracias por participar en este estudio!';
-    btnJugarDeNuevo.classList.remove('boton-secundario');
-    btnJugarDeNuevo.classList.add('boton-primario');
-    btnJugarDeNuevo.disabled = true;
-    btnJugarDeNuevo.style.opacity = '0.8';
-    btnJugarDeNuevo.style.cursor = 'default';
-  }
-}
-
-  cargarRanking();
-
   // 5. MENSAJE DE AGRADECIMIENTO Y BLOQUEO
   const btnJugarDeNuevo = document.getElementById('boton-jugar-de-nuevo');
   const btnWhatsapp = document.getElementById('boton-compartir-whatsapp');
@@ -734,6 +716,7 @@ function finalizarJuego() {
     btnJugarDeNuevo.style.opacity = '0.8';
     btnJugarDeNuevo.style.cursor = 'default';
   }
+}
 
 function reiniciarJuego() {
   $('#juego-resultados').classList.add('oculto');
