@@ -734,7 +734,6 @@ function finalizarJuego() {
     btnJugarDeNuevo.style.opacity = '0.8';
     btnJugarDeNuevo.style.cursor = 'default';
   }
-}
 
 function reiniciarJuego() {
   $('#juego-resultados').classList.add('oculto');
