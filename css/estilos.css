@@ -422,3 +422,61 @@ body.modo-oscuro .botones-inicio .boton-secundario:hover { background-color: #ff
     margin-bottom: 1rem;
   }
 }
+
+/* ============================================================
+   ARREGLO DEFINITIVO DE IMÁGENES (Sin cortes raros ni franjas)
+   ============================================================ */
+.imagen-seccion {
+  height: 400px !important; /* Altura exacta para laptop */
+  width: 100% !important;
+  overflow: hidden !important;
+  border-radius: var(--radio) !important;
+  box-shadow: var(--sombra) !important;
+  background-color: #e0e0e0 !important; /* Fondo gris neutro */
+}
+
+.imagen-seccion img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important; /* Llena el cuadro perfectamente */
+  object-position: center !important;
+  display: block !important;
+}
+
+@media (max-width: 768px) {
+  .imagen-seccion {
+    height: 300px !important; /* Altura para celular */
+  }
+}
+
+/* ============================================================
+   ARREGLO DEL MENÚ EN MODO CLARO (Que no se vuelva invisible)
+   ============================================================ */
+.encabezado.solido .logo-texto,
+.encabezado.solido .enlace-menu,
+.encabezado.solido .boton-tema {
+  color: var(--gris-texto) !important; 
+}
+
+.encabezado.solido .enlace-menu.activo {
+  color: var(--verde-oscuro) !important;
+  border-bottom-color: var(--verde-oscuro) !important;
+}
+
+.encabezado.solido .logo-img {
+  filter: none !important;
+}
+
+/* En modo oscuro, mantener letras blancas en el menú sólido */
+body.modo-oscuro .encabezado.solido .logo-texto,
+body.modo-oscuro .encabezado.solido .enlace-menu,
+body.modo-oscuro .encabezado.solido .boton-tema {
+  color: #ffffff !important;
+}
+body.modo-oscuro .encabezado.solido .enlace-menu.activo {
+  color: var(--verde-claro) !important;
+  border-bottom-color: var(--verde-claro) !important;
+}
+body.modo-oscuro .encabezado.solido .logo-img {
+  filter: brightness(0) invert(1) !important;
+}
