@@ -614,10 +614,11 @@ document.addEventListener('DOMContentLoaded', () => {
   cerrarChat.addEventListener('pointerdown', cerrarVentanaChat);
   cerrarChat.addEventListener('touchstart', cerrarVentanaChat, {passive: false}); 
 
-  async function enviarMensaje() {
+   async function enviarMensaje() {
     const textoUsuario = inputChat.value.trim();
     if (!textoUsuario) return;
 
+    // 1. Mostrar mensaje del usuario
     const msjUser = document.createElement('p');
     msjUser.className = 'msj-user';
     msjUser.textContent = textoUsuario;
@@ -625,11 +626,73 @@ document.addEventListener('DOMContentLoaded', () => {
     inputChat.value = '';
     mensajesChat.scrollTop = mensajesChat.scrollHeight;
 
+    // 2. Revisar si es un comando de SOPORTE
+    const lowerTexto = textoUsuario.toLowerCase();
+    
+    if (lowerTexto.startsWith('/support') || lowerTexto.startsWith('/soporte')) {
+      // Extraer el mensaje quitando el comando (8 letras tiene "/support")
+      const mensajeSoporte = textoUsuario.substring(8).trim();
+
+      if (!mensajeSoporte) {
+        const msjBot = document.createElement('p');
+        msjBot.className = 'msj-bot';
+        msjBot.textContent = "Escribe tu queja o mensaje después del comando. Ejemplo: /support El mapa no carga en mi celular.";
+        mensajesChat.appendChild(msjBot);
+        return;
+      }
+
+      // Mostrar "Escribiendo..." mientras envía
+      indicadorEscribiendo.classList.remove('oculto');
+      mensajesChat.scrollTop = mensajesChat.scrollHeight;
+
+      try {
+        // ENVIAR A TU GMAIL CON WEB3FORMS
+        const formData = new FormData();
+        formData.append("access_key", "8f8f1422-cda4-4e52-a506-dd17f1dd9dfd"); 
+        formData.append("subject", "Nuevo mensaje de soporte en Larvex");
+        formData.append("from_name", "Usuario de Larvex");
+        formData.append("message", mensajeSoporte);
+
+        const res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          body: formData
+        });
+        
+        const data = await res.json();
+
+        indicadorEscribiendo.classList.add('oculto');
+        const msjBot = document.createElement('p');
+        msjBot.className = 'msj-bot';
+        
+        if (data.success) {
+          msjBot.textContent = "✅ ¡Gracias! Tu mensaje ha sido enviado directamente al equipo de Larvex (G.E.N). Lo revisaremos pronto.";
+        } else {
+          msjBot.textContent = "❌ Hubo un error al enviar el mensaje. Por favor, intenta más tarde.";
+        }
+        mensajesChat.appendChild(msjBot);
+        mensajesChat.scrollTop = mensajesChat.scrollHeight;
+
+      } catch (error) {
+        indicadorEscribiendo.classList.add('oculto');
+        const msjError = document.createElement('p');
+        msjError.className = 'msj-bot';
+        msjError.textContent = "❌ Error de conexión al enviar el soporte.";
+        mensajesChat.appendChild(msjError);
+      }
+      return; // Termina la función aquí para que no vaya a la IA
+    }
+
+    // 3. Si NO es soporte, hablar con la IA (Prompt mejorado y abierto)
     indicadorEscribiendo.classList.remove('oculto');
     mensajesChat.scrollTop = mensajesChat.scrollHeight;
 
     try {
-      const prompt = `Eres Dexter, el asistente virtual de Larvex, una plataforma escolar para prevenir el dengue durante el Fenómeno El Niño en Trujillo, Perú. Responde de forma clara, amable y breve (máximo 3 oraciones). La información médica debe estar basada en el MINSA, OMS y OPS. Si te preguntan algo que no sea de salud o de la página, di amablemente que solo puedes hablar de dengue. Pregunta del usuario: "${textoUsuario}"`;
+      const prompt = `Eres Dexter, un asistente virtual amable, inteligente y experto de Larvex, una plataforma escolar creada por estudiantes para prevenir el dengue en Trujillo, Perú. 
+      Responde de manera clara, educativa y detallada (mínimo 2 oraciones, máximo 4). 
+      Si te preguntan sobre dengue (síntomas, prevención, etc.), basa tus respuestas estrictamente en MINSA, OMS y OPS. 
+      Si te hacen preguntas generales de cultura, ciencia o ayuda, respóndelas de forma útil y amigable demostrando tu inteligencia, pero siempre intenta relacionarlo con el cuidado de la salud o la prevención si es posible. No evadas las preguntas.
+      Pregunta del usuario: "${textoUsuario}"`;
+
       const respuesta = await puter.ai.chat(prompt, { model: "openai/gpt-4o-mini" });
       
       indicadorEscribiendo.classList.add('oculto');
@@ -648,7 +711,6 @@ document.addEventListener('DOMContentLoaded', () => {
       mensajesChat.scrollTop = mensajesChat.scrollHeight;
     }
   }
-
   enviarChat.addEventListener('click', enviarMensaje);
   inputChat.addEventListener('keypress', (e) => { if (e.key === 'Enter') enviarMensaje(); });
 });
