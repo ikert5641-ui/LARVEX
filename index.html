@@ -45,10 +45,10 @@
           <li><a href="#problema" class="enlace-menu">El problema</a></li>
           <li><a href="#dengue" class="enlace-menu">El dengue</a></li>
           <li><a href="#prevencion" class="enlace-menu">Prevención</a></li>
+          <li><a href="#recursos" class="enlace-menu">Recursos</a></li>
           <li><a href="#reporta" class="enlace-menu">Reporta</a></li>
-          <li><a href="#juego" class="enlace-menu">Cazador</a></li>
+          <li><a href="#juego" class="enlace-menu">Encuesta</a></li>
           <li><a href="#equipo" class="enlace-menu">Equipo</a></li>
-          <li><a href="#fuentes" class="enlace-menu">Fuentes</a></li>
         </ul>
       </nav>
 
@@ -121,8 +121,42 @@
       </div>
     </section>
 
+    <!-- NUEVA SECCIÓN: RECURSOS -->
+    <section id="recursos" class="seccion-dos-columnas invertida">
+      <div class="texto-seccion">
+        <h2 class="titulo-seccion">Material Educativo</h2>
+        <p>Hemos recopilado información oficial y videos para que puedas aprender más sobre cómo proteger a tu familia.</p>
+        
+        <ul style="list-style: none; padding: 0; margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
+          <li>
+            <a href="https://saludsantander.com/Files/Contenidos/files/CARTILLA_DENGUE_INFANTIL.pdf" target="_blank" class="boton boton-primario" style="display: block; text-align: center;">
+              📄 Descargar Cartilla (PDF)
+            </a>
+          </li>
+          <li>
+            <a href="https://www.who.int/es/news-room/fact-sheets/detail/dengue-and-severe-dengue" target="_blank" class="boton boton-secundario" style="display: block; text-align: center; border: 2px solid var(--verde-oscuro); background: transparent; color: var(--verde-oscuro);">
+              🌐 Datos Oficiales OMS
+            </a>
+          </li>
+          <li>
+            <a href="https://www.paho.org/es/temas/dengue" target="_blank" class="boton boton-secundario" style="display: block; text-align: center; border: 2px solid var(--verde-oscuro); background: transparent; color: var(--verde-oscuro);">
+              🌐 Datos Oficiales OPS
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="imagen-seccion" style="height: auto !important; background: transparent !important; box-shadow: none !important;">
+        <div class="video-responsive">
+          <!-- Video incrustado de YouTube Oficial (MINSA) -->
+          <iframe src="https://www.youtube.com/embed/3s7V9X5qB6U" title="Prevención del dengue" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p style="font-size: 0.8rem; color: #777; margin-top: 0.5rem; text-align: right;">Video informativo sobre el dengue.</p>
+      </div>
+    </section>
+
     <!-- MITOS Y REALIDADES -->
-    <section id="mitos" class="seccion-dos-columnas invertida">
+    <section id="mitos" class="seccion-dos-columnas">
       <div class="texto-seccion">
         <h2 class="titulo-seccion">Mitos y realidades</h2>
         <p><strong>Mito: "El dengue solo da en lugares sucios".</strong><br><strong>Realidad:</strong> Falso. El zancudo Aedes aegypti prefiere el agua limpia y estancada. Un balde con agua de lluvia recién caída es su lugar favorito.</p>
@@ -134,15 +168,13 @@
       </div>
     </section>
     
-    <!-- 5. REPORTA UNA ZONA (Corregido) -->
+    <!-- 5. REPORTA UNA ZONA -->
     <section id="reporta" class="seccion-reporta">
       <h2 class="titulo-seccion">Reporta una zona</h2>
       <p class="texto-intro">Ayuda a identificar focos de agua estancada en Trujillo. Toca el mapa para marcar la ubicación o usa tu ubicación actual.</p>
 
-      <!-- AQUÍ ESTABA EL ERROR: Faltaba esta caja contenedora -->
       <div class="contenedor-reporta">
         
-        <!-- COLUMNA IZQUIERDA: Mapa y Botón -->
         <div class="columna-mapa">
           <div id="mapa" class="mapa" aria-label="Mapa interactivo de Trujillo para reportar zonas"></div>
           <div style="text-align: center; margin-top: 1rem;">
@@ -150,7 +182,6 @@
           </div>
         </div>
         
-        <!-- COLUMNA DERECHA: Formulario -->
         <div class="panel-reporta">
           <div class="contador-reportes">
             <span id="total-reportes">0</span>
@@ -187,7 +218,6 @@
       <h2 class="titulo-seccion">Estudio de Conocimiento Comunitario</h2>
       <p class="texto-intro">Ayúdanos a medir cuánto sabemos los peruanos sobre el dengue y el Fenómeno El Niño. Tus respuestas nos ayudarán a calcular promedios por región.</p>
 
-      <!-- Pantalla de inicio del estudio -->
       <div id="juego-inicio" class="juego-pantalla">
         <h3>Antes de empezar</h3>
         <label for="nombre-jugador">Tu nombre (opcional)</label>
@@ -201,7 +231,6 @@
         <button id="boton-comenzar-juego" class="boton boton-primario">Comenzar Encuesta</button>
       </div>
 
-      <!-- Pantalla de preguntas -->
       <div id="juego-preguntas" class="juego-pantalla oculto">
         <div class="cabecera-juego">
           <span id="numero-pregunta">Pregunta 1 de 8</span>
@@ -214,7 +243,6 @@
         <button id="boton-siguiente" class="boton boton-primario oculto">Siguiente</button>
       </div>
 
-      <!-- Pantalla de resultados (BOTONES CORREGIDOS) -->
       <div id="juego-resultados" class="juego-pantalla oculto">
         <h3>Resultado final</h3>
         <p id="puntaje-final" class="puntaje-final"></p>
@@ -223,7 +251,6 @@
         <button id="boton-jugar-de-nuevo" class="boton boton-primario" disabled style="opacity: 0.8; cursor: default;">¡Gracias por participar en este estudio!</button>
       </div>
 
-      <!-- Ranking -->
       <div class="ranking">
         <div class="pestanas-ranking">
           <button class="pestana activa" data-pestana="mejores">Mejores jugadores</button>
@@ -233,17 +260,29 @@
       </div>
     </section>
 
-    <!-- 8. EQUIPO G.E.N -->
+    <!-- 8. EQUIPO G.E.N (NUEVO DISEÑO) -->
     <section id="equipo" class="seccion-equipo">
       <h2 class="titulo-seccion">Equipo G.E.N</h2>
-      <ul class="lista-equipo">
-        <li>Jhon Marcelo Reyes Obando</li>
-        <li>Iker Jaden Torres Terrones</li>
-        <li>Andrea Ivana Monzon Rodriguez</li>
-        <li>Irma Brillit Tolentino Valdiviezo</li>
-        <li>Estefani Jazmin Pizan Tufinio</li>
-        <li>Yamil Aaron Sanchez Bobadilla</li>
-      </ul>
+      
+      <div class="grid-equipo">
+        <div class="columna-nombres izquierda">
+          <span>Jhon Marcelo Reyes Obando</span>
+          <span>Iker Jaden Torres Terrones</span>
+          <span>Andrea Ivana Monzon Rodriguez</span>
+        </div>
+        
+        <div class="foto-central">
+          <div class="placeholder-foto">
+            <span>Foto del Equipo (Próximamente)</span>
+          </div>
+        </div>
+        
+        <div class="columna-nombres derecha">
+          <span>Irma Brillit Tolentino Valdiviezo</span>
+          <span>Estefani Jazmin Pizan Tufinio</span>
+          <span>Yamil Aaron Sanchez Bobadilla</span>
+        </div>
+      </div>
     </section>
 
     <!-- 9. FUENTES -->
