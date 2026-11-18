@@ -347,21 +347,15 @@ body.modo-oscuro .botones-inicio .boton-secundario:hover { background-color: #ff
 
 .foto-central { display: flex; justify-content: center; }
 
-.placeholder-foto {
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  background-color: var(--gris-suave);
-  border: 4px dashed var(--verde-oscuro);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: #777;
-  font-size: 0.9rem;
-  padding: 1rem;
+.foto-central img {
+  width: 100%;
+  max-width: 300px; /* Tamaño máximo de la foto */
+  aspect-ratio: 1 / 1; /* Fuerza a que sea un cuadrado perfecto */
+  object-fit: cover; /* Recorta la foto sin deformarla */
+  border-radius: 50%; /* Hace que sea un círculo perfecto */
+  border: 6px solid #ffffff; /* Borde blanco para que resalte */
+  box-shadow: var(--sombra); /* Sombra elegante */
 }
-
 /* ============================================================
    MULTIMEDIA (Video Responsive)
    ============================================================ */
