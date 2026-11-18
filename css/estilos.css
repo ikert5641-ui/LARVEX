@@ -422,3 +422,20 @@ body.modo-oscuro .botones-inicio .boton-secundario:hover { background-color: #ff
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
+
+/* ============================================================
+   FORZAR COLORES EN MODO OSCURO (SECCIÓN EQUIPO)
+   ============================================================ */
+body.modo-oscuro .seccion-equipo .titulo-seccion {
+  color: #2ecc71 !important; /* Título en verde claro */
+}
+
+body.modo-oscuro .columna-nombres {
+  color: #ffffff !important; /* Nombres en blanco puro */
+}
+
+/* Arreglo extra para que el menú superior se lea bien en modo oscuro */
+body.modo-oscuro #encabezado .logo-texto,
+body.modo-oscuro #encabezado .enlace-menu {
+  color: #ffffff !important;
+}
